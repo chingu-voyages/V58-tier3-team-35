@@ -35,7 +35,7 @@ your repo access and to practice PR'ing with your team *before* you start
 coding!
 
 - Onyekachi Nwakaihe (Kachi): [GitHub](https://github.com/donkachii) / [LinkedIn](https://linkedin.com/in/onyekachi-nwakaihe)
-- Teammate name #2: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Zuwaira Mohammed #2: [GitHub](https://github.com/zuweeali) / [LinkedIn](https://linkedin.com/in/zuwaira-aliyu-mohammed)
 
    ...
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
