@@ -28,20 +28,21 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
+        working-directory: ./frontend
         run: npm ci
 
       # 🏗️ Build your React app
       #   - For CRA: this creates a /build folder
       #   - For Vite: this creates a /dist folder
       - name: Build project
+        working-directory: ./frontend
         run: npm run build
 
       # 📦 Upload the build output to GitHub Pages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # change this depending on your framework
-          path: ./dist # CRA output (use ./dist if using Vite)
+          path: ./dist
 
   deploy:
     environment:
