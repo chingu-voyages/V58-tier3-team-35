@@ -17,7 +17,9 @@ export default function MapView() {
   const { colorMode } = useColorMode();
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY!,
+    googleMapsApiKey:
+      import.meta.env.VITE_GOOGLE_MAPS_API_KEY! ||
+      "AIzaSyAF0Htn8-cE8t0WAWXaYVSAt_HiqWsnibo",
   });
 
   const center = { lat: 9.082, lng: 8.6753 };
