@@ -30,7 +30,7 @@ export default function Layout() {
           exit={{ opacity: 1 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          <Box as="main" flex="1" pt="20px" px={4}>
+          <Box as="main" flex="1">
             <Outlet key={location.pathname} />
           </Box>
         </motion.div>
