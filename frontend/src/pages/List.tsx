@@ -1,4 +1,3 @@
-
 export default function List() {
-  return <div>Welcome to Home Page</div>;
+  return <div>Welcome to the List Page</div>;
 }
