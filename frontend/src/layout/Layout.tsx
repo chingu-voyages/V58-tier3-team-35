@@ -3,6 +3,7 @@ import Header from "./Header";
 import { Box } from "@chakra-ui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
+import Footer from "./Footer";
 
 type RouteHandle = {
   title: string;
@@ -19,22 +20,26 @@ export default function Layout() {
       document.title = handle?.title;
     }
   }, [matches]);
+
+  const MotionBox = motion(Box);
   return (
     <Box minH="100vh" display="flex" flexDir="column">
       <Header />
       <AnimatePresence mode="wait">
-        <motion.div
+        <MotionBox
+          flex="1"
           key={location.pathname}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 1 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          <Box as="main" flex="1">
+          <Box as="main">
             <Outlet key={location.pathname} />
           </Box>
-        </motion.div>
+        </MotionBox>
       </AnimatePresence>
+      <Footer />
     </Box>
   );
 }
