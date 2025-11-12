@@ -13,7 +13,7 @@ import {
   DrawerBackdrop,
   DrawerCloseTrigger,
 } from "@chakra-ui/react";
-import { MoonIcon, SunIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { Sun, Moon, Menu } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useColorMode, useColorModeValue } from "@/components/ui/color-mode";
 import { NavLink, useNavigate } from "react-router";
@@ -135,7 +135,7 @@ const Header: React.FC = () => {
               onClick={toggleColorMode}
               variant="ghost"
             >
-              {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+              {colorMode === "light" ? <Moon /> : <Sun />}
             </IconButton>
           </HStack>
 
@@ -145,10 +145,10 @@ const Header: React.FC = () => {
               onClick={toggleColorMode}
               variant="ghost"
             >
-              {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+              {colorMode === "light" ? <Moon /> : <Sun />}
             </IconButton>
             <IconButton aria-label="Open Menu" onClick={onOpen} variant="ghost">
-              <HamburgerIcon />
+              <Menu />
             </IconButton>
           </HStack>
         </Flex>
