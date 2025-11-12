@@ -3,7 +3,7 @@ ARG NODE_VERSION=22.14.0
 FROM node:${NODE_VERSION}-alpine
 
 # Use production node environment by default.
-ENV NODE_ENV development
+ENV NODE_ENV=development
 
 
 WORKDIR /usr/src/app
@@ -20,4 +20,4 @@ COPY . .
 EXPOSE 4040
 
 # Run the application.
-CMD ["npm", "run" "dev"]
+CMD ["npm", "run", "dev"]
