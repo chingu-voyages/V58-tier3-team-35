@@ -10,14 +10,12 @@
     "dev": "dotenvx run -- nodemon src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
-    "start": "node --loader ts-node/esm src/server.ts",
-    "start:prod": "node --loader ts-node/esm src/server.ts"
+    "build": "tsc"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "zod": "^4.1.12",
-    "@dotenvx/dotenvx": "^1.51.1"
+    "zod": "^4.1.12"
 
     
   },
