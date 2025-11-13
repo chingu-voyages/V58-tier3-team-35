@@ -1,0 +1,23 @@
+
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sh -c "npm run start"
+    env_file:
+      - .env
+    ports:
+      - 12345:12345
+    networks:
+      - phoenixNetwork
+
+
+
+
+
+networks:
+  phoenixNetwork:
+    driver: bridge
+    
