@@ -39,7 +39,7 @@ coding!
 - Chinedu Olekah #3: [GitHub](https://github.com/kenako1) / [LinkedIn](https://linkedin.com/in/chinedu-olekah)
   ...
 - Afuwape Babatunde: [GitHub](https://github.com/Afubasic) / [LinkedIn](https://www.linkedin.com/in/afuwape-babatunde-258735382)
-- Ogechi Ogharandukun #4: [GitHub](https://github.com/AdoarableOge(Mide02-Project) / [LinkedIn](https://linkedin.com/in/Ogechi-Ogharandukun)
+- Ogechi Ogharandukun #4: [GitHub](https://github.com/AdoarableOge) / [LinkedIn](https://www.linkedin.com/in/Ogechi-Ogharandukun)
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
