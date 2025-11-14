@@ -1,0 +1,29 @@
+
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sh -c "npm run dev"
+    env_file:
+      - .env
+    ports:
+      - 12345:12345
+    volumes:
+      - .:/home/node/app
+      - node_modules:/home/node/app/node_modules
+    networks:
+      - phoenixNetwork
+
+
+
+
+volumes:
+  node_modules:
+
+  
+networks:
+  phoenixNetwork:
+    driver: bridge
+    
