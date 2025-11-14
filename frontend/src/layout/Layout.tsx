@@ -21,7 +21,7 @@ export default function Layout() {
     }
   }, [matches]);
 
-  const MotionBox = motion(Box);
+  const MotionBox = motion.create(Box);
   return (
     <Box minH="100vh" display="flex" flexDir="column">
       <Header />
