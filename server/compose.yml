@@ -1,11 +1,11 @@
 
-
 services:
   server:
     build:
       context: .
       dockerfile: Dockerfile
-    command: sh -c "npm run dev"
+      target: ${BUILD_TARGET:-dev}
+    command: ["npm","run","dev"]
     env_file:
       - .env
     ports:
@@ -15,6 +15,7 @@ services:
       - node_modules:/home/node/app/node_modules
     networks:
       - phoenixNetwork
+    restart: always
 
 
 

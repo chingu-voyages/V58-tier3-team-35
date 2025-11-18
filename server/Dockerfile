@@ -10,13 +10,18 @@ RUN npm ci
 
 COPY . .
 
+FROM base AS dev
+USER node
+EXPOSE 12345
+CMD ["npm", "run", "dev"]
+
 FROM base AS build
 RUN npm run build
 
 FROM node:${NODE_VERSION}-alpine AS prod
 WORKDIR /home/node/app/
 
-RUN chown -R node:node /home/node/app
+RUN chown -R node:node /home/node/app 
 
 ENV NODE_ENV=production
 
