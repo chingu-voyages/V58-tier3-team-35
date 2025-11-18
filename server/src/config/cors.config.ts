@@ -3,7 +3,7 @@ import Env from "./load_dotenv.js";
 const FRONTEND_URL = Env.FRONTEND_URL;
 
 if (FRONTEND_URL == undefined) {
-  throw new Error("FRONTEND_URL env var not set");
+  throw new Error("FRONTEND_URL env var not set"); 
 }
 
 export const corsOptions = {

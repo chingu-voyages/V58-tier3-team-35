@@ -1,19 +1,23 @@
 import express from "express";
 import cors from "cors";
 import { corsOptions } from "./config/cors.config.js";
+import Env from "./config/load_dotenv.js";
 
 const app = express();
 
 app.use(express.json());
 app.use(cors(corsOptions));
-app.use(function logIncomingRequests(req, _, next) {
-  console.info( 
-    `${new Date().toISOString().slice(11, 19)} ${req.method} initiated on ${
-      req.path
-    }`
-  );
-  next();
-});
+
+if (Env.NODE_ENV === "development") {
+  app.use(function logIncomingRequests(req, _, next) {
+    console.info( 
+      `${new Date().toISOString().slice(11, 19)} ${req.method} initiated on ${
+        req.path
+      }`
+    );
+    next();
+  });
+}
 
 
 app.get("/health", function (_, res) {

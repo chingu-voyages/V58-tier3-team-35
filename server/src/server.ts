@@ -2,6 +2,7 @@ import app from "./app.js";
 import Env from "./config/load_dotenv.js";
 
 const PORT = Env.PORT;
+
 if (PORT == undefined) {
   throw new Error("PORT env var not set");
 }
