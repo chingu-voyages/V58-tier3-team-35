@@ -24,7 +24,7 @@ export default function LeafletMap() {
     iconSize: [30, 30],
     iconAnchor: [20, 40],
   });
-  // RUN CLUSTER LOGIC
+
   useEffect(() => {
     if (!mapRef.current) return;
 
@@ -70,7 +70,8 @@ export default function LeafletMap() {
   return (
     <MapContainer
       center={[9.082, 8.6753]}
-      zoom={3}
+      zoom={5}
+      minZoom={1}
       maxZoom={20}
       scrollWheelZoom={true}
       doubleClickZoom={false}

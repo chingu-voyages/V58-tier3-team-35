@@ -34,7 +34,7 @@ export default function Layout() {
           exit={{ opacity: 1 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          <Box as="main">
+          <Box as="main" paddingX={{ base: 5, md: 20 }}>
             <Outlet key={location.pathname} />
           </Box>
         </MotionBox>

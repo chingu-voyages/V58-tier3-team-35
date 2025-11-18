@@ -12,11 +12,14 @@ import {
   DrawerBody,
   DrawerBackdrop,
   DrawerCloseTrigger,
+  Image,
 } from "@chakra-ui/react";
 import { Sun, Moon, Menu } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useColorMode, useColorModeValue } from "@/components/ui/color-mode";
 import { NavLink, useNavigate } from "react-router";
+import Logo from "@/assets/logo.svg";
+import LogoDark from "@/assets/logo-white.svg";
 
 const Header: React.FC = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -24,7 +27,7 @@ const Header: React.FC = () => {
 
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
 
-  const bg = useColorModeValue("gray.100", "gray.900");
+  const bg = useColorModeValue("white", "gray.900");
   const textColor = useColorModeValue("gray.700", "gray.200");
 
   const navLinks: { title: string; route: string }[] = [
@@ -63,7 +66,7 @@ const Header: React.FC = () => {
       w="100%"
       position="sticky"
       top={0}
-      zIndex={10}
+      zIndex={100000}
       width="100%"
     >
       <Flex
@@ -93,14 +96,11 @@ const Header: React.FC = () => {
           align="center"
           justify={{ base: "space-between", md: "space-between" }}
         >
-          <Text
-            onClick={() => navigate("/")}
-            fontWeight="bold"
-            fontSize="lg"
-            cursor="pointer"
-          >
-            ChinguDemography
-          </Text>
+          {colorMode === "light" ? (
+            <Image onClick={() => navigate("/")} src={Logo} />
+          ) : (
+            <Image onClick={() => navigate("/")} src={LogoDark} />
+          )}
 
           <Text
             fontSize="sm"
