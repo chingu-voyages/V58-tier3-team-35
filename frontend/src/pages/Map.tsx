@@ -5,7 +5,6 @@ export default function Map() {
   return (
     <Box height="lvh">
       <LeafletMap />
-      <div>abcdefghijklmo</div>
     </Box>
   );
 }
