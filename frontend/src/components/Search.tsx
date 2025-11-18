@@ -62,7 +62,6 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
 
   return (
     <>
-      {/* Trigger “fake” search bar */}
       <Box
         position="relative"
         cursor="pointer"
@@ -75,7 +74,6 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
         borderColor={triggerBorder}
         _hover={{ boxShadow: "lg" }}
       >
-        {/* Icon */}
         <Box
           position="absolute"
           left="14px"
@@ -96,12 +94,11 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
           pr="16px"
           py="14px"
           fontSize="sm"
-          placeholder="Search participants or open filters…"
+          placeholder="Search voyagers..."
           _focus={{ boxShadow: "none" }}
         />
       </Box>
 
-      {/* Modal content */}
       <Modal isOpen={open} onClose={onClose}>
         <Text fontSize="2xl" fontWeight="bold" mb={1}>
           Search & Filters
@@ -111,7 +108,6 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
         </Text>
 
         <VStack gap={6} align="stretch">
-          {/* Keyword search */}
           <Box>
             <Text mb={2} fontWeight="medium" fontSize="sm">
               Keyword
@@ -131,7 +127,6 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
             </Text>
           </Box>
 
-          {/* Gender */}
           <Box>
             <Text mb={2} fontWeight="medium" fontSize="sm">
               Gender
@@ -155,7 +150,6 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
             </Box>
           </Box>
 
-          {/* Goal */}
           <Box>
             <Text mb={2} fontWeight="medium" fontSize="sm">
               Goal
@@ -178,7 +172,6 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
             </Box>
           </Box>
 
-          {/* Source */}
           <Box>
             <Text mb={2} fontWeight="medium" fontSize="sm">
               Source
@@ -204,7 +197,6 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
             </Box>
           </Box>
 
-          {/* Voyage Role */}
           <Box>
             <Text mb={2} fontWeight="medium" fontSize="sm">
               Voyage Role
@@ -227,7 +219,6 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
             </Box>
           </Box>
 
-          {/* Role Type */}
           <Box>
             <Text mb={2} fontWeight="medium" fontSize="sm">
               Role Type
@@ -251,7 +242,6 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
             </Box>
           </Box>
 
-          {/* Buttons */}
           <Flex gap={3} pt={4}>
             <Button
               flex={1}
