@@ -1,11 +1,22 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-
+import { healthCheck } from './api/healthCheck'
 function App() {
-  const [count, setCount] = useState(0)
-
+  // const [count, setCount] = useState(0)
+    const alertHealthCheck = async () => {
+      try {
+        const response = await healthCheck();
+        alert(
+          `health check response: ${response.status} - ${JSON.stringify(
+            response.data
+          )}`
+        );
+      } catch {
+        console.error("health check failed");
+      }
+    };
   return (
     <>
       <div>
@@ -18,8 +29,8 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <button type="button" onClick={alertHealthCheck}>
+          health check
         </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
@@ -29,7 +40,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
 export default App
