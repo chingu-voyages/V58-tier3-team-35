@@ -1,4 +1,5 @@
 import { apiAuth } from "@/middleware/apiAuth";
+import importVoyagers from "@/scripts/importVoyagers";
 import { Router } from "express";
 
 const router = Router();
@@ -11,5 +12,7 @@ router.get("/", (req, res) => {
     app_version: "1.0.0",
   });
 });
+
+// router.get("/import", importVoyagers);
 
 export default router;
