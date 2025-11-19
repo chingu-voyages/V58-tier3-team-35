@@ -12,6 +12,7 @@
     // See also https://aka.ms/tsconfig/module
     "module": "commonjs",
     "target": "es2020",
+    "types": ["node"],
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
@@ -34,7 +35,7 @@
     // "noFallthroughCasesInSwitch": true,
     // "noPropertyAccessFromIndexSignature": true,
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["./*"]
     },
     "baseUrl": "./src",
     // Recommended Options
