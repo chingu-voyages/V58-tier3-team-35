@@ -14,9 +14,10 @@ import { useColorModeValue } from "./ui/color-mode";
 export interface SearchFilters {
   query: string;
   gender: string;
+  soloProjectTier: string;
   goal: string;
   source: string;
-  role: string;
+  voyageRole: string;
   roleType: string;
 }
 
@@ -31,10 +32,11 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
 
   const [filters, setFilters] = useState<SearchFilters>({
     query: initialFilters.query ?? "",
-    gender: initialFilters.gender ?? "",
     goal: initialFilters.goal ?? "",
+    gender: initialFilters.gender ?? "",
+    soloProjectTier: initialFilters.soloProjectTier ?? "",
     source: initialFilters.source ?? "",
-    role: initialFilters.role ?? "",
+    voyageRole: initialFilters.voyageRole ?? "",
     roleType: initialFilters.roleType ?? "",
   });
 
@@ -48,8 +50,9 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
       query: "",
       gender: "",
       goal: "",
+      soloProjectTier: "",
       source: "",
-      role: "",
+      voyageRole: "",
       roleType: "",
     };
     setFilters(empty);
@@ -146,7 +149,39 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
               <option value="">All</option>
               <option value="MALE">Male</option>
               <option value="FEMALE">Female</option>
-              <option value="OTHER">Other</option>
+              <option value="NON-BINARY">NON-BINARY</option>
+              <option value="PREFER NOT TO SAY">PREFER NOT TO SAY</option>
+              <option value="TRANS">TRANS</option>
+            </Box>
+          </Box>
+
+          <Box>
+            <Text mb={2} fontWeight="medium" fontSize="sm">
+              Solo Project Tier
+            </Text>
+            <Box
+              as="select"
+              w="100%"
+              px={4}
+              py={3}
+              borderWidth="1px"
+              borderRadius="md"
+              value={filters.soloProjectTier}
+              onChange={(e) => setFilters({ ...filters, goal: e.target.value })}
+            >
+              <option value="">All</option>
+              <option value="Tier 1 - HTML - Basic Javascript - Basic Algorithms (LANDING PAGES)">
+                Tier 1 - HTML - Basic Javascript - Basic Algorithms (LANDING
+                PAGES)
+              </option>
+              <option value="Tier 2  - Intermediate Algorithms - Front-end Projects (FRONT-END)">
+                Tier 2 - Intermediate Algorithms - Front-end Projects
+                (FRONT-END)
+              </option>
+              <option value="Tier 3 - Advanced Projects - Apps having both Front-end and Back-end components (FULL STACK)">
+                Tier 3 - Advanced Projects - Apps having both Front-end and
+                Back-end components (FULL STACK)
+              </option>
             </Box>
           </Box>
 
@@ -165,10 +200,15 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
               onChange={(e) => setFilters({ ...filters, goal: e.target.value })}
             >
               <option value="">All</option>
-              <option value="GAIN EXPERIENCE">Gain Experience</option>
-              <option value="BUILD PORTFOLIO">Build Portfolio</option>
-              <option value="GROW SKILLS">Grow Skills</option>
-              <option value="FIND TEAM">Find Team</option>
+              <option value="ACCELERATE LEARNING">ACCELERATE LEARNING</option>
+              <option value="GAIN EXPERIENCE">GAIN EXPERIENCE</option>
+              <option value="GET OUT OF TUTORIAL PURGATORY">
+                GET OUT OF TUTORIAL PURGATORY
+              </option>
+              <option value="NETWORK WITH SHARED goalS">
+                NETWORK WITH SHARED goalS
+              </option>
+              <option value="OTHER">OTHER</option>
             </Box>
           </Box>
 
@@ -189,11 +229,19 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
               }
             >
               <option value="">All</option>
-              <option value="PERSONAL NETWORK">Personal Network</option>
+              <option value="DEV">DEV</option>
+              <option value="DEV.TO">DEV.TO</option>
+              <option value="FLUTTER EXPLAINED">FLUTTER EXPLAINED</option>
+              <option value="FREE CODE CAMP FORUM">FREE CODE CAMP FORUM</option>
+              <option value="GOOGLE SEARCH">GOOGLE SEARCH</option>
               <option value="LINKEDIN">LinkedIn</option>
-              <option value="COMMUNITY">Community</option>
-              <option value="WEBSITE">Website</option>
-              <option value="OTHER">Other</option>
+              <option value="MEDIUM">MEDIUM</option>
+              <option value="OTHER">OTHER</option>
+              <option value="PERSONAL NETWORK">PERSONAL NETWORK</option>
+              <option value="SCRIMBA">Scrimba</option>
+              <option value="TWITTER">Twitter</option>
+              <option value="THE JOB HACKERS">The Job Hackers</option>
+              <option value="YOUTUBE">YouTube</option>
             </Box>
           </Box>
 
@@ -208,14 +256,16 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
               py={3}
               borderWidth="1px"
               borderRadius="md"
-              value={filters.role}
-              onChange={(e) => setFilters({ ...filters, role: e.target.value })}
+              value={filters.voyageRole}
+              onChange={(e) =>
+                setFilters({ ...filters, voyageRole: e.target.value })
+              }
             >
               <option value="">All</option>
+              <option value="Data Scientist">Data Scientist</option>
+              <option value="Product Owner">Product Owner</option>
               <option value="Scrum Master">Scrum Master</option>
-              <option value="Developer">Developer</option>
-              <option value="Designer">Designer</option>
-              <option value="Project Manager">Project Manager</option>
+              <option value="UI/UX Designer">UI/UX Designer</option>
             </Box>
           </Box>
 
@@ -236,9 +286,8 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
               }
             >
               <option value="">All</option>
-              <option value="FULL-TIME">Full-time</option>
-              <option value="PART-TIME">Part-time</option>
-              <option value="INTERN">Intern</option>
+              <option value="Python">Python</option>
+              <option value="Web">Web</option>
             </Box>
           </Box>
 
