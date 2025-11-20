@@ -1,5 +1,5 @@
+import { getVoyagers } from "@/controllers/VoyagerController";
 import { apiAuth } from "@/middleware/apiAuth";
-import importVoyagers from "@/scripts/importVoyagers";
 import { Router } from "express";
 
 const router = Router();
@@ -12,6 +12,8 @@ router.get("/", (req, res) => {
     app_version: "1.0.0",
   });
 });
+
+router.get("/voyagers", getVoyagers);
 
 // router.get("/import", importVoyagers);
 

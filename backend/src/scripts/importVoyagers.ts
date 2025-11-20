@@ -1,5 +1,5 @@
 import data from "@/data/voyagers.json";
-import User from "@/models/User";
+import User from "@/models/Voyager";
 import { Request, Response } from "express";
 
 export default function importVoyagers(req: Request, res: Response) {
