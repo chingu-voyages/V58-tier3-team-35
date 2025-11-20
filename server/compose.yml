@@ -1,0 +1,30 @@
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ${BUILD_TARGET:-dev}
+    command: ["npm","run","dev"]
+    env_file:
+      - .env
+    ports:
+      - 12345:12345
+    volumes:
+      - .:/home/node/app
+      - node_modules:/home/node/app/node_modules
+    networks:
+      - phoenixNetwork
+    restart: always
+
+
+
+
+volumes:
+  node_modules:
+
+  
+networks:
+  phoenixNetwork:
+    driver: bridge
+    
