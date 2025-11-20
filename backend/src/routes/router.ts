@@ -1,5 +1,9 @@
-import { getVoyagers } from "@/controllers/VoyagerController";
+import {
+  getVoyagerCoordinates,
+  getVoyagers,
+} from "@/controllers/VoyagerController";
 import { apiAuth } from "@/middleware/apiAuth";
+import { handleUpdate } from "@/scripts/UpdateCoordinates";
 import { Router } from "express";
 
 const router = Router();
@@ -14,7 +18,8 @@ router.get("/", (req, res) => {
 });
 
 router.get("/voyagers", getVoyagers);
+router.get("/coordinates", getVoyagerCoordinates);
 
-// router.get("/import", importVoyagers);
+// router.get("/handle-update", handleUpdate);
 
 export default router;
