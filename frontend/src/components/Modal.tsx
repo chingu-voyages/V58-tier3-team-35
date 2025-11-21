@@ -38,13 +38,13 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
         backdropFilter="blur(6px)"
         transition="all 0.2s ease"
         onClick={onClose}
-        zIndex={1000}
+        zIndex={100010}
       />
 
       {/* MODAL CARD */}
       <Box
         position="fixed"
-        top="55%"
+        top="50%"
         left="50%"
         transform="translate(-50%, -50%)"
         bg={bg}
@@ -56,8 +56,10 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
         maxW="lg"
         w="90%"
         transition="all 0.2s ease"
-        zIndex={1001}
+        zIndex={100011}
         onClick={(e) => e.stopPropagation()}
+        overflow={"auto"}
+        maxH={{ base: "80vh", md: "90vh" }}
       >
         {children}
       </Box>
