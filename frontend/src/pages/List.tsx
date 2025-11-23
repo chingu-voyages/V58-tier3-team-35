@@ -29,7 +29,7 @@ export default function List() {
     isError,
     error,
   } = useVoyagerDetails(voyagerId);
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     useVoyagers(filter);
 
   const loadMoreRef = useRef(null);
@@ -47,7 +47,9 @@ export default function List() {
   }, [hasNextPage, fetchNextPage, isFetchingNextPage]);
 
   const Voyagers = data?.pages.flatMap((page: any) => page.data.docs) ?? [];
-  return (
+  return isLoading ? (
+    <Loading fullscreen size="lg" />
+  ) : (
     <>
       <Flex flexDirection={"column"} gap={5} p={{ base: 4, md: 10 }} pt={5}>
         <Flex
