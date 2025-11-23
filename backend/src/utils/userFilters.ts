@@ -41,6 +41,6 @@ export default function buildUserFilters(query: any) {
   if (query.roleType) {
     filters.roleType = ciExact(query.roleType);
   }
-  filters.voyageRole = { $ne: ["", null] };
+  filters.voyageRole = { $ne: "" };
   return filters;
 }
