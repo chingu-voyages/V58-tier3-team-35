@@ -9,6 +9,7 @@ import type Voyager from "@/types/voyager";
 import { Box, Flex, Grid, Text } from "@chakra-ui/react";
 
 import { useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
 
 export default function List() {
   const [filter, setFilter] = useState<SearchFilters>({
@@ -29,10 +30,34 @@ export default function List() {
     isError,
     error,
   } = useVoyagerDetails(voyagerId);
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
-    useVoyagers(filter);
+
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    refetch,
+    isLoading: isVoyagerLoading,
+    isError: isVoyagerError,
+    error: voyagerError,
+  } = useVoyagers(filter);
 
   const loadMoreRef = useRef(null);
+
+  useEffect(() => {
+    if (isVoyagerError && voyagerError) {
+      toast.error(voyagerError.message, {
+        duration: Infinity,
+        action: {
+          label: "Retry",
+          onClick: () => {
+            toast.dismiss();
+            refetch();
+          },
+        },
+      });
+    }
+  }, [isVoyagerError, voyagerError]);
 
   useEffect(() => {
     if (!loadMoreRef.current) return;
@@ -47,7 +72,7 @@ export default function List() {
   }, [hasNextPage, fetchNextPage, isFetchingNextPage]);
 
   const Voyagers = data?.pages.flatMap((page: any) => page.data.docs) ?? [];
-  return isLoading ? (
+  return isVoyagerLoading ? (
     <Loading fullscreen size="lg" />
   ) : (
     <>
