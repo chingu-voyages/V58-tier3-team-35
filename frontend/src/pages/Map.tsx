@@ -1,4 +1,4 @@
-import { useVoyagerCoordinates } from "@/api/hooks.ts/useVoyagerCoordinates";
+import { useVoyagerCoordinates } from "@/api/hooks/useVoyagerCoordinates";
 import LeafletMap from "@/components/maps/LeafletMap";
 import Search, { type SearchFilters } from "@/components/Search";
 import { Box, Button, Flex } from "@chakra-ui/react";

@@ -3,7 +3,7 @@ import { Flex, Spinner, Text, Stack } from "@chakra-ui/react";
 interface LoadingProps {
   text?: string;
   fullscreen?: boolean;
-  palette?: string; // e.g. "blue", "green", "orange"
+  palette?: string;
   size?: "sm" | "md" | "lg" | "xl";
 }
 

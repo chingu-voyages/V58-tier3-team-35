@@ -9,6 +9,11 @@ import { useColorMode } from "@/components/ui/color-mode";
 import Chingu from "@/assets/chingu.png";
 import type Voyager from "@/types/voyager";
 import Loading from "@/components/Loading";
+import Modal from "@/components/Modal";
+import VoyagerProfile from "../VoyagerProfile";
+import useVoyagerDetails from "@/api/hooks/useVoyagerDetails";
+import { toast } from "sonner";
+import { Box } from "@chakra-ui/react";
 
 const SingleMarkerIcon = L.icon({
   iconUrl: Chingu,
@@ -36,11 +41,27 @@ export default function LeafletMap({
   const clusterRef = useRef<L.MarkerClusterGroup | null>(null);
 
   const [mapReady, setMapReady] = useState(false);
+  const [voyagerId, setVoyagerId] = useState<string | null>(null);
+  const [showVoyagerModal, setShowVoyagerModal] = useState<boolean>(false);
+
+  const {
+    data: voyagerData,
+    isLoading: voyagerLoading,
+    isError,
+    error,
+  } = useVoyagerDetails(voyagerId);
 
   const tileUrl =
     colorMode === "dark"
       ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
       : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
+
+  //Handle eRror
+  useEffect(() => {
+    if (isError && error) {
+      toast.error(error.message);
+    }
+  }, [isError, error]);
 
   // Initialize Cluster Group Once
   useEffect(() => {
@@ -85,7 +106,10 @@ export default function LeafletMap({
         const marker = L.marker([Number(v.lat), Number(v.lng)], {
           icon: SingleMarkerIcon,
         });
-        marker.on("click", () => alert("Voyager ID: " + v._id));
+        marker.on("click", () => {
+          setVoyagerId(v._id);
+          setShowVoyagerModal(true);
+        });
         return marker;
       });
 
@@ -112,6 +136,19 @@ export default function LeafletMap({
           }}
         />
       </MapContainer>
+      <Modal
+        isOpen={showVoyagerModal}
+        onClose={() => setShowVoyagerModal(false)}
+      >
+        {!voyagerData && voyagerLoading && (
+          <Box p={4}>
+            <Loading fullscreen text="Loading Voyager Data" />
+          </Box>
+        )}
+        {voyagerData && !voyagerLoading && (
+          <VoyagerProfile data={voyagerData.data} />
+        )}
+      </Modal>
     </>
   );
 }
