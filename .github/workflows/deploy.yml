@@ -32,9 +32,8 @@ jobs:
         run: npm ci
       - name: Create .env file
         run: |
+          echo "VITE_API_KEY=${{ secrets.VITE_API_KEY }}" >> .env
           echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> .env
-          echo "VITE_PUBLIC_TOKEN=${{ secrets.VITE_PUBLIC_TOKEN }}" >> .env
-          echo "VITE_ENV=${{ secrets.VITE_ENV }}" >> .env
 
       - name: Build project
         working-directory: ./frontend
