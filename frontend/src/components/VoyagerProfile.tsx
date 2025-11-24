@@ -5,7 +5,6 @@ import { useColorModeValue } from "@/components/ui/color-mode";
 import type Voyager from "@/types/voyager";
 
 export default function VoyagerProfile({ data }: { data: Voyager }) {
-  console.log(data);
   const {
     timestamp,
     gender,
