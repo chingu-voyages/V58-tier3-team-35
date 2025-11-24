@@ -1,5 +1,6 @@
 import useVoyagerDetails from "@/api/hooks/useVoyagerDetails";
 import { useVoyagers } from "@/api/hooks/useVoyagers";
+import EmptyState from "@/components/EmptyState";
 import Loading from "@/components/Loading";
 import Modal from "@/components/Modal";
 import ProfileCard from "@/components/ProfileCard";
@@ -92,31 +93,41 @@ export default function List() {
             <Search onSearch={(filter) => setFilter(filter)} />
           </Box>
         </Flex>
-        <Grid
-          templateColumns={{
-            base: "1fr",
-            md: "repeat(2, 1fr)",
-            lg: "repeat(3,1fr)",
-            xl: "repeat(4, 1fr)",
-          }}
-          gap={4}
-        >
-          {Voyagers &&
-            Voyagers.length > 0 &&
-            Voyagers.map((voyager: Voyager) => (
-              <ProfileCard
-                onCardClick={() => {
-                  setVoyagerId(voyager._id);
-                  setShowVoyagerModal(true);
-                }}
-                key={voyager.timestamp}
-                data={voyager}
-              />
-            ))}
-        </Grid>
-
-        <div ref={loadMoreRef} style={{ height: 40 }}></div>
-        {isFetchingNextPage && <Loading />}
+        {Voyagers.length > 0 ? (
+          <>
+            <Grid
+              templateColumns={{
+                base: "1fr",
+                md: "repeat(2, 1fr)",
+                lg: "repeat(3,1fr)",
+                xl: "repeat(4, 1fr)",
+              }}
+              gap={4}
+            >
+              {Voyagers &&
+                Voyagers.length > 0 &&
+                Voyagers.map((voyager: Voyager) => (
+                  <ProfileCard
+                    onCardClick={() => {
+                      setVoyagerId(voyager._id);
+                      setShowVoyagerModal(true);
+                    }}
+                    key={voyager.timestamp}
+                    data={voyager}
+                  />
+                ))}
+            </Grid>
+            <div ref={loadMoreRef} style={{ height: 40 }}></div>
+            {isFetchingNextPage && <Loading />}
+          </>
+        ) : (
+          <Box p={{ base: 4, md: 10 }} pt={5}>
+            <EmptyState
+              title="No Voyagers Found"
+              description="No voyagers found for the selected filters."
+            />
+          </Box>
+        )}
       </Flex>
       <Modal
         isOpen={showVoyagerModal}
