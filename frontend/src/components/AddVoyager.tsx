@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValueText,
 } from "@/components/ui/select";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "@/components/Modal";
 import { useColorModeValue } from "./ui/color-mode";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -36,6 +36,7 @@ interface VoyagerFormData {
   source: string;
   sourceOther?: string;
   soloProjectTier: string;
+  voyageTier: string;
   voyageRole: string;
   roleType: string;
 }
@@ -47,6 +48,14 @@ const genderCollection = createListCollection({
     { label: "Non-binary", value: "NON-BINARY" },
     { label: "Prefer Not to Say", value: "PREFER NOT TO SAY" },
     { label: "Trans", value: "TRANS" },
+  ],
+});
+
+const voyageTierCollection = createListCollection({
+  items: [
+    { label: "Tier 1", value: "Tier 1" },
+    { label: "Tier 2", value: "Tier 2" },
+    { label: "Tier 3", value: "Tier 3" },
   ],
 });
 
@@ -92,12 +101,12 @@ const sourceCollection = createListCollection({
     { label: "Google Search", value: "GOOGLE SEARCH" },
     { label: "LinkedIn", value: "LINKEDIN" },
     { label: "Medium", value: "MEDIUM" },
-    { label: "Other", value: "OTHER" },
     { label: "Personal Network", value: "PERSONAL NETWORK" },
     { label: "Scrimba", value: "SCRIMBA" },
     { label: "Twitter", value: "TWITTER" },
     { label: "The Job Hackers", value: "THE JOB HACKERS" },
     { label: "YouTube", value: "YOUTUBE" },
+    { label: "Other", value: "OTHER" },
   ],
 });
 
@@ -125,11 +134,28 @@ export default function AddVoyager({ isOpen, onClose }: AddVoyagerProps) {
     register,
     watch,
     reset,
+    setError,
+    unregister,
     formState: { errors },
   } = useForm<VoyagerFormData>();
 
   const [countrySearch, setCountrySearch] = useState("");
   const triggerBorder = useColorModeValue("gray.200", "whiteAlpha.300");
+
+  const goal = watch("goal");
+  const source = watch("source");
+
+  useEffect(() => {
+    if (goal !== "OTHER") {
+      unregister("goalOther");
+    }
+  }, [goal, unregister]);
+
+  useEffect(() => {
+    if (source !== "OTHER") {
+      unregister("sourceOther");
+    }
+  }, [source, unregister]);
 
   const filteredCountries = countries.filter((country) =>
     country.toLowerCase().includes(countrySearch.toLowerCase())
@@ -149,9 +175,24 @@ export default function AddVoyager({ isOpen, onClose }: AddVoyagerProps) {
       onClose();
       reset();
     },
-    onError: (error) => {
-      console.error(error);
-      toast.error("Failed to add voyager");
+    onError: (error: any) => {
+      console.log(error);
+      if (error.response?.data?.errors) {
+        error.response.data.errors.forEach((err: any) => {
+          // Assuming structure { field: message } or { fieldName: message }
+          // We iterate over keys to find the field name
+          Object.keys(err).forEach((key) => {
+            console.log(key);
+            setError(key as keyof VoyagerFormData, {
+              type: "server",
+              message: err[key],
+            });
+          });
+        });
+        toast.error("Please fix the errors in the form");
+      } else {
+        toast.error(error.message || "Failed to add voyager");
+      }
     },
   });
 
@@ -221,19 +262,29 @@ export default function AddVoyager({ isOpen, onClose }: AddVoyagerProps) {
             )}
           />
 
-          <Box>
-            <Text mb={2} fontWeight="medium" fontSize="sm">
-              Goal Other
-            </Text>
-            <Input
-              placeholder="Specify other goal..."
-              px={4}
-              py={3}
-              borderRadius="md"
-              borderColor={errors.goalOther ? "red.500" : triggerBorder}
-              disabled={mutation.isPending}
-            />
-          </Box>
+          {goal === "OTHER" && (
+            <Box>
+              <Text mb={2} fontWeight="medium" fontSize="sm">
+                Goal Other
+              </Text>
+              <Input
+                placeholder="Specify other goal..."
+                px={4}
+                py={3}
+                borderRadius="md"
+                borderColor={errors.goalOther ? "red.500" : triggerBorder}
+                disabled={mutation.isPending}
+                {...register("goalOther", {
+                  required: "Goal Other is required",
+                })}
+              />
+              {errors.goalOther && (
+                <Text color="red.500" fontSize="xs" mt={1}>
+                  {errors.goalOther.message}
+                </Text>
+              )}
+            </Box>
+          )}
 
           <Controller
             control={control}
@@ -251,19 +302,29 @@ export default function AddVoyager({ isOpen, onClose }: AddVoyagerProps) {
             )}
           />
 
-          <Box>
-            <Text mb={2} fontWeight="medium" fontSize="sm">
-              Source Other
-            </Text>
-            <Input
-              placeholder="Specify other source..."
-              px={4}
-              py={3}
-              borderRadius="md"
-              borderColor={errors.sourceOther ? "red.500" : triggerBorder}
-              disabled={mutation.isPending}
-            />
-          </Box>
+          {source === "OTHER" && (
+            <Box>
+              <Text mb={2} fontWeight="medium" fontSize="sm">
+                Source Other
+              </Text>
+              <Input
+                placeholder="Specify other source..."
+                px={4}
+                py={3}
+                borderRadius="md"
+                borderColor={errors.sourceOther ? "red.500" : triggerBorder}
+                disabled={mutation.isPending}
+                {...register("sourceOther", {
+                  required: "Source Other is required",
+                })}
+              />
+              {errors.sourceOther && (
+                <Text color="red.500" fontSize="xs" mt={1}>
+                  {errors.sourceOther.message}
+                </Text>
+              )}
+            </Box>
+          )}
 
           <Controller
             control={control}
@@ -276,6 +337,22 @@ export default function AddVoyager({ isOpen, onClose }: AddVoyagerProps) {
                 onChange={field.onChange}
                 collection={soloProjectTierCollection}
                 error={errors.soloProjectTier?.message}
+                disabled={mutation.isPending}
+              />
+            )}
+          />
+
+          <Controller
+            control={control}
+            name="voyageTier"
+            rules={{ required: "Voyage Tier is required" }}
+            render={({ field }) => (
+              <LabeledSelect
+                label="Voyage Tier"
+                value={field.value}
+                onChange={field.onChange}
+                collection={voyageTierCollection}
+                error={errors.voyageTier?.message}
                 disabled={mutation.isPending}
               />
             )}
