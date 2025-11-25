@@ -26,7 +26,9 @@ api.interceptors.response.use(
       message = error.message || "Request error.";
     }
 
-    return Promise.reject(new Error(message));
+    const customError: any = new Error(message);
+    customError.response = error.response;
+    return Promise.reject(customError);
   }
 );
 
