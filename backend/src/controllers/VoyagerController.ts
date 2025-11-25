@@ -49,7 +49,7 @@ export async function createVoyager(req: Request, res: Response) {
   try {
     const result = await createVoyagerService(req);
     if (Array.isArray(result)) {
-      return res.status(400).json({ data: result });
+      return res.status(400).json({ errors: result });
     }
     res.status(200).json({ data: result });
   } catch (error: any) {
