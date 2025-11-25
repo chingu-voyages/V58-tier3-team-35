@@ -1,4 +1,5 @@
 import {
+  createVoyager,
   getVoyager,
   getVoyagerCoordinates,
   getVoyagers,
@@ -20,6 +21,7 @@ router.get("/", (req, res) => {
 router.get("/voyagers", getVoyagers);
 router.get("/coordinates", getVoyagerCoordinates);
 router.get("/voyager/:id", getVoyager);
+router.post("/new-voyager", createVoyager);
 
 // router.get("/handle-update", handleUpdate);
 
