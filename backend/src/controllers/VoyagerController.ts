@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import axios from "axios";
 import getVoyagersWithFilters from "../services/getVoyagers";
 import Voyager from "@/models/Voyager";
 import getVoyagerCoordinatesWithFilters from "@/services/getVoyagerCoordinates";
@@ -47,6 +48,21 @@ export async function getVoyager(req: Request, res: Response) {
 
 export async function createVoyager(req: Request, res: Response) {
   try {
+    const { captchaToken } = req.body;
+
+    if (!captchaToken) {
+      return res.status(400).json({ message: "Captcha token is required" });
+    }
+
+    const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captchaToken}`;
+    const verificationResponse = await axios.post(verificationUrl);
+
+    if (!verificationResponse.data.success) {
+      return res.status(400).json({ message: "Captcha verification failed" });
+    }
+
+    delete req.body.captchaToken;
+
     const result = await createVoyagerService(req);
     if (Array.isArray(result)) {
       return res.status(400).json({ errors: result });

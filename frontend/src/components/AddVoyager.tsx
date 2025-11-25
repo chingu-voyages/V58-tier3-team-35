@@ -22,6 +22,7 @@ import api from "@/api/api";
 import { toast } from "sonner";
 import { countries } from "@/data/countries";
 import { useForm, Controller } from "react-hook-form";
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface AddVoyagerProps {
   isOpen: boolean;
@@ -39,6 +40,7 @@ interface VoyagerFormData {
   voyageTier: string;
   voyageRole: string;
   roleType: string;
+  captchaToken: string;
 }
 
 const genderCollection = createListCollection({
@@ -136,6 +138,7 @@ export default function AddVoyager({ isOpen, onClose }: AddVoyagerProps) {
     reset,
     setError,
     unregister,
+    setValue,
     formState: { errors },
   } = useForm<VoyagerFormData>();
 
@@ -198,6 +201,14 @@ export default function AddVoyager({ isOpen, onClose }: AddVoyagerProps) {
 
   const onSubmit = (data: VoyagerFormData) => {
     mutation.mutate(data);
+  };
+
+  const onCaptchaChange = (token: string | null) => {
+    if (token) {
+      setValue("captchaToken", token, { shouldValidate: true });
+    } else {
+      setValue("captchaToken", "", { shouldValidate: true });
+    }
   };
 
   return (
@@ -389,6 +400,18 @@ export default function AddVoyager({ isOpen, onClose }: AddVoyagerProps) {
               />
             )}
           />
+
+          <Box display="flex" justifyContent="center" mt={4}>
+            <ReCAPTCHA
+              sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY || ""}
+              onChange={onCaptchaChange}
+            />
+          </Box>
+          {errors.captchaToken && (
+            <Text color="red.500" fontSize="xs" textAlign="center">
+              {errors.captchaToken.message}
+            </Text>
+          )}
 
           <Button
             type="submit"
