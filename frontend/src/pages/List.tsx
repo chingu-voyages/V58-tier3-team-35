@@ -7,10 +7,11 @@ import ProfileCard from "@/components/ProfileCard";
 import Search, { type SearchFilters } from "@/components/Search";
 import VoyagerProfile from "@/components/VoyagerProfile";
 import type Voyager from "@/types/voyager";
-import { Box, Flex, Grid, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Grid, Text, useDisclosure } from "@chakra-ui/react";
 
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
+import AddVoyager from "@/components/AddVoyager";
 
 export default function List() {
   const [filter, setFilter] = useState<SearchFilters>({
@@ -44,6 +45,11 @@ export default function List() {
   } = useVoyagers(filter);
 
   const loadMoreRef = useRef(null);
+  const {
+    open: isAddVoyagerOpen,
+    onOpen: onAddVoyagerOpen,
+    onClose: onAddVoyagerClose,
+  } = useDisclosure();
 
   useEffect(() => {
     if (isVoyagerError && voyagerError) {
@@ -89,9 +95,16 @@ export default function List() {
               Our Voyagers
             </Text>
           </Box>
-          <Box w={{ base: "full", md: 250, lg: 400 }}>
+          <Flex
+            w={{ base: "full", md: 250, lg: 400 }}
+            flexDirection={{ base: "column", md: "row" }}
+            gap={2}
+          >
             <Search onSearch={(filter) => setFilter(filter)} />
-          </Box>
+            <Button borderRadius={10} onClick={onAddVoyagerOpen}>
+              Add Voyager
+            </Button>
+          </Flex>
         </Flex>
         {Voyagers.length > 0 ? (
           <>
@@ -112,7 +125,7 @@ export default function List() {
                       setVoyagerId(voyager._id);
                       setShowVoyagerModal(true);
                     }}
-                    key={voyager.timestamp}
+                    key={voyager._id}
                     data={voyager}
                   />
                 ))}
@@ -142,6 +155,7 @@ export default function List() {
           <VoyagerProfile data={voyagerData.data} />
         )}
       </Modal>
+      <AddVoyager isOpen={isAddVoyagerOpen} onClose={onAddVoyagerClose} />
     </>
   );
 }
