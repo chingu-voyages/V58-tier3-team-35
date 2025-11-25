@@ -2,7 +2,7 @@ import Voyager from "@/models/Voyager";
 import axios from "axios";
 import { Request, Response } from "express";
 
-async function getCoordinatesByCountry(countryName: string) {
+export async function getCoordinatesByCountry(countryName: string) {
   const apiKey = "AIzaSyAF0Htn8-cE8t0WAWXaYVSAt_HiqWsnibo";
 
   const url = "https://maps.googleapis.com/maps/api/geocode/json";
@@ -19,10 +19,12 @@ async function getCoordinatesByCountry(countryName: string) {
     return null;
   }
   const location = res.data.results[0]?.geometry?.location;
+  const countryCode = res.data.results[0]?.address_components[0]?.short_name;
 
   return {
     lat: location.lat,
     lng: location.lng,
+    countryCode,
   };
 }
 

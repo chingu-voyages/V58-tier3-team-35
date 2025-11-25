@@ -3,6 +3,7 @@ import getVoyagersWithFilters from "../services/getVoyagers";
 import Voyager from "@/models/Voyager";
 import getVoyagerCoordinatesWithFilters from "@/services/getVoyagerCoordinates";
 import getVoyagerById from "@/services/getVoyagerById";
+import createVoyagerService from "@/services/createVoyager";
 
 export async function getVoyagers(req: Request, res: Response) {
   try {
@@ -36,6 +37,20 @@ export async function getVoyager(req: Request, res: Response) {
 
   try {
     const result = await getVoyagerById(id);
+    res.status(200).json({ data: result });
+  } catch (error: any) {
+    res.status(400).json({
+      message: error?.message || "Something went wrong",
+    });
+  }
+}
+
+export async function createVoyager(req: Request, res: Response) {
+  try {
+    const result = await createVoyagerService(req);
+    if (Array.isArray(result)) {
+      return res.status(400).json({ errors: result });
+    }
     res.status(200).json({ data: result });
   } catch (error: any) {
     res.status(400).json({
