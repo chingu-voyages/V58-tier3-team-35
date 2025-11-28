@@ -13,6 +13,7 @@ import LocatorDark from "@/assets/locator.svg";
 import Arrow from "@/assets/arrow.svg";
 import { useColorMode, useColorModeValue } from "@/components/ui/color-mode";
 import { useNavigate } from "react-router";
+import AiChatBot from "@/components/AiChatBot";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -80,6 +81,7 @@ export default function Home() {
       <Box flex={1}>
         <Image src={Hero} w={{ base: 2000, lg: 3000 }} />
       </Box>
+      <AiChatBot />
     </Flex>
   );
 }
