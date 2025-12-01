@@ -40,16 +40,12 @@ export default function Home() {
             fontWeight={"bolder"}
             color={"#069668"}
           >
-            {t("welcome")}{" "}
+            {t("discover")}{" "}
             <Span fontWeight={"normal"} color={textColor}>
               {t("across")}
             </Span>
           </Text>
-          <Text fontSize={{ base: 18, md: 25 }}>
-            Visualize our worldwide community of learners and builders, explore
-            where members are based, and discover insights about roles, skills,
-            and voyages that unite us.
-          </Text>
+          <Text fontSize={{ base: 18, md: 25 }}>{t("introduction")}</Text>
         </Box>
         <Flex flexDirection={{ base: "column", md: "row" }} gap={10}>
           <Button
