@@ -47,5 +47,8 @@
   "ourVoyager": "Наши Voyagers",
   "noVoyagersFound": "Voyagers не найдены",
   "noVoyagerDescription": "Нет Voyagers, соответствующих выбранным фильтрам.",
-  "refresh": "Обновить"
+  "refresh": "Обновить",
+  "copy": "Копировать",
+  "copied": "Скопировано!",
+  "sharePage": "Поделиться этой страницей"
 }

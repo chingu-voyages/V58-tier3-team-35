@@ -47,5 +47,8 @@
   "ourVoyager": "我们的 Voyagers",
   "noVoyagersFound": "未找到 Voyager",
   "noVoyagerDescription": "没有符合选定筛选条件的 Voyagers。",
-  "refresh": "刷新"
+  "refresh": "刷新",
+  "copy": "复制",
+  "copied": "已复制！",
+  "sharePage": "分享此页面"
 }

@@ -47,5 +47,8 @@
   "ourVoyager": "私たちの Voyagers",
   "noVoyagersFound": "Voyager が見つかりません",
   "noVoyagerDescription": "選択したフィルターに一致する Voyagers はありません。",
-  "refresh": "更新"
+  "refresh": "更新",
+  "copy": "コピー",
+  "copied": "コピーしました！",
+  "sharePage": "このページを共有"
 }

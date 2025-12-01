@@ -47,5 +47,8 @@
   "ourVoyager": "हमारे Voyagers",
   "noVoyagersFound": "कोई Voyager नहीं मिला",
   "noVoyagerDescription": "चयनित फ़िल्टरों से मेल खाते हुए कोई Voyagers नहीं मिले।",
-  "refresh": "रिफ्रेश"
+  "refresh": "रिफ्रेश",
+  "copy": "कॉपी करें",
+  "copied": "कॉपी हो गया!",
+  "sharePage": "इस पेज को साझा करें"
 }

@@ -16,11 +16,12 @@ import {
   SelectTrigger,
   SelectValueText,
 } from "@/components/ui/select";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Modal from "@/components/Modal";
 import { useColorModeValue } from "./ui/color-mode";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
 
 const MotionBox = motion.create(Box);
 const MotionVStack = motion.create(VStack);
@@ -37,10 +38,9 @@ export interface SearchFilters {
 
 interface SearchProps {
   onSearch: (filters: SearchFilters) => void;
-  initialFilters?: Partial<SearchFilters>;
 }
 
-export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
+export default function Search({ onSearch }: SearchProps) {
   const { t } = useTranslation();
   const { open, onOpen, onClose } = useDisclosure();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -139,14 +139,16 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
    * Filter option data ends
    */
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [filters, setFilters] = useState<SearchFilters>({
-    query: initialFilters.query ?? "",
-    gender: initialFilters.gender ?? "",
-    soloProjectTier: initialFilters.soloProjectTier ?? "",
-    goal: initialFilters.goal ?? "",
-    source: initialFilters.source ?? "",
-    voyageRole: initialFilters.voyageRole ?? "",
-    roleType: initialFilters.roleType ?? "",
+    query: searchParams.get("query") ?? "",
+    gender: searchParams.get("gender") ?? "",
+    soloProjectTier: searchParams.get("soloProjectTier") ?? "",
+    goal: searchParams.get("goal") ?? "",
+    source: searchParams.get("source") ?? "",
+    voyageRole: searchParams.get("voyageRole") ?? "",
+    roleType: searchParams.get("roleType") ?? "",
   });
 
   const triggerBg = useColorModeValue("gray.50", "gray.800");
@@ -154,6 +156,22 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
   const labelColor = useColorModeValue("gray.600", "gray.300");
 
   const handleSearch = () => {
+    const newParams: any = {};
+
+    if (filters.query) newParams.query = filters.query;
+    if (filters.gender) newParams.gender = filters.gender;
+    if (filters.soloProjectTier)
+      newParams.soloProjectTier = filters.soloProjectTier;
+    if (filters.goal) newParams.goal = filters.goal;
+    if (filters.source) newParams.source = filters.source;
+    if (filters.voyageRole) newParams.voyageRole = filters.voyageRole;
+    if (filters.roleType) newParams.roleType = filters.roleType;
+
+    const currentParams = Object.fromEntries(searchParams.entries());
+
+    if (JSON.stringify(currentParams) !== JSON.stringify(newParams)) {
+      setSearchParams(newParams);
+    }
     onSearch(filters);
     onClose();
   };
@@ -169,6 +187,7 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
       roleType: "",
     };
     setFilters(empty);
+    setSearchParams([]);
     onSearch(empty);
     onClose();
   };

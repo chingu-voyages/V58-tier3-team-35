@@ -13,17 +13,22 @@ import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import AddVoyager from "@/components/AddVoyager";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router";
+import FloatingCopyButton from "@/components/FloatingCopy";
 
 export default function List() {
   const { t } = useTranslation();
+
+  const [urlParams, setUrlParams] = useSearchParams();
+
   const [filter, setFilter] = useState<SearchFilters>({
-    query: "",
-    gender: "",
-    soloProjectTier: "",
-    goal: "",
-    source: "",
-    voyageRole: "",
-    roleType: "",
+    query: urlParams.get("query") || "",
+    gender: urlParams.get("gender") || "",
+    soloProjectTier: urlParams.get("soloProjectTier") || "",
+    goal: urlParams.get("goal") || "",
+    source: urlParams.get("source") || "",
+    voyageRole: urlParams.get("voyageRole") || "",
+    roleType: urlParams.get("roleType") || "",
   });
 
   const [voyagerId, setVoyagerId] = useState<string | null>(null);
@@ -150,6 +155,7 @@ export default function List() {
             />
           </Box>
         )}
+        {urlParams.size > 0 && <FloatingCopyButton />}
       </Flex>
       <Modal
         isOpen={showVoyagerModal}

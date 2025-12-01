@@ -47,5 +47,8 @@
   "ourVoyager": "Voyagers لدينا",
   "noVoyagersFound": "لم يتم العثور على أي Voyager",
   "noVoyagerDescription": "لا توجد نتائج مطابقة للفلاتر المحددة.",
-  "refresh": "تحديث"
+  "refresh": "تحديث",
+  "copy": "نسخ",
+  "copied": "تم النسخ!",
+  "sharePage": "مشاركة هذه الصفحة"
 }

@@ -47,5 +47,8 @@
   "ourVoyager": "Nossos Voyagers",
   "noVoyagersFound": "Nenhum Voyager encontrado",
   "noVoyagerDescription": "Nenhum Voyager encontrado para os filtros selecionados.",
-  "refresh": "Atualizar"
+  "refresh": "Atualizar",
+  "copy": "Copiar",
+  "copied": "Copiado!",
+  "sharePage": "Compartilhar esta página"
 }
