@@ -12,8 +12,10 @@ import { Box, Button, Flex, Grid, Text, useDisclosure } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import AddVoyager from "@/components/AddVoyager";
+import { useTranslation } from "react-i18next";
 
 export default function List() {
+  const { t } = useTranslation();
   const [filter, setFilter] = useState<SearchFilters>({
     query: "",
     gender: "",
@@ -92,7 +94,7 @@ export default function List() {
         >
           <Box>
             <Text fontWeight={"bold"} fontSize={20}>
-              Our Voyagers
+              {t("ourVoyager")}
             </Text>
           </Box>
           <Flex
@@ -102,7 +104,7 @@ export default function List() {
           >
             <Search onSearch={(filter) => setFilter(filter)} />
             <Button borderRadius={10} onClick={onAddVoyagerOpen}>
-              Add Voyager
+              {t("addVoyager")}
             </Button>
           </Flex>
         </Flex>
@@ -131,13 +133,13 @@ export default function List() {
                 ))}
             </Grid>
             <div ref={loadMoreRef} style={{ height: 40 }}></div>
-            {isFetchingNextPage && <Loading />}
+            {isFetchingNextPage && <Loading text={t("loading")} />}
           </>
         ) : (
           <Box p={{ base: 4, md: 10 }} pt={5}>
             <EmptyState
-              title="No Voyagers Found"
-              description="No voyagers found for the selected filters."
+              title={t("noVoyagersFound")}
+              description={t("noVoyagerDescription")}
             />
           </Box>
         )}
@@ -148,7 +150,7 @@ export default function List() {
       >
         {!voyagerData && voyagerLoading && (
           <Box p={4}>
-            <Loading fullscreen text="Loading Voyager Data" />
+            <Loading fullscreen text={t("loading")} />
           </Box>
         )}
         {voyagerData && !voyagerLoading && (
