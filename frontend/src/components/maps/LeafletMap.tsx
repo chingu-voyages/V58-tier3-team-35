@@ -14,6 +14,7 @@ import VoyagerProfile from "../VoyagerProfile";
 import useVoyagerDetails from "@/api/hooks/useVoyagerDetails";
 import { toast } from "sonner";
 import { Box } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 const SingleMarkerIcon = L.icon({
   iconUrl: Chingu,
@@ -36,6 +37,7 @@ export default function LeafletMap({
   data: Voyager[];
   loading: boolean;
 }) {
+  const { t } = useTranslation();
   const { colorMode } = useColorMode();
   const mapRef = useRef<L.Map | null>(null);
   const clusterRef = useRef<L.MarkerClusterGroup | null>(null);
@@ -118,7 +120,7 @@ export default function LeafletMap({
 
   return (
     <>
-      {loading && <Loading fullscreen text="Loading Map Data" />}
+      {loading && <Loading fullscreen text={t("mapLoading")} />}
       <MapContainer
         center={[9.082, 8.6753]}
         zoom={5}

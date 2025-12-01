@@ -10,8 +10,10 @@ import {
 import { FaGithub } from "react-icons/fa";
 import team from "@/data/team.json"; // adjust path as needed
 import { useColorModeValue } from "@/components/ui/color-mode";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+  const { t } = useTranslation();
   const bg = useColorModeValue("gray.100", "gray.900");
   const color = useColorModeValue("gray.700", "gray.400");
 
@@ -31,7 +33,7 @@ export default function Footer() {
             borderBottomWidth={1}
             borderBottomColor={"#e1e1e1"}
           >
-            The Team
+            {t("menu.theTeam")}
           </Text>
           <Grid gap={4} templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}>
             {team.map((member) => (
@@ -64,7 +66,7 @@ export default function Footer() {
 
         {/* ©️ Copyright */}
         <Text fontSize="sm" textAlign={{ base: "center", md: "right" }}>
-          © {new Date().getFullYear()} Team 35 — All rights reserved.
+          © {new Date().getFullYear()} {t("footer.copyright")}
         </Text>
       </Flex>
     </Box>

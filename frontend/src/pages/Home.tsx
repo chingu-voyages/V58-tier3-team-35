@@ -13,8 +13,10 @@ import LocatorDark from "@/assets/locator.svg";
 import Arrow from "@/assets/arrow.svg";
 import { useColorMode, useColorModeValue } from "@/components/ui/color-mode";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const textColor = useColorModeValue("gray.700", "gray.200");
   return (
@@ -38,9 +40,9 @@ export default function Home() {
             fontWeight={"bolder"}
             color={"#069668"}
           >
-            Discover where Chingus are{" "}
+            {t("welcome")}{" "}
             <Span fontWeight={"normal"} color={textColor}>
-              across the world!
+              {t("across")}
             </Span>
           </Text>
           <Text fontSize={{ base: 18, md: 25 }}>
@@ -59,7 +61,7 @@ export default function Home() {
             fontSize={18}
             onClick={() => navigate("/map")}
           >
-            <Text>Find Chingus</Text>
+            <Text>{t("findChingu")}</Text>
             <Image src={Locator} />
           </Button>
 
@@ -72,7 +74,7 @@ export default function Home() {
             fontSize={18}
             onClick={() => navigate("/list")}
           >
-            <Text>View Lists</Text>
+            <Text>{t("list")}</Text>
             <Image src={Arrow} />
           </Button>
         </Flex>

@@ -4,9 +4,11 @@ import { Provider } from "./components/ui/provider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "sonner";
 
-import App from "./App";
+import "./utils/i18n";
 import "./index.css";
 import "leaflet/dist/leaflet.css";
+
+import App from "./App";
 
 const queryClient = new QueryClient({
   defaultOptions: {
