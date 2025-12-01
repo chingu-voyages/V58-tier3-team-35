@@ -14,7 +14,7 @@ export default function buildUserFilters(query: any) {
     filters.$or = [
       { countryCode: { $regex: keyword, $options: "i" } },
       { timezone: { $regex: keyword, $options: "i" } },
-      { goalOther: { $regex: keyword, $options: "i" } },
+      { goalOther: { $regex: keyword, $options: "i" } }, 
       { sourceOther: { $regex: keyword, $options: "i" } },
       { countryName: { $regex: keyword, $options: "i" } },
       { voyageSignups: { $regex: keyword, $options: "i" } },
