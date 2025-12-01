@@ -46,5 +46,6 @@
   "addVoyager": "Voyager जोड़ें",
   "ourVoyager": "हमारे Voyagers",
   "noVoyagersFound": "कोई Voyager नहीं मिला",
-  "noVoyagerDescription": "चयनित फ़िल्टरों से मेल खाते हुए कोई Voyagers नहीं मिले।"
+  "noVoyagerDescription": "चयनित फ़िल्टरों से मेल खाते हुए कोई Voyagers नहीं मिले।",
+  "refresh": "रिफ्रेश"
 }

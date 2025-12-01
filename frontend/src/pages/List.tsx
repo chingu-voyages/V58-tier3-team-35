@@ -44,6 +44,7 @@ export default function List() {
     isLoading: isVoyagerLoading,
     isError: isVoyagerError,
     error: voyagerError,
+    isRefetching,
   } = useVoyagers(filter);
 
   const loadMoreRef = useRef(null);
@@ -81,7 +82,7 @@ export default function List() {
   }, [hasNextPage, fetchNextPage, isFetchingNextPage]);
 
   const Voyagers = data?.pages.flatMap((page: any) => page.data.docs) ?? [];
-  return isVoyagerLoading ? (
+  return isVoyagerLoading || isRefetching ? (
     <Loading fullscreen size="lg" />
   ) : (
     <>
@@ -98,13 +99,19 @@ export default function List() {
             </Text>
           </Box>
           <Flex
-            w={{ base: "full", md: 250, lg: 400 }}
+            w={{ base: "full", md: 450, lg: 500 }}
             flexDirection={{ base: "column", md: "row" }}
             gap={2}
           >
             <Search onSearch={(filter) => setFilter(filter)} />
             <Button borderRadius={10} onClick={onAddVoyagerOpen}>
               {t("addVoyager")}
+            </Button>
+            <Button
+              borderRadius={10}
+              onClick={() => refetch({ cancelRefetch: false })}
+            >
+              {t("refresh")}
             </Button>
           </Flex>
         </Flex>

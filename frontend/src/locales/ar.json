@@ -46,5 +46,6 @@
   "addVoyager": "إضافة Voyager",
   "ourVoyager": "Voyagers لدينا",
   "noVoyagersFound": "لم يتم العثور على أي Voyager",
-  "noVoyagerDescription": "لا توجد نتائج مطابقة للفلاتر المحددة."
+  "noVoyagerDescription": "لا توجد نتائج مطابقة للفلاتر المحددة.",
+  "refresh": "تحديث"
 }

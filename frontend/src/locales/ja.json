@@ -46,5 +46,6 @@
   "addVoyager": "Voyager を追加",
   "ourVoyager": "私たちの Voyagers",
   "noVoyagersFound": "Voyager が見つかりません",
-  "noVoyagerDescription": "選択したフィルターに一致する Voyagers はありません。"
+  "noVoyagerDescription": "選択したフィルターに一致する Voyagers はありません。",
+  "refresh": "更新"
 }
