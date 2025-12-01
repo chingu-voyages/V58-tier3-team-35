@@ -3,9 +3,11 @@ import LeafletMap from "@/components/maps/LeafletMap";
 import Search, { type SearchFilters } from "@/components/Search";
 import { Box, Button, Flex } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 
 export default function Map() {
+  const { t } = useTranslation();
   const [filters, setFilters] = useState<SearchFilters>({
     query: "",
     gender: "",
@@ -16,7 +18,7 @@ export default function Map() {
     roleType: "",
   });
 
-  const { data, isLoading, isError, error, refetch } =
+  const { data, isLoading, isError, error, refetch, isRefetching } =
     useVoyagerCoordinates(filters);
 
   useEffect(() => {
@@ -48,18 +50,24 @@ export default function Map() {
         >
           <Flex w="full" justifyContent={"center"}>
             <Flex
-              bg="white"
+              bg="none"
               borderRadius={10}
               w={{ base: "full", md: "400px" }}
-              boxShadow={"md"}
+              gap={2}
             >
-              <Search onSearch={(filter) => setFilters(filter)} />
+              <Search onSearch={(filter) => setFilters(filter)} />{" "}
+              <Button onClick={() => refetch({ cancelRefetch: false })}>
+                {t("refresh")}
+              </Button>
             </Flex>
           </Flex>
         </Box>
       </Box>
       <Box height="lvh">
-        <LeafletMap data={data?.data || []} loading={isLoading} />
+        <LeafletMap
+          data={data?.data || []}
+          loading={isLoading || isRefetching}
+        />
       </Box>
     </>
   );

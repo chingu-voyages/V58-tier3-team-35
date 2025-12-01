@@ -46,5 +46,6 @@
   "addVoyager": "添加 Voyager",
   "ourVoyager": "我们的 Voyagers",
   "noVoyagersFound": "未找到 Voyager",
-  "noVoyagerDescription": "没有符合选定筛选条件的 Voyagers。"
+  "noVoyagerDescription": "没有符合选定筛选条件的 Voyagers。",
+  "refresh": "刷新"
 }

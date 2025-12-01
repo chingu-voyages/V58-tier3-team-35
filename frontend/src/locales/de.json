@@ -46,5 +46,6 @@
   "addVoyager": "Voyager hinzufügen",
   "ourVoyager": "Unsere Voyagers",
   "noVoyagersFound": "Keine Voyagers gefunden",
-  "noVoyagerDescription": "Für die ausgewählten Filter wurden keine Voyagers gefunden."
+  "noVoyagerDescription": "Für die ausgewählten Filter wurden keine Voyagers gefunden.",
+  "refresh": "Aktualisieren"
 }

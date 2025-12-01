@@ -46,5 +46,6 @@
   "addVoyager": "Добавить Voyager",
   "ourVoyager": "Наши Voyagers",
   "noVoyagersFound": "Voyagers не найдены",
-  "noVoyagerDescription": "Нет Voyagers, соответствующих выбранным фильтрам."
+  "noVoyagerDescription": "Нет Voyagers, соответствующих выбранным фильтрам.",
+  "refresh": "Обновить"
 }

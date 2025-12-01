@@ -46,5 +46,6 @@
   "addVoyager": "Add Voyager",
   "ourVoyager": "Our Voyagers",
   "noVoyagersFound": "No voyagers found",
-  "noVoyagerDescription": "No voyagers found for the selected filters."
+  "noVoyagerDescription": "No voyagers found for the selected filters.",
+  "refresh": "Refresh"
 }
