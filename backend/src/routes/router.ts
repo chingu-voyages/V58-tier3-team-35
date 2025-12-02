@@ -11,7 +11,7 @@ import { rateLimiter } from "@/middleware/limiter";
 
 const router = Router();
 
-// router.use(apiAuth);
+router.use(apiAuth);
 
 router.get("/", (req, res) => {
   console.log(req);
