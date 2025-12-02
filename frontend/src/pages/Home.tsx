@@ -14,8 +14,10 @@ import Arrow from "@/assets/arrow.svg";
 import { useColorMode, useColorModeValue } from "@/components/ui/color-mode";
 import { useNavigate } from "react-router";
 import AiChatBot from "@/components/AiChatBot";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const textColor = useColorModeValue("gray.700", "gray.200");
   return (
@@ -39,16 +41,12 @@ export default function Home() {
             fontWeight={"bolder"}
             color={"#069668"}
           >
-            Discover where Chingus are{" "}
+            {t("discover")}{" "}
             <Span fontWeight={"normal"} color={textColor}>
-              across the world!
+              {t("across")}
             </Span>
           </Text>
-          <Text fontSize={{ base: 18, md: 25 }}>
-            Visualize our worldwide community of learners and builders, explore
-            where members are based, and discover insights about roles, skills,
-            and voyages that unite us.
-          </Text>
+          <Text fontSize={{ base: 18, md: 25 }}>{t("introduction")}</Text>
         </Box>
         <Flex flexDirection={{ base: "column", md: "row" }} gap={10}>
           <Button
@@ -60,7 +58,7 @@ export default function Home() {
             fontSize={18}
             onClick={() => navigate("/map")}
           >
-            <Text>Find Chingus</Text>
+            <Text>{t("findChingu")}</Text>
             <Image src={Locator} />
           </Button>
 
@@ -73,7 +71,7 @@ export default function Home() {
             fontSize={18}
             onClick={() => navigate("/list")}
           >
-            <Text>View Lists</Text>
+            <Text>{t("list")}</Text>
             <Image src={Arrow} />
           </Button>
         </Flex>

@@ -12,16 +12,23 @@ import { Box, Button, Flex, Grid, Text, useDisclosure } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import AddVoyager from "@/components/AddVoyager";
+import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router";
+import FloatingCopyButton from "@/components/FloatingCopy";
 
 export default function List() {
+  const { t } = useTranslation();
+
+  const [urlParams, setUrlParams] = useSearchParams();
+
   const [filter, setFilter] = useState<SearchFilters>({
-    query: "",
-    gender: "",
-    soloProjectTier: "",
-    goal: "",
-    source: "",
-    voyageRole: "",
-    roleType: "",
+    query: urlParams.get("query") || "",
+    gender: urlParams.get("gender") || "",
+    soloProjectTier: urlParams.get("soloProjectTier") || "",
+    goal: urlParams.get("goal") || "",
+    source: urlParams.get("source") || "",
+    voyageRole: urlParams.get("voyageRole") || "",
+    roleType: urlParams.get("roleType") || "",
   });
 
   const [voyagerId, setVoyagerId] = useState<string | null>(null);
@@ -42,6 +49,7 @@ export default function List() {
     isLoading: isVoyagerLoading,
     isError: isVoyagerError,
     error: voyagerError,
+    isRefetching,
   } = useVoyagers(filter);
 
   const loadMoreRef = useRef(null);
@@ -79,7 +87,7 @@ export default function List() {
   }, [hasNextPage, fetchNextPage, isFetchingNextPage]);
 
   const Voyagers = data?.pages.flatMap((page: any) => page.data.docs) ?? [];
-  return isVoyagerLoading ? (
+  return isVoyagerLoading || isRefetching ? (
     <Loading fullscreen size="lg" />
   ) : (
     <>
@@ -92,17 +100,23 @@ export default function List() {
         >
           <Box>
             <Text fontWeight={"bold"} fontSize={20}>
-              Our Voyagers
+              {t("ourVoyager")}
             </Text>
           </Box>
           <Flex
-            w={{ base: "full", md: 250, lg: 400 }}
+            w={{ base: "full", md: 450, lg: 500 }}
             flexDirection={{ base: "column", md: "row" }}
             gap={2}
           >
             <Search onSearch={(filter) => setFilter(filter)} />
             <Button borderRadius={10} onClick={onAddVoyagerOpen}>
-              Add Voyager
+              {t("addVoyager")}
+            </Button>
+            <Button
+              borderRadius={10}
+              onClick={() => refetch({ cancelRefetch: false })}
+            >
+              {t("refresh")}
             </Button>
           </Flex>
         </Flex>
@@ -131,16 +145,17 @@ export default function List() {
                 ))}
             </Grid>
             <div ref={loadMoreRef} style={{ height: 40 }}></div>
-            {isFetchingNextPage && <Loading />}
+            {isFetchingNextPage && <Loading text={t("loading")} />}
           </>
         ) : (
           <Box p={{ base: 4, md: 10 }} pt={5}>
             <EmptyState
-              title="No Voyagers Found"
-              description="No voyagers found for the selected filters."
+              title={t("noVoyagersFound")}
+              description={t("noVoyagerDescription")}
             />
           </Box>
         )}
+        {urlParams.size > 0 && <FloatingCopyButton />}
       </Flex>
       <Modal
         isOpen={showVoyagerModal}
@@ -148,7 +163,7 @@ export default function List() {
       >
         {!voyagerData && voyagerLoading && (
           <Box p={4}>
-            <Loading fullscreen text="Loading Voyager Data" />
+            <Loading fullscreen text={t("loading")} />
           </Box>
         )}
         {voyagerData && !voyagerLoading && (

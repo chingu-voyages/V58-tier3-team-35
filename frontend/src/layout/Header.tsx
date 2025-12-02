@@ -20,8 +20,12 @@ import { useColorMode, useColorModeValue } from "@/components/ui/color-mode";
 import { NavLink, useNavigate } from "react-router";
 import Logo from "@/assets/logo.svg";
 import LogoDark from "@/assets/logo-white.svg";
+import { LanguageSelector } from "@/components/LanguageSelector";
+import i18n from "@/utils/i18n";
+import { useTranslation } from "react-i18next";
 
 const Header: React.FC = () => {
+  const { t } = useTranslation();
   const { colorMode, toggleColorMode } = useColorMode();
   const { open: isOpen, onOpen, onClose } = useDisclosure();
 
@@ -32,15 +36,15 @@ const Header: React.FC = () => {
 
   const navLinks: { title: string; route: string }[] = [
     {
-      title: "Home",
+      title: t("menu.home"),
       route: "/",
     },
     {
-      title: "Map",
+      title: t("menu.map"),
       route: "/map",
     },
     {
-      title: "List",
+      title: t("menu.list"),
       route: "/list",
     },
   ];
@@ -83,7 +87,7 @@ const Header: React.FC = () => {
           display={{ base: "block", md: "none" }}
           color={textColor}
         >
-          {currentTime.toLocaleString("en-Us", {
+          {currentTime.toLocaleString(i18n.language, {
             weekday: "long",
             month: "long",
             day: "2-digit",
@@ -110,7 +114,7 @@ const Header: React.FC = () => {
             color={textColor}
             display={{ base: "none", md: "block" }}
           >
-            {currentTime.toLocaleString("en-US", {
+            {currentTime.toLocaleString(i18n.language, {
               weekday: "long",
               month: "long",
               day: "2-digit",
@@ -139,6 +143,7 @@ const Header: React.FC = () => {
             </IconButton>
           </HStack>
 
+          <LanguageSelector />
           <HStack display={{ base: "flex", md: "none" }}>
             <IconButton
               aria-label="Toggle color mode"
@@ -154,7 +159,7 @@ const Header: React.FC = () => {
         </Flex>
       </Flex>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Menu */}
       <Drawer.Root placement="end" open={isOpen} onOpenChange={onClose}>
         <DrawerBackdrop />
         <DrawerContent>
