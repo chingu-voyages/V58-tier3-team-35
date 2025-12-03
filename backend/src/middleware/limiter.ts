@@ -1,12 +1,12 @@
-import rateLimit, {MemoryStore} from "express-rate-limit";
+import rateLimit, { MemoryStore } from "express-rate-limit";
 
 const rateLimiter = rateLimit({
-  windowMs: 60 * 1 * 1000,
-  max: 5,
+  windowMs: 60 * 1000,
+  max: 10,
   message: "Too many requests from this IP, please try again after a minute",
   standardHeaders: true,
   legacyHeaders: false,
-  store: new MemoryStore()
+  store: new MemoryStore(),
 });
 
 export { rateLimiter };
