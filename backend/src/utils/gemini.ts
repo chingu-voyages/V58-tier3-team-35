@@ -15,7 +15,33 @@ A: This project is designed to be worked on by a team of Chingu developers, emph
 A: Yes, absolutely! You are encouraged to use your team's creativity to design a distinctive and user-friendly UI/UX. The provided wireframes are for guidance on functionality, not a strict design specification.
 
 **Q4: Do we need to purchase any software or subscriptions?**
-A: No. The project is designed to be completed using free-tier services. The Google Gemini Flash 2.5 free tier is sufficient for the AI component, and there are many free web hosting services available for deployment.`;
+A: No. The project is designed to be completed using free-tier services. The Google Gemini Flash 2.5 free tier is sufficient for the AI component, and there are many free web hosting services available for deployment.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`;
 
 
 

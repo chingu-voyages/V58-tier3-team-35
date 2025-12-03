@@ -25,7 +25,6 @@ export const createChatResponse = async(req: Request, res: Response): Promise<vo
             contents: `${PROJECT_FAQ_CONTEXT.concat(" ", prompt)}`,
         })
         //response
-        console.log(response.candidates[0]?.content?.parts[0]?.text)
         res.status(200).json(response)
     } catch (error) {
         console.log(error)
