@@ -1,7 +1,20 @@
 import { activateUser, createVoyagerUser } from "@/services/authCreateVoyager";
-import { getNewToken } from "@/services/authService";
+import {
+  getNewToken,
+  loginService,
+  resendVerification,
+} from "@/services/authService";
 import { jwtPayload } from "@/types/auth";
 import { Request, Response } from "express";
+
+export async function login(req: Request, res: Response): Promise<Response> {
+  try {
+    const user = await loginService(req.body, res);
+    return res.status(200).json(user);
+  } catch (error: any) {
+    return res.status(400).json({ error: error.message });
+  }
+}
 
 export async function register(req: Request, res: Response): Promise<Response> {
   try {
@@ -19,6 +32,18 @@ export async function verifyEmail(
   try {
     const { token } = req.params;
     const user = await activateUser(token as string);
+    return res.status(200).json(user);
+  } catch (error: any) {
+    return res.status(400).json({ error: error.message });
+  }
+}
+
+export async function resendVerificationToken(
+  req: Request,
+  res: Response
+): Promise<Response> {
+  try {
+    const user = await resendVerification(req.user?.email as string);
     return res.status(200).json(user);
   } catch (error: any) {
     return res.status(400).json({ error: error.message });
