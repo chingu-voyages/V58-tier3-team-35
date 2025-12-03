@@ -14,18 +14,21 @@ export async function createVoyagerUser(req: userAccountInput, res: Response) {
   const hashedPassword = await hashPassword(validated.password);
   validated.password = hashedPassword;
   const user = new UserAccount(validated);
+
   await user.save();
-
-  const token = await sendActivationEmail(user);
-
+  await sendActivationEmail(user);
   user.pendingMail = false;
   await user.save();
   const tokens = await login(res, user);
 
-  return { user, tokens };
+  const userObj: any = user.toObject();
+  delete userObj.password;
+  delete userObj.refreshToken;
+
+  return { user: userObj, accessToken: tokens.accessToken };
 }
 
-export const activateUser = async (token: string) => {
+export async function activateUser(token: string) {
   const user = jwt.verify(token, EMAIL_TOKEN_SECRET) as { email: string };
 
   if (!user) {
@@ -45,4 +48,4 @@ export const activateUser = async (token: string) => {
   await userAccount.save();
 
   return userAccount;
-};
+}

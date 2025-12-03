@@ -1,11 +1,10 @@
-import express from "express";
-import cors from "cors";
-const app = express();
+import app from "@/config/app";
 import voyagerRouter from "@/routes/voyager";
 import chatRouter from "@/routes/chat";
 import authRouter from "@/routes/auth";
-app.use(cors());
-app.use(express.json());
+import profileRouter from "@/routes/profile";
+
+app.use("/api/auth/profile", profileRouter);
 app.use("/api/auth", authRouter);
 app.use("/api", voyagerRouter);
 app.use("/api", chatRouter);
