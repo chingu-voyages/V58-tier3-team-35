@@ -5,7 +5,9 @@ import {
   getVoyagers,
 } from "@/controllers/VoyagerController";
 import { apiAuth } from "@/middleware/apiAuth";
+import { createChatResponse} from "@/controllers/chatController";
 import { Router } from "express";
+import { rateLimiter } from "@/middleware/limiter";
 
 const router = Router();
 
@@ -22,6 +24,7 @@ router.get("/voyagers", getVoyagers);
 router.get("/coordinates", getVoyagerCoordinates);
 router.get("/voyager/:id", getVoyager);
 router.post("/new-voyager", createVoyager);
+router.post("/chat", rateLimiter, createChatResponse);
 
 // router.get("/handle-update", handleUpdate);
 
