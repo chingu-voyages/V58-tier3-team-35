@@ -4,7 +4,7 @@ import getVoyagersWithFilters from "../services/getVoyagers";
 import Voyager from "@/models/Voyager";
 import getVoyagerCoordinatesWithFilters from "@/services/getVoyagerCoordinates";
 import getVoyagerById from "@/services/getVoyagerById";
-import createVoyagerService from "@/services/createVoyager";
+import { createVoyagerService } from "@/services/createVoyager";
 
 export async function getVoyagers(req: Request, res: Response) {
   try {
