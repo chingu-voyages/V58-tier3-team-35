@@ -12,7 +12,6 @@ import { rateLimiter } from "@/middleware/limiter";
 const voyagerRouter = Router();
 
 voyagerRouter.use(apiAuth);
-voyagerRouter.use(rateLimiter);
 
 voyagerRouter.get("/voyagers", getVoyagers);
 voyagerRouter.get("/coordinates", getVoyagerCoordinates);
