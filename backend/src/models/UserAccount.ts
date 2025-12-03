@@ -13,9 +13,9 @@ export type UserAccountDocument = HydratedDocument<UserAccount>;
 const userAccountSchema = new Schema<UserAccount>(
   {
     email: { type: String, required: true },
-    password: { type: String, required: true },
+    password: { type: String, required: true, select: false },
     isVerified: { type: Boolean, default: false },
-    refreshToken: { type: String, default: null },
+    refreshToken: { type: String, default: null, select: false },
     pendingMail: { type: Boolean, default: true },
   },
   { timestamps: true }

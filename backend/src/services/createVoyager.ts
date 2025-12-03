@@ -3,7 +3,7 @@ import { getCoordinatesByCountry } from "@/scripts/UpdateCoordinates";
 import { validateVoyagerInput } from "@/utils/validator";
 import { Request } from "express";
 
-export default async function createVoyagerService(req: Request) {
+export async function createVoyagerService(req: Request) {
   const validation = validateVoyagerInput(req.body);
   if (validation.length > 0) {
     return validation;

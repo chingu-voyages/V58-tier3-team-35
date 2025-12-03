@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register src/server.ts",
+    "dev": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register src/index.ts",
     "build": "tsc && tsc-alias",
-    "start": "node dist/server.js",
+    "start": "node dist/index.js",
     "genkit": "genkit start -- npm run dev"
   },
   "keywords": [],
@@ -17,8 +17,10 @@
   "dependencies": {
     "@genkit-ai/google-genai": "^1.24.0",
     "@google/genai": "^1.30.0",
+    "@types/cookie-parser": "^1.4.10",
     "argon2": "^0.44.0",
     "axios": "^1.13.2",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
