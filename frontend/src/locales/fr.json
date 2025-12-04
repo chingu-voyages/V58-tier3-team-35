@@ -8,7 +8,10 @@
     "home": "Accueil",
     "map": "Carte",
     "list": "Liste",
-    "theTeam": "L'équipe"
+    "theTeam": "L'Équipe",
+    "signup": "S'inscrire",
+    "login": "Connexion",
+    "dashboard": "Tableau de bord"
   },
   "footer": {
     "copyright": "Team 35 — Tous droits réservés."
@@ -50,5 +53,7 @@
   "refresh": "Rafraîchir",
   "copy": "Copier",
   "copied": "Copié !",
-  "sharePage": "Partager cette page"
+  "sharePage": "Partager cette page",
+  "notFound": "Oups... La page que vous recherchez n'existe pas.",
+  "back": "Retour"
 }

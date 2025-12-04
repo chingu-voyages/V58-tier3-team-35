@@ -47,6 +47,14 @@ const Header: React.FC = () => {
       title: t("menu.list"),
       route: "/list",
     },
+    {
+      title: t("menu.signup"),
+      route: "/auth/signup",
+    },
+    {
+      title: t("menu.login"),
+      route: "/auth",
+    },
   ];
 
   const navigate = useNavigate();
@@ -126,6 +134,7 @@ const Header: React.FC = () => {
             {navLinks.map((nav) => (
               <NavLink
                 key={nav.title}
+                end
                 to={nav.route}
                 style={({ isActive }) => ({
                   color: isActive ? "#3182ce" : "inherit",
@@ -170,6 +179,7 @@ const Header: React.FC = () => {
                 <NavLink
                   key={nav.title}
                   to={nav.route}
+                  end
                   onClick={onClose}
                   style={({ isActive }) => ({
                     color: isActive ? "#3182ce" : "inherit",

@@ -8,7 +8,10 @@
     "home": "ホーム",
     "map": "マップ",
     "list": "リスト",
-    "theTeam": "チーム"
+    "theTeam": "チーム",
+    "signup": "サインアップ",
+    "login": "ログイン",
+    "dashboard": "ダッシュボード"
   },
   "footer": {
     "copyright": "Team 35 — 無断転載を禁じます。"
@@ -50,5 +53,7 @@
   "refresh": "更新",
   "copy": "コピー",
   "copied": "コピーしました！",
-  "sharePage": "このページを共有"
+  "sharePage": "このページを共有",
+  "notFound": "おっと…お探しのページは見つかりません。",
+  "back": "戻る"
 }

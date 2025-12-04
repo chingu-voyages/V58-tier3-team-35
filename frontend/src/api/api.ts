@@ -5,8 +5,18 @@ const api = axios.create({
   timeout: 15000,
   headers: {
     "Content-Type": "application/json",
-    "x-api-key": import.meta.env.VITE_API_KEY,
   },
+});
+
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("authToken");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  } else {
+    config.headers["x-api-key"] = import.meta.env.VITE_API_KEY;
+  }
+
+  return config;
 });
 
 api.interceptors.response.use(

@@ -8,7 +8,10 @@
     "home": "Home",
     "map": "Map",
     "list": "List",
-    "theTeam": "The Team"
+    "theTeam": "The Team",
+    "signup": "Signup",
+    "login": "Login",
+    "dashboard": "Dashboard"
   },
   "footer": {
     "copyright": "Team 35 — All rights reserved."
@@ -50,5 +53,7 @@
   "refresh": "Refresh",
   "copy": "Copy",
   "copied": "Copied!",
-  "sharePage": "Share This Page"
+  "sharePage": "Share This Page",
+  "notFound": "Oops... The page you're looking for doesn't exist.",
+  "back": "Back"
 }

@@ -9,6 +9,7 @@ import "./index.css";
 import "leaflet/dist/leaflet.css";
 
 import App from "./App";
+import { AuthProvider } from "./context/AuthContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,10 +24,12 @@ const queryClient = new QueryClient({
 createRoot(document.getElementById("root") as HTMLElement).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <Provider>
-        <App />
-        <Toaster richColors />
-      </Provider>
+      <AuthProvider>
+        <Provider>
+          <App />
+          <Toaster richColors />
+        </Provider>
+      </AuthProvider>
     </QueryClientProvider>
   </StrictMode>
 );

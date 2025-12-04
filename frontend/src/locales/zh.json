@@ -8,7 +8,10 @@
     "home": "首页",
     "map": "地图",
     "list": "列表",
-    "theTeam": "团队"
+    "theTeam": "团队",
+    "signup": "注册",
+    "login": "登录",
+    "dashboard": "仪表盘"
   },
   "footer": {
     "copyright": "Team 35 — 保留所有权利。"
@@ -50,5 +53,7 @@
   "refresh": "刷新",
   "copy": "复制",
   "copied": "已复制！",
-  "sharePage": "分享此页面"
+  "sharePage": "分享此页面",
+  "notFound": "哎呀…你要找的页面不存在。",
+  "back": "返回"
 }

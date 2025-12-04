@@ -88,7 +88,7 @@ export default function List() {
 
   const Voyagers = data?.pages.flatMap((page: any) => page.data.docs) ?? [];
   return isVoyagerLoading || isRefetching ? (
-    <Loading fullscreen size="lg" />
+    <Loading fullscreen size="lg" text={t("loading")} />
   ) : (
     <>
       <Flex flexDirection={"column"} gap={5} p={{ base: 4, md: 10 }} pt={5}>
