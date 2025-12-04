@@ -3,8 +3,11 @@ import voyagerRouter from "@/routes/voyager";
 import chatRouter from "@/routes/chat";
 import authRouter from "@/routes/auth";
 import profileRouter from "@/routes/profile";
+import { rateLimiter } from "@/middleware/limiter";
 
-app.use("/api/auth/profile", profileRouter);
+app.use(rateLimiter);
+
+app.use("/api/profile", profileRouter);
 app.use("/api/auth", authRouter);
 app.use("/api", voyagerRouter);
 app.use("/api", chatRouter);
