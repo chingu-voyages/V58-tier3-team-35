@@ -22,7 +22,7 @@ export default function FloatingCopyButton() {
   const [hasCopied, setHasCopied] = useState(false);
   const [isCopying, setIsCopying] = useState(false);
 
-  const fullUrl = `${window.location.origin}${location.pathname}${location.search}`;
+  const fullUrl = `${window.location.origin}/V58-tier3-team-35${location.pathname}${location.search}`;
 
   const border = useColorModeValue("gray.200", "gray.600");
 

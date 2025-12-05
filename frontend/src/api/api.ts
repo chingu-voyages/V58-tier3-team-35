@@ -28,10 +28,8 @@ api.interceptors.request.use((config) => {
 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
-  } else {
-    config.headers["x-api-key"] = import.meta.env.VITE_API_KEY;
   }
-
+  config.headers["x-api-key"] = import.meta.env.VITE_API_KEY;
   return config;
 });
 
