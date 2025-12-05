@@ -11,7 +11,8 @@
     "theTeam": "A Equipe",
     "signup": "Cadastrar",
     "login": "Entrar",
-    "dashboard": "Painel de Controle"
+    "dashboard": "Painel de Controle",
+    "logout": "Sair"
   },
   "footer": {
     "copyright": "Team 35 — Todos os direitos reservados."

@@ -9,7 +9,8 @@ import Login from "@/pages/Login";
 import Map from "@/pages/Map";
 import NotFound from "@/pages/NotFound";
 import Signup from "@/pages/Signup";
-import { Children } from "react";
+import VerifyEmail from "@/pages/VerifyEmail";
+import Logout from "@/pages/Logout";
 
 const routes = [
   {
@@ -56,7 +57,16 @@ const routes = [
             Component: Dashboard,
             handle: { title: "Dashboard | ChinguVerse" },
           },
+          {
+            path: "logout",
+            Component: Logout,
+            handle: { title: "Logging out..." },
+          },
         ],
+      },
+      {
+        path: "verify-email/:token",
+        Component: VerifyEmail,
       },
       {
         path: "*",

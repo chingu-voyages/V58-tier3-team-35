@@ -11,7 +11,8 @@
     "theTeam": "L'Équipe",
     "signup": "S'inscrire",
     "login": "Connexion",
-    "dashboard": "Tableau de bord"
+    "dashboard": "Tableau de bord",
+    "logout": "Se deconnecter"
   },
   "footer": {
     "copyright": "Team 35 — Tous droits réservés."

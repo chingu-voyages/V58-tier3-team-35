@@ -1,13 +1,8 @@
-import { Navigate, useLocation } from "react-router-dom";
-import { type ReactElement } from "react";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import { Box, Spinner } from "@chakra-ui/react";
 
-type ProtectedRouteProps = {
-  children: ReactElement;
-};
-
-export default function ProtectedRoute({ children }: ProtectedRouteProps) {
+export default function ProtectedRoute() {
   const { user, isLoading } = useAuth();
   const location = useLocation();
 
@@ -30,5 +25,5 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
     );
   }
 
-  return children;
+  return <Outlet />;
 }

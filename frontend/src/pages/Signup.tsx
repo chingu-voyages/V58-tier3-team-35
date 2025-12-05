@@ -21,7 +21,7 @@ import {
   FiCheckCircle,
   FiCircle,
 } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import { useColorModeValue } from "@/components/ui/color-mode";
 
@@ -29,6 +29,7 @@ const MotionBox = motion(Box);
 const MotionContainer = motion(Container);
 
 export default function Signup() {
+  const navigate = useNavigate();
   const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [showRequirements, setShowRequirements] = useState(false);
@@ -65,8 +66,8 @@ export default function Signup() {
     mutate(form, {
       onSuccess: (data) => {
         toast.success("Welcome Aboard!");
-        console.log(data);
-        // login();
+        login(data);
+        navigate("/user");
       },
       onError: (e: Error) => toast.error(e.message || "Something went wrong"),
     });

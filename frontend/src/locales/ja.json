@@ -11,7 +11,8 @@
     "theTeam": "チーム",
     "signup": "サインアップ",
     "login": "ログイン",
-    "dashboard": "ダッシュボード"
+    "dashboard": "ダッシュボード",
+    "logout": "ログアウト"
   },
   "footer": {
     "copyright": "Team 35 — 無断転載を禁じます。"

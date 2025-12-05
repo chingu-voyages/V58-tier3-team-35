@@ -11,7 +11,8 @@
     "theTeam": "El Equipo",
     "signup": "Registrarse",
     "login": "Iniciar sesión",
-    "dashboard": "Panel"
+    "dashboard": "Panel",
+    "logout": "Cerrar sesión"
   },
   "footer": {
     "copyright": "Team 35 — Todos los derechos reservados."

@@ -4,6 +4,8 @@ import { Box } from "@chakra-ui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
 import Footer from "./Footer";
+import { useAuth } from "@/context/AuthContext";
+import ShouldVerify from "@/components/ShouldVerify";
 
 type RouteHandle = {
   title: string;
@@ -12,7 +14,7 @@ type RouteHandle = {
 export default function Layout() {
   const location = useLocation();
   const matches = useMatches();
-
+  const { user } = useAuth();
   useEffect(() => {
     const current = matches[matches.length - 1];
     const handle = current?.handle as RouteHandle;
@@ -35,6 +37,7 @@ export default function Layout() {
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
           <Box as="main">
+            {user && !user.isVerified && <ShouldVerify email={user.email} />}
             <Outlet key={location.pathname} />
           </Box>
         </MotionBox>

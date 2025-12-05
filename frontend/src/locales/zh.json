@@ -11,7 +11,8 @@
     "theTeam": "团队",
     "signup": "注册",
     "login": "登录",
-    "dashboard": "仪表盘"
+    "dashboard": "仪表盘",
+    "logout": "退出"
   },
   "footer": {
     "copyright": "Team 35 — 保留所有权利。"

@@ -17,7 +17,7 @@ type AuthContextType = {
   accessToken: string | null;
   isLoading: boolean;
   login: (data: LoginPayload) => void;
-  register: (data: LoginPayload) => void;
+  activateUser: (user: User | null) => void;
   logout: () => void;
 };
 
@@ -50,6 +50,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("authUser", JSON.stringify(user));
   };
 
+  const activateUser = (user: User | null) => {
+    if (user) {
+      user.isVerified = true;
+      setUser(user);
+      localStorage.setItem("authUser", JSON.stringify(user));
+    }
+  };
+
   const logout = () => {
     setAccessToken(null);
     setUser(null);
@@ -57,13 +65,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem("authUser");
   };
 
-  const register = () => {
-    console.log("Register Function");
-  };
-
   return (
     <AuthContext.Provider
-      value={{ user, accessToken, isLoading, login, register, logout }}
+      value={{ user, accessToken, isLoading, login, activateUser, logout }}
     >
       {children}
     </AuthContext.Provider>

@@ -11,7 +11,8 @@
     "theTeam": "الفريق",
     "signup": "تسجيل",
     "login": "تسجيل الدخول",
-    "dashboard": "لوحة التحكم"
+    "dashboard": "لوحة التحكم",
+    "logout": "تسجيل الخروج"
   },
   "footer": {
     "copyright": "Team 35 — جميع الحقوق محفوظة."
