@@ -9,7 +9,7 @@ export default async function sendActivationEmail(user: UserAccount) {
   if (!user) throw new Error("Please specify a valid user");
 
   const token = generateEmailToken({ email: user.email });
-  const verifyLink = `${process.env.SPA_URL}/verify-email?token=${token}`;
+  const verifyLink = `${process.env.SPA_URL}/verify-email/${token}`;
 
   const templatePath = path.join(__dirname, "../templates/activationMail.html");
 
