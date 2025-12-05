@@ -8,7 +8,11 @@
     "home": "首页",
     "map": "地图",
     "list": "列表",
-    "theTeam": "团队"
+    "theTeam": "团队",
+    "signup": "注册",
+    "login": "登录",
+    "dashboard": "仪表盘",
+    "logout": "退出"
   },
   "footer": {
     "copyright": "Team 35 — 保留所有权利。"
@@ -50,5 +54,31 @@
   "refresh": "刷新",
   "copy": "复制",
   "copied": "已复制！",
-  "sharePage": "分享此页面"
+  "sharePage": "分享此页面",
+  "notFound": "哎呀…你要找的页面不存在。",
+  "back": "返回",
+  "createAccount": "创建账户",
+  "login": "登录",
+  "email": "邮箱地址",
+  "password": "密码",
+  "showPassword": "显示密码",
+  "hidePassword": "隐藏密码",
+  "signup": "注册",
+  "join": "加入我们的社区",
+  "yourAccount": "登录你的账户",
+  "haveAccount": "已经有账户？",
+  "passwordRequirements": "密码要求",
+  "min6": "至少6个字符",
+  "upper1": "至少一个大写字母",
+  "lower1": "至少一个小写字母",
+  "number1": "至少一个数字",
+  "special1": "至少一个特殊字符",
+  "resendSuccess": "请检查您的邮箱以获取新的验证链接。",
+  "verificationError": "验证链接无效或已过期。",
+  "resend": "重新发送验证链接",
+  "verificationFailed": "验证失败",
+  "verificationSuccess": "邮箱验证成功",
+  "verificationSuccessDescription": "您的账户已激活。",
+  "sentVerification": "验证邮件已发送到您的邮箱：",
+  "pleaseClick": "请点击邮件中的链接完成账户验证。"
 }

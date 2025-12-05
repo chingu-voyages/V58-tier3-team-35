@@ -8,7 +8,11 @@
     "home": "Startseite",
     "map": "Karte",
     "list": "Liste",
-    "theTeam": "Das Team"
+    "theTeam": "Das Team",
+    "signup": "Registrieren",
+    "login": "Anmelden",
+    "dashboard": "Dashboard",
+    "logout": "Abmelden"
   },
   "footer": {
     "copyright": "Team 35 — Alle Rechte vorbehalten."
@@ -50,5 +54,31 @@
   "refresh": "Aktualisieren",
   "copy": "Kopieren",
   "copied": "Kopiert!",
-  "sharePage": "Diese Seite teilen"
+  "sharePage": "Diese Seite teilen",
+  "notFound": "Oops... Die Seite, die Sie suchen, existiert nicht.",
+  "back": "Zurück",
+  "createAccount": "Konto erstellen",
+  "login": "Anmelden",
+  "email": "E-Mail-Adresse",
+  "password": "Passwort",
+  "showPassword": "Passwort anzeigen",
+  "hidePassword": "Passwort verbergen",
+  "signup": "Registrieren",
+  "join": "Tritt unserer Community bei",
+  "yourAccount": "Melde dich in deinem Konto an",
+  "haveAccount": "Du hast bereits ein Konto",
+  "passwordRequirements": "Passwortanforderungen",
+  "min6": "Mindestens 6 Zeichen",
+  "upper1": "Mindestens ein Großbuchstabe",
+  "lower1": "Mindestens ein Kleinbuchstabe",
+  "number1": "Mindestens eine Zahl",
+  "special1": "Mindestens ein Sonderzeichen",
+  "resendSuccess": "Bitte überprüfe deine E-Mails für einen neuen Bestätigungslink.",
+  "verificationError": "Der Bestätigungslink ist ungültig oder abgelaufen. Bitte fordere unten einen neuen an.",
+  "resend": "Bestätigungslink erneut senden",
+  "verificationFailed": "Verifizierung fehlgeschlagen",
+  "verificationSuccess": "E-Mail erfolgreich verifiziert",
+  "verificationSuccessDescription": "Dein Konto ist jetzt aktiviert. Du kannst zum Dashboard fortfahren.",
+  "sentVerification": "Eine Bestätigungs-E-Mail wurde an deine Adresse gesendet:",
+  "pleaseClick": "Bitte klicke auf den Link in der E-Mail, um dein Konto zu verifizieren."
 }

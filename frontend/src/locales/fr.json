@@ -8,7 +8,11 @@
     "home": "Accueil",
     "map": "Carte",
     "list": "Liste",
-    "theTeam": "L'équipe"
+    "theTeam": "L'Équipe",
+    "signup": "S'inscrire",
+    "login": "Connexion",
+    "dashboard": "Tableau de bord",
+    "logout": "Se deconnecter"
   },
   "footer": {
     "copyright": "Team 35 — Tous droits réservés."
@@ -50,5 +54,31 @@
   "refresh": "Rafraîchir",
   "copy": "Copier",
   "copied": "Copié !",
-  "sharePage": "Partager cette page"
+  "sharePage": "Partager cette page",
+  "notFound": "Oups... La page que vous recherchez n'existe pas.",
+  "back": "Retour",
+  "createAccount": "Créer un compte",
+  "login": "Connexion",
+  "email": "Adresse e-mail",
+  "password": "Mot de passe",
+  "showPassword": "Afficher le mot de passe",
+  "hidePassword": "Masquer le mot de passe",
+  "signup": "Inscription",
+  "join": "Rejoignez notre communauté",
+  "yourAccount": "Connectez-vous à votre compte",
+  "haveAccount": "Vous avez déjà un compte",
+  "passwordRequirements": "Exigences du mot de passe",
+  "min6": "Au moins 6 caractères",
+  "upper1": "Au moins une majuscule",
+  "lower1": "Au moins une minuscule",
+  "number1": "Au moins un chiffre",
+  "special1": "Au moins un caractère spécial",
+  "resendSuccess": "Vérifiez votre e-mail pour un nouveau lien de vérification.",
+  "verificationError": "Lien de vérification invalide ou expiré.",
+  "resend": "Renvoyer le lien de vérification",
+  "verificationFailed": "Échec de vérification",
+  "verificationSuccess": "E-mail vérifié avec succès",
+  "verificationSuccessDescription": "Votre compte est désormais activé.",
+  "sentVerification": "Une vérification e-mail a été envoyée à votre e-mail:",
+  "pleaseClick": "Veuillez cliquer sur le lien dans le mail pour vérifier votre compte."
 }
