@@ -9,13 +9,16 @@ import {
   Text,
   Textarea,
   VStack,
-  useBreakpointValue,
 } from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
-import { MessageCircleIcon, SendIcon } from "lucide-react";
+import { Icon, SendIcon } from "lucide-react";
 import { RiChatSmileAiFill } from "react-icons/ri";
 import { keyframes } from "@emotion/react";
+import { toast } from "sonner";
 import constants from "@/utils/constants";
+import { useAIChat } from "@/api/hooks/useAIChat";
+import { LuX } from "react-icons/lu";
+import { useTranslation } from "react-i18next";
 
 type Message = {
   role: "user" | "assistant";
@@ -43,26 +46,19 @@ const AiChatBot: React.FC = () => {
     },
   ]);
   const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
   const endRef = useRef<HTMLDivElement | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const { mutateAsync: sendPrompt, isPending } = useAIChat();
+  const { t } = useTranslation();
 
-  const dialogSize = useBreakpointValue({ base: "cover", md: "md" });
-  const dialogPlacement = useBreakpointValue<"bottom" | "bottom-end">({
-    base: "bottom",
-    md: "bottom-end",
-  });
-
-  // Auto-scroll to latest message
   useEffect(() => {
     if (endRef.current) {
       endRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messages, loading, isOpen]);
+  }, [messages, isPending, isOpen]);
 
-  // Auto-grow textarea up to ~5 lines
   const autoResizeTextarea = (el: HTMLTextAreaElement) => {
-    const lineHeight = 20; // px approximation
+    const lineHeight = 20;
     const maxHeight = lineHeight * 5;
     el.style.height = "auto";
     el.style.height = Math.min(el.scrollHeight, maxHeight) + "px";
@@ -83,7 +79,7 @@ const AiChatBot: React.FC = () => {
 
   const handleSend = () => {
     const trimmed = input.trim();
-    if (!trimmed || loading) return;
+    if (!trimmed || isPending) return;
 
     const newMsg: Message = {
       role: "user",
@@ -97,23 +93,29 @@ const AiChatBot: React.FC = () => {
       textareaRef.current.style.height = "auto";
     }
 
-    // Frontend-only for now: fake “thinking” and static reply.
-    setLoading(true);
-    setTimeout(() => {
-      const reply: Message = {
-        role: "assistant",
-        content:
-          "I'm not connected to the AI backend yet, but soon I'll be able to answer questions about using this app in real-time 🚀",
-        createdAt: new Date(),
-      };
-      setMessages((prev) => [...prev, reply]);
-      setLoading(false);
-    }, 1200);
+    sendPrompt({ prompt: trimmed })
+      .then((replyText) => {
+        const reply: Message = {
+          role: "assistant",
+          content: replyText,
+          createdAt: new Date(),
+        };
+        setMessages((prev) => [...prev, reply]);
+      })
+      .catch((err: unknown) => {
+        const description =
+          err instanceof Error
+            ? err.message
+            : "Unable to reach the chat service.";
+        toast.error("Chat error", {
+          description,
+          duration: 4000,
+        });
+      });
   };
 
   const handleClose = () => {
     setIsOpen(false);
-    // keep messages so conversation persists between opens
   };
 
   const handleOpen = () => {
@@ -121,15 +123,13 @@ const AiChatBot: React.FC = () => {
     if (!hasOpenedOnce) setHasOpenedOnce(true);
   };
 
-  // For future infinite scroll: detect scroll-to-top to load older messages.
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const target = e.currentTarget;
     if (target.scrollTop === 0) {
-      // TODO: trigger loading older messages from backend
     }
   };
 
-  const disabled = loading || !input.trim();
+  const disabled = isPending || !input.trim();
 
   return (
     <>
@@ -179,7 +179,21 @@ const AiChatBot: React.FC = () => {
               maxH="80vh"
             >
               <Dialog.Header fontWeight="semibold">
-                Need help using {constants.CHAT_BOT_NAME} the chatbot?
+                <HStack align="center" gap={2} justify="between" w="100%">
+                  <Text w="100%">
+                    {t(
+                      `Need help using ${constants.CHAT_BOT_NAME} the chatbot?`
+                    )}
+                  </Text>
+                  <IconButton
+                    aria-label="Close"
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleClose}
+                  >
+                    <LuX size="lg" color="gray.700" />
+                  </IconButton>
+                </HStack>
               </Dialog.Header>
 
               <Dialog.Body>
@@ -205,7 +219,7 @@ const AiChatBot: React.FC = () => {
                         bg={msg.role === "user" ? "teal.500" : "gray.100"}
                         color={msg.role === "user" ? "white" : "gray.800"}
                       >
-                        <Text whiteSpace="pre-wrap">{msg.content}</Text>
+                        <Text whiteSpace="pre-wrap">{t(msg.content)}</Text>
                         {/* Optional timestamp */}
                         <Text
                           fontSize="xs"
@@ -222,7 +236,7 @@ const AiChatBot: React.FC = () => {
                     </HStack>
                   ))}
 
-                  {loading && (
+                  {isPending && (
                     <HStack justify="flex-start">
                       <Box
                         bg="gray.100"
@@ -235,7 +249,7 @@ const AiChatBot: React.FC = () => {
                         alignItems="center"
                       >
                         <Spinner size="sm" />
-                        <Text>Thinking…</Text>
+                        <Text color="gray.700">{t("Thinking…")}</Text>
                       </Box>
                     </HStack>
                   )}
@@ -248,11 +262,11 @@ const AiChatBot: React.FC = () => {
                   rows={2}
                   resize="none"
                   maxLength={MAX_MESSAGE_LENGTH}
-                  placeholder="Ask me anything about using this app..."
+                  placeholder={t("Ask me anything about using this app...")}
                   value={input}
                   onChange={handleInputChange}
                   onKeyDown={handleKeyDown}
-                  disabled={loading}
+                  disabled={isPending}
                 />
                 <Text fontSize="xs" color="gray.500" mt={1} textAlign="right">
                   {input.length}/{MAX_MESSAGE_LENGTH}
@@ -265,16 +279,15 @@ const AiChatBot: React.FC = () => {
                 gap={2}
               >
                 <Button variant="ghost" onClick={handleClose} size="sm">
-                  Close
+                  {t("Close")}
                 </Button>
                 <Button
                   colorPalette="teal"
                   onClick={handleSend}
                   disabled={disabled}
-                  loading={loading}
+                  loading={isPending}
                   _icon={{
                     color: "white",
-                    bg: "teal.500",
                   }}
                   size="sm"
                 >
