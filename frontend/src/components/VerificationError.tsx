@@ -1,5 +1,6 @@
 import { Box, Button, Text, VStack } from "@chakra-ui/react";
 import { AlertTriangle } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   loading: boolean;
@@ -10,6 +11,7 @@ export default function VerificationError({
   loading = false,
   onResend,
 }: Props) {
+  const { t } = useTranslation();
   return (
     <VStack
       gap={5}
@@ -37,16 +39,15 @@ export default function VerificationError({
       </Box>
 
       <Text fontSize="xl" fontWeight="bold">
-        Verification Failed
+        {t("verificationFailed")}
       </Text>
 
       <Text fontSize="sm" color="gray.600" _dark={{ color: "gray.300" }}>
-        Your verification link is invalid or expired. Please click the link
-        below to send a new verification token.
+        {t("verificationError")}
       </Text>
 
       <Button colorScheme="blue" loading={loading} onClick={onResend} mt={3}>
-        Resend Verification Link
+        {t("resend")}
       </Button>
     </VStack>
   );

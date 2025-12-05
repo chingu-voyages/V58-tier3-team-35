@@ -35,7 +35,7 @@ export default function VerifyEmail() {
     }
 
     if (resendSuccess) {
-      toast.success("Please check your email for a new verification link.");
+      toast.success(t("resendSuccess"));
     }
   }, [resendError, resendSuccess]);
 

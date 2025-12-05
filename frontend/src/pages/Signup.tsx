@@ -24,6 +24,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import { useColorModeValue } from "@/components/ui/color-mode";
+import { useTranslation } from "react-i18next";
 
 const MotionBox = motion(Box);
 const MotionContainer = motion(Container);
@@ -31,6 +32,7 @@ const MotionContainer = motion(Container);
 export default function Signup() {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [showRequirements, setShowRequirements] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
@@ -51,7 +53,7 @@ export default function Signup() {
       hasUpper: /[A-Z]/.test(password),
       hasLower: /[a-z]/.test(password),
       hasNumber: /[0-9]/.test(password),
-      hasSymbol: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+      hasSymbol: /[!@#$%^&*(),.?":;+{}|<>]/.test(password),
     });
   }, [form.password]);
 
@@ -159,10 +161,10 @@ export default function Signup() {
             color={textColor}
             letterSpacing="tight"
           >
-            Create Account
+            {t("createAccount")}
           </Heading>
           <Text color={subTextColor} mb={8} fontSize="lg">
-            Join our community
+            {t("join")}
           </Text>
 
           <VStack gap={5}>
@@ -181,7 +183,7 @@ export default function Signup() {
               </Box>
               <Input
                 type="email"
-                placeholder="Email address"
+                placeholder={t("email")}
                 pl={10}
                 size="lg"
                 bg={inputBg}
@@ -217,7 +219,7 @@ export default function Signup() {
                 </Box>
                 <Input
                   type={showPassword ? "text" : "password"}
-                  placeholder="Password"
+                  placeholder={t("password")}
                   onFocus={() => setShowRequirements(true)}
                   onBlur={() => setShowRequirements(false)}
                   pl={10}
@@ -249,12 +251,12 @@ export default function Signup() {
                 onClick={() => setShowPassword(!showPassword)}
                 _hover={{ color: textColor }}
               >
-                {showPassword ? "Hide Password" : "Show Password"}
+                {showPassword ? t("hidePassword") : t("showPassword")}
               </Flex>
             </Box>
 
             <AnimatePresence>
-              {showRequirements && (
+              {(showRequirements || form.password.length > 0) && (
                 <motion.div
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
@@ -269,7 +271,7 @@ export default function Signup() {
                       mb={2}
                       color={textColor}
                     >
-                      Password Requirements:
+                      {t("passwordRequirements")}
                     </Text>
                     <VStack align="start" gap={1}>
                       <HStack
@@ -280,7 +282,7 @@ export default function Signup() {
                         <Icon
                           as={validations.minLength ? FiCheckCircle : FiCircle}
                         />
-                        <Text fontSize="xs">At least 6 characters</Text>
+                        <Text fontSize="xs">{t("min6")}</Text>
                       </HStack>
                       <HStack
                         color={validations.hasUpper ? validColor : invalidColor}
@@ -288,7 +290,7 @@ export default function Signup() {
                         <Icon
                           as={validations.hasUpper ? FiCheckCircle : FiCircle}
                         />
-                        <Text fontSize="xs">One uppercase letter</Text>
+                        <Text fontSize="xs">{t("upper1")}</Text>
                       </HStack>
                       <HStack
                         color={validations.hasLower ? validColor : invalidColor}
@@ -296,7 +298,7 @@ export default function Signup() {
                         <Icon
                           as={validations.hasLower ? FiCheckCircle : FiCircle}
                         />
-                        <Text fontSize="xs">One lowercase letter</Text>
+                        <Text fontSize="xs">{t("lower1")}</Text>
                       </HStack>
                       <HStack
                         color={
@@ -306,7 +308,7 @@ export default function Signup() {
                         <Icon
                           as={validations.hasNumber ? FiCheckCircle : FiCircle}
                         />
-                        <Text fontSize="xs">One number</Text>
+                        <Text fontSize="xs">{t("number1")}</Text>
                       </HStack>
                       <HStack
                         color={
@@ -316,7 +318,7 @@ export default function Signup() {
                         <Icon
                           as={validations.hasSymbol ? FiCheckCircle : FiCircle}
                         />
-                        <Text fontSize="xs">One symbol</Text>
+                        <Text fontSize="xs">{t("special1")}</Text>
                       </HStack>
                     </VStack>
                   </Box>
@@ -343,12 +345,12 @@ export default function Signup() {
               disabled={!allValid}
               opacity={!allValid ? 0.6 : 1}
             >
-              Sign Up <FiArrowRight style={{ marginLeft: "8px" }} />
+              {t("signup")} <FiArrowRight style={{ marginLeft: "8px" }} />
             </Button>
           </VStack>
 
           <Text mt={8} color={subTextColor} fontSize="sm">
-            Already have an account?{" "}
+            {t("haveAccount")}{" "}
             <Link to="/auth">
               <Text
                 as="span"
@@ -357,7 +359,7 @@ export default function Signup() {
                 _hover={{ textDecoration: "underline", color: "pink.500" }}
                 cursor="pointer"
               >
-                Log in
+                {t("login")}
               </Text>
             </Link>
           </Text>

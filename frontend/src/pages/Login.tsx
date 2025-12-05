@@ -25,6 +25,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import { useColorModeValue } from "@/components/ui/color-mode";
 import { useLogin } from "@/api/hooks/useLogin";
+import { useTranslation } from "react-i18next";
 
 const MotionBox = motion(Box);
 const MotionContainer = motion(Container);
@@ -32,6 +33,7 @@ const MotionContainer = motion(Container);
 export default function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [showRequirements, setShowRequirements] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
@@ -135,10 +137,10 @@ export default function Login() {
             color={textColor}
             letterSpacing="tight"
           >
-            Login
+            {t("login")}
           </Heading>
           <Text color={subTextColor} mb={8} fontSize="lg">
-            Login to your account
+            {t("yourAccount")}
           </Text>
 
           <VStack gap={5}>
@@ -157,7 +159,7 @@ export default function Login() {
               </Box>
               <Input
                 type="email"
-                placeholder="Email address"
+                placeholder={t("email")}
                 pl={10}
                 size="lg"
                 bg={inputBg}
@@ -193,7 +195,7 @@ export default function Login() {
                 </Box>
                 <Input
                   type={showPassword ? "text" : "password"}
-                  placeholder="Password"
+                  placeholder={t("password")}
                   onFocus={() => setShowRequirements(true)}
                   onBlur={() => setShowRequirements(false)}
                   pl={10}
@@ -225,7 +227,7 @@ export default function Login() {
                 onClick={() => setShowPassword(!showPassword)}
                 _hover={{ color: textColor }}
               >
-                {showPassword ? "Hide Password" : "Show Password"}
+                {showPassword ? t("hidePassword") : t("showPassword")}
               </Flex>
             </Box>
 
@@ -246,7 +248,7 @@ export default function Login() {
               onClick={submit}
               transition="all 0.2s"
             >
-              Login <FiArrowRight style={{ marginLeft: "8px" }} />
+              {t("login")} <FiArrowRight style={{ marginLeft: "8px" }} />
             </Button>
           </VStack>
 
@@ -260,7 +262,7 @@ export default function Login() {
                 _hover={{ textDecoration: "underline", color: "pink.500" }}
                 cursor="pointer"
               >
-                Sign up
+                {t("signup")}
               </Text>
             </Link>
           </Text>

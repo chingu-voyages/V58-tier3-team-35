@@ -35,12 +35,11 @@ export default function EmailVerificationSuccess({ onContinue }: Props) {
       </Box>
 
       <Text fontSize="xl" fontWeight="bold">
-        Email Verified Successfully
+        {t("verificationSuccess")}
       </Text>
 
       <Text fontSize="sm" color="gray.700" _dark={{ color: "gray.300" }}>
-        Your account is now activated. You can continue to your dashboard and
-        explore the platform.
+        {t("verificationSuccessDescription")}
       </Text>
 
       <Button colorScheme="blue" size="md" mt={3} onClick={onContinue}>
