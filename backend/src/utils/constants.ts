@@ -1,4 +1,4 @@
-export const ACCESS_TOKEN_EXPIRES = "15m";
+export const ACCESS_TOKEN_EXPIRES = "6h";
 export const REFRESH_TOKEN_EXPIRES = "7d";
 
 export const ACCESS_SECRET: string = process.env.ACCESS_SECRET || "";

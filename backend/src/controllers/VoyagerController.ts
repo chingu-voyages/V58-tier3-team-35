@@ -5,6 +5,7 @@ import Voyager from "@/models/Voyager";
 import getVoyagerCoordinatesWithFilters from "@/services/getVoyagerCoordinates";
 import getVoyagerById from "@/services/getVoyagerById";
 import { createVoyagerService } from "@/services/createVoyager";
+import { exportVoyagersService } from "@/services/exportVoyagers";
 
 export async function getVoyagers(req: Request, res: Response) {
   try {
@@ -68,6 +69,16 @@ export async function createVoyager(req: Request, res: Response) {
       return res.status(400).json({ errors: result });
     }
     res.status(200).json({ data: result });
+  } catch (error: any) {
+    res.status(400).json({
+      message: error?.message || "Something went wrong",
+    });
+  }
+}
+
+export async function exportVoyagers(req: Request, res: Response) {
+  try {
+    await exportVoyagersService(req.query, res);
   } catch (error: any) {
     res.status(400).json({
       message: error?.message || "Something went wrong",

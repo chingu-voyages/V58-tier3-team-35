@@ -12,13 +12,13 @@ export default function buildUserFilters(query: any) {
     const keyword = query.search;
 
     filters.$or = [
-      { countryCode: { $regex: keyword, $options: "i" } },
-      { timezone: { $regex: keyword, $options: "i" } },
-      { goalOther: { $regex: keyword, $options: "i" } }, 
-      { sourceOther: { $regex: keyword, $options: "i" } },
-      { countryName: { $regex: keyword, $options: "i" } },
-      { voyageSignups: { $regex: keyword, $options: "i" } },
-      { voyageTier: { $regex: keyword, $options: "i" } },
+      { countryCode: ciExact(keyword) },
+      { timezone: ciExact(keyword) },
+      { goalOther: ciExact(keyword) },
+      { sourceOther: ciExact(keyword) },
+      { countryName: ciExact(keyword) },
+      { voyageSignups: ciExact(keyword) },
+      { voyageTier: ciExact(keyword) },
     ];
   }
 
