@@ -80,5 +80,13 @@
   "verificationSuccess": "邮箱验证成功",
   "verificationSuccessDescription": "您的账户已激活。",
   "sentVerification": "验证邮件已发送到您的邮箱：",
-  "pleaseClick": "请点击邮件中的链接完成账户验证。"
+  "pleaseClick": "请点击邮件中的链接完成账户验证。",
+  "country": "国家",
+  "dashboardPage": {
+    "distributionOverview": "分布概览",
+    "selectMetric": "选择指标",
+    "genderDistribution": "性别分布",
+    "roleDistribution": "角色分布",
+    "failedToLoad": "加载仪表板数据失败。"
+  }
 }

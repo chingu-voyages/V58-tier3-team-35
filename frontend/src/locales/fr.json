@@ -80,5 +80,13 @@
   "verificationSuccess": "E-mail vérifié avec succès",
   "verificationSuccessDescription": "Votre compte est désormais activé.",
   "sentVerification": "Une vérification e-mail a été envoyée à votre e-mail:",
-  "pleaseClick": "Veuillez cliquer sur le lien dans le mail pour vérifier votre compte."
+  "pleaseClick": "Veuillez cliquer sur le lien dans le mail pour vérifier votre compte.",
+  "country": "Pays",
+  "dashboardPage": {
+    "distributionOverview": "Aperçu de la distribution",
+    "selectMetric": "Sélectionner une métrique",
+    "genderDistribution": "Répartition par genre",
+    "roleDistribution": "Répartition des rôles",
+    "failedToLoad": "Échec du chargement des données du tableau de bord."
+  }
 }

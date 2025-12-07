@@ -74,7 +74,7 @@ api.interceptors.response.use(
         isRefreshing = false;
         localStorage.removeItem("authToken");
         localStorage.removeItem("refreshToken");
-        window.location.href = "/auth"; // force login
+        // window.location.href = "/auth"; // force login
         return Promise.reject(refreshErr);
       }
     }

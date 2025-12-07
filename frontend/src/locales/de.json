@@ -80,5 +80,13 @@
   "verificationSuccess": "E-Mail erfolgreich verifiziert",
   "verificationSuccessDescription": "Dein Konto ist jetzt aktiviert. Du kannst zum Dashboard fortfahren.",
   "sentVerification": "Eine Bestätigungs-E-Mail wurde an deine Adresse gesendet:",
-  "pleaseClick": "Bitte klicke auf den Link in der E-Mail, um dein Konto zu verifizieren."
+  "pleaseClick": "Bitte klicke auf den Link in der E-Mail, um dein Konto zu verifizieren.",
+  "country": "Land",
+  "dashboardPage": {
+    "distributionOverview": "Verteilungsübersicht",
+    "selectMetric": "Metrik auswählen",
+    "genderDistribution": "Geschlechterverteilung",
+    "roleDistribution": "Rollenverteilung",
+    "failedToLoad": "Dashboard-Daten konnten nicht geladen werden."
+  }
 }

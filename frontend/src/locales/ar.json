@@ -80,5 +80,13 @@
   "verificationSuccess": "تم التحقق من البريد الإلكتروني بنجاح",
   "verificationSuccessDescription": "تم تفعيل حسابك الآن. يمكنك متابعة الدخول إلى لوحة التحكم.",
   "sentVerification": "تم إرسال بريد تحقق إلى بريدك الإلكتروني:",
-  "pleaseClick": "يرجى الضغط على الرابط داخل البريد لتفعيل حسابك."
+  "pleaseClick": "يرجى الضغط على الرابط داخل البريد لتفعيل حسابك.",
+  "country": "الدولة",
+  "dashboardPage": {
+    "distributionOverview": "نظرة عامة على التوزيع",
+    "selectMetric": "اختر المقياس",
+    "genderDistribution": "توزيع الجنس",
+    "roleDistribution": "توزيع الأدوار",
+    "failedToLoad": "فشل تحميل بيانات لوحة القيادة."
+  }
 }

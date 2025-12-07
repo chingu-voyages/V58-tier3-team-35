@@ -8,7 +8,7 @@ import {
 } from "react";
 
 type LoginPayload = {
-  accessToken: string;
+  accessToken: { accessToken: string };
   user: User;
 };
 
@@ -42,11 +42,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
     setIsLoading(false);
   }, []);
-
   const login = ({ accessToken, user }: LoginPayload) => {
-    setAccessToken(accessToken);
+    setAccessToken(accessToken.accessToken);
     setUser(user);
-    localStorage.setItem("authToken", accessToken);
+    localStorage.setItem("authToken", accessToken.accessToken);
     localStorage.setItem("authUser", JSON.stringify(user));
   };
 

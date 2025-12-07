@@ -80,5 +80,13 @@
   "verificationSuccess": "Email Verified Successfully",
   "verificationSuccessDescription": "Your account is now activated. You can continue to your dashboard and explore the platform.",
   "sentVerification": "A verification email has been sent to your email:",
-  "pleaseClick": "Please click the link in the mail to verify your account."
+  "pleaseClick": "Please click the link in the mail to verify your account.",
+  "country": "Country",
+  "dashboardPage": {
+    "distributionOverview": "Distribution Overview",
+    "selectMetric": "Select metric",
+    "genderDistribution": "Gender Distribution",
+    "roleDistribution": "Role Distribution",
+    "failedToLoad": "Failed to load dashboard data."
+  }
 }

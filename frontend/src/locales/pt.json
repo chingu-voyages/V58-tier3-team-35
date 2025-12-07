@@ -80,5 +80,13 @@
   "verificationSuccess": "E-mail verificado com sucesso",
   "verificationSuccessDescription": "Sua conta foi ativada.",
   "sentVerification": "Um e-mail de verificação foi enviado para você:",
-  "pleaseClick": "Clique no link que recebeu para verificar sua conta."
+  "pleaseClick": "Clique no link que recebeu para verificar sua conta.",
+  "country": "País",
+  "dashboardPage": {
+    "distributionOverview": "Visão geral da distribuição",
+    "selectMetric": "Selecionar métrica",
+    "genderDistribution": "Distribuição de gênero",
+    "roleDistribution": "Distribuição de funções",
+    "failedToLoad": "Falha ao carregar dados do painel."
+  }
 }

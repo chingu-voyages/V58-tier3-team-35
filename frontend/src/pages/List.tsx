@@ -7,14 +7,25 @@ import ProfileCard from "@/components/ProfileCard";
 import Search, { type SearchFilters } from "@/components/Search";
 import VoyagerProfile from "@/components/VoyagerProfile";
 import type Voyager from "@/types/voyager";
-import { Box, Button, Flex, Grid, Text, useDisclosure } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Grid,
+  Text,
+  useDisclosure,
+  HStack,
+  IconButton,
+} from "@chakra-ui/react";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import AddVoyager from "@/components/AddVoyager";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router";
 import FloatingCopyButton from "@/components/FloatingCopy";
+import { ChevronLeft, ChevronRight, Download } from "lucide-react";
+import api from "@/api/api";
 
 export default function List() {
   const { t } = useTranslation();
@@ -31,8 +42,18 @@ export default function List() {
     roleType: urlParams.get("roleType") || "",
   });
 
+  const page = parseInt(urlParams.get("page") || "1", 10);
+  const setPage = (newPage: number) => {
+    setUrlParams((prev) => {
+      prev.set("page", newPage.toString());
+      return prev;
+    });
+  };
+
   const [voyagerId, setVoyagerId] = useState<string | null>(null);
   const [showVoyagerModal, setShowVoyagerModal] = useState<boolean>(false);
+  const [isExporting, setIsExporting] = useState(false);
+
   const {
     data: voyagerData,
     isLoading: voyagerLoading,
@@ -42,17 +63,13 @@ export default function List() {
 
   const {
     data,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
     refetch,
     isLoading: isVoyagerLoading,
     isError: isVoyagerError,
     error: voyagerError,
     isRefetching,
-  } = useVoyagers(filter);
+  } = useVoyagers(filter, page);
 
-  const loadMoreRef = useRef(null);
   const {
     open: isAddVoyagerOpen,
     onOpen: onAddVoyagerOpen,
@@ -74,19 +91,63 @@ export default function List() {
     }
   }, [isVoyagerError, voyagerError]);
 
-  useEffect(() => {
-    if (!loadMoreRef.current) return;
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0]?.isIntersecting && hasNextPage && !isFetchingNextPage) {
-        fetchNextPage();
+  const handleExport = async () => {
+    try {
+      setIsExporting(true);
+      const response = await api.get("/export", {
+        params: filter,
+        responseType: "blob",
+      });
+
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "voyagers_export.csv");
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      toast.success("Export downloaded successfully");
+    } catch (error) {
+      toast.error("Failed to export data");
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
+  const getPaginationRange = (currentPage: number, totalPages: number) => {
+    const delta = 1;
+    const range = [];
+    const rangeWithDots = [];
+    let l;
+
+    for (let i = 1; i <= totalPages; i++) {
+      if (
+        i === 1 ||
+        i === totalPages ||
+        (i >= currentPage - delta && i <= currentPage + delta)
+      ) {
+        range.push(i);
       }
-    });
+    }
 
-    observer.observe(loadMoreRef.current);
-    return () => observer.disconnect();
-  }, [hasNextPage, fetchNextPage, isFetchingNextPage]);
+    for (let i of range) {
+      if (l) {
+        if (i - l === 2) {
+          rangeWithDots.push(l + 1);
+        } else if (i - l !== 1) {
+          rangeWithDots.push("...");
+        }
+      }
+      rangeWithDots.push(i);
+      l = i;
+    }
 
-  const Voyagers = data?.pages.flatMap((page: any) => page.data.docs) ?? [];
+    return rangeWithDots;
+  };
+
+  const Voyagers = data?.data.docs ?? [];
+  const totalPages = data?.data.totalPages ?? 1;
+
   return isVoyagerLoading || isRefetching ? (
     <Loading fullscreen size="lg" text={t("loading")} />
   ) : (
@@ -108,15 +169,44 @@ export default function List() {
             flexDirection={{ base: "column", md: "row" }}
             gap={2}
           >
-            <Search onSearch={(filter) => setFilter(filter)} />
+            <Search
+              disableUrlUpdate
+              onSearch={(filter) => {
+                setFilter(filter);
+
+                setUrlParams((prev) => {
+                  const newParams = new URLSearchParams();
+
+                  if (filter.query) newParams.set("query", filter.query);
+                  if (filter.gender) newParams.set("gender", filter.gender);
+                  if (filter.soloProjectTier)
+                    newParams.set("soloProjectTier", filter.soloProjectTier);
+                  if (filter.goal) newParams.set("goal", filter.goal);
+                  if (filter.source) newParams.set("source", filter.source);
+                  if (filter.voyageRole)
+                    newParams.set("voyageRole", filter.voyageRole);
+                  if (filter.roleType)
+                    newParams.set("roleType", filter.roleType);
+
+                  newParams.set("page", "1");
+
+                  return newParams;
+                });
+              }}
+            />
             <Button borderRadius={10} onClick={onAddVoyagerOpen}>
               {t("addVoyager")}
             </Button>
+            <Button borderRadius={10} onClick={() => refetch()}>
+              {t("refresh")}
+            </Button>
             <Button
               borderRadius={10}
-              onClick={() => refetch({ cancelRefetch: false })}
+              onClick={handleExport}
+              loading={isExporting}
             >
-              {t("refresh")}
+              <Download size={16} />
+              Export
             </Button>
           </Flex>
         </Flex>
@@ -131,21 +221,55 @@ export default function List() {
               }}
               gap={4}
             >
-              {Voyagers &&
-                Voyagers.length > 0 &&
-                Voyagers.map((voyager: Voyager) => (
-                  <ProfileCard
-                    onCardClick={() => {
-                      setVoyagerId(voyager._id);
-                      setShowVoyagerModal(true);
-                    }}
-                    key={voyager._id}
-                    data={voyager}
-                  />
-                ))}
+              {Voyagers.map((voyager: Voyager) => (
+                <ProfileCard
+                  onCardClick={() => {
+                    setVoyagerId(voyager._id);
+                    setShowVoyagerModal(true);
+                  }}
+                  key={voyager._id}
+                  data={voyager}
+                />
+              ))}
             </Grid>
-            <div ref={loadMoreRef} style={{ height: 40 }}></div>
-            {isFetchingNextPage && <Loading text={t("loading")} />}
+
+            <Flex justify="center" mt={8} align="center" gap={2} wrap="wrap">
+              <IconButton
+                aria-label="Previous page"
+                onClick={() => setPage(Math.max(1, page - 1))}
+                disabled={page === 1}
+                variant="outline"
+                size="sm"
+              >
+                <ChevronLeft />
+              </IconButton>
+
+              {getPaginationRange(page, totalPages).map((pageNumber, index) =>
+                pageNumber === "..." ? (
+                  <Text key={index}>...</Text>
+                ) : (
+                  <Button
+                    key={index}
+                    size="sm"
+                    variant={pageNumber === page ? "solid" : "outline"}
+                    colorScheme={pageNumber === page ? "blue" : "gray"}
+                    onClick={() => setPage(pageNumber as number)}
+                  >
+                    {pageNumber}
+                  </Button>
+                )
+              )}
+
+              <IconButton
+                aria-label="Next page"
+                onClick={() => setPage(Math.min(totalPages, page + 1))}
+                disabled={page === totalPages}
+                variant="outline"
+                size="sm"
+              >
+                <ChevronRight />
+              </IconButton>
+            </Flex>
           </>
         ) : (
           <Box p={{ base: 4, md: 10 }} pt={5}>

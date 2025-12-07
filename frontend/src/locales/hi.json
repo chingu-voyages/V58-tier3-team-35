@@ -80,5 +80,13 @@
   "verificationSuccess": "ईमेल सत्यापन सफल",
   "verificationSuccessDescription": "आपका खाता सक्रिय हो गया है।",
   "sentVerification": "आपके ईमेल पर सत्यापन मेल भेज दिया गया है:",
-  "pleaseClick": "कृपया अपना खाता सत्यापित करने के लिए मेल में दिए लिंक पर क्लिक करें।"
+  "pleaseClick": "कृपया अपना खाता सत्यापित करने के लिए मेल में दिए लिंक पर क्लिक करें।",
+  "country": "देश",
+  "dashboardPage": {
+    "distributionOverview": "वितरण अवलोकन",
+    "selectMetric": "मेट्रिक चुनें",
+    "genderDistribution": "लिंग वितरण",
+    "roleDistribution": "भूमिका वितरण",
+    "failedToLoad": "डैशबोर्ड डेटा लोड करने में विफल।"
+  }
 }

@@ -80,5 +80,13 @@
   "verificationSuccess": "Correo verificado exitosamente",
   "verificationSuccessDescription": "Tu cuenta está activada. Puedes continuar al panel.",
   "sentVerification": "Se ha enviado un correo de verificación a tu email:",
-  "pleaseClick": "Por favor, haz clic en el enlace del correo para verificar tu cuenta."
+  "pleaseClick": "Por favor, haz clic en el enlace del correo para verificar tu cuenta.",
+  "country": "País",
+  "dashboardPage": {
+    "distributionOverview": "Resumen de distribución",
+    "selectMetric": "Seleccionar métrica",
+    "genderDistribution": "Distribución de género",
+    "roleDistribution": "Distribución de roles",
+    "failedToLoad": "Error al cargar los datos del tablero."
+  }
 }

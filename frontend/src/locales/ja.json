@@ -80,5 +80,13 @@
   "verificationSuccess": "メール確認完了",
   "verificationSuccessDescription": "アカウントが有効化されました。",
   "sentVerification": "確認メールがあなたのメールに送信されました:",
-  "pleaseClick": "メール内のリンクをクリックして認証を完了してください。"
+  "pleaseClick": "メール内のリンクをクリックして認証を完了してください。",
+  "country": "国",
+  "dashboardPage": {
+    "distributionOverview": "分布概要",
+    "selectMetric": "メトリックを選択",
+    "genderDistribution": "性別分布",
+    "roleDistribution": "役割分布",
+    "failedToLoad": "ダッシュボードデータの読み込みに失敗しました。"
+  }
 }

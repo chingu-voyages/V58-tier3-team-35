@@ -38,9 +38,13 @@ export interface SearchFilters {
 
 interface SearchProps {
   onSearch: (filters: SearchFilters) => void;
+  disableUrlUpdate?: boolean;
 }
 
-export default function Search({ onSearch }: SearchProps) {
+export default function Search({
+  onSearch,
+  disableUrlUpdate = false,
+}: SearchProps) {
   const { t } = useTranslation();
   const { open, onOpen, onClose } = useDisclosure();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -169,7 +173,10 @@ export default function Search({ onSearch }: SearchProps) {
 
     const currentParams = Object.fromEntries(searchParams.entries());
 
-    if (JSON.stringify(currentParams) !== JSON.stringify(newParams)) {
+    if (
+      !disableUrlUpdate &&
+      JSON.stringify(currentParams) !== JSON.stringify(newParams)
+    ) {
       setSearchParams(newParams);
     }
     onSearch(filters);
@@ -187,7 +194,9 @@ export default function Search({ onSearch }: SearchProps) {
       roleType: "",
     };
     setFilters(empty);
-    setSearchParams([]);
+    if (!disableUrlUpdate) {
+      setSearchParams([]);
+    }
     onSearch(empty);
     onClose();
   };

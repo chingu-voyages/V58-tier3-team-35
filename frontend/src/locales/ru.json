@@ -80,5 +80,13 @@
   "verificationSuccess": "E-mail успешно подтверждён",
   "verificationSuccessDescription": "Ваш аккаунт активирован.",
   "sentVerification": "Письмо с подтверждением было отправлено на ваш e-mail:",
-  "pleaseClick": "Пожалуйста, перейдите по ссылке из письма, чтобы подтвердить аккаунт."
+  "pleaseClick": "Пожалуйста, перейдите по ссылке из письма, чтобы подтвердить аккаунт.",
+  "country": "Страна",
+  "dashboardPage": {
+    "distributionOverview": "Обзор распределения",
+    "selectMetric": "Выберите метрику",
+    "genderDistribution": "Распределение по полу",
+    "roleDistribution": "Распределение ролей",
+    "failedToLoad": "Не удалось загрузить данные панели управления."
+  }
 }
