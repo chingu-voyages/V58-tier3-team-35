@@ -27,8 +27,11 @@ import FloatingCopyButton from "@/components/FloatingCopy";
 import { ChevronLeft, ChevronRight, Download } from "lucide-react";
 import api from "@/api/api";
 
+import { useAuth } from "@/context/AuthContext";
+
 export default function List() {
   const { t } = useTranslation();
+  const { user } = useAuth();
 
   const [urlParams, setUrlParams] = useSearchParams();
 
@@ -200,14 +203,16 @@ export default function List() {
             <Button borderRadius={10} onClick={() => refetch()}>
               {t("refresh")}
             </Button>
-            <Button
-              borderRadius={10}
-              onClick={handleExport}
-              loading={isExporting}
-            >
-              <Download size={16} />
-              Export
-            </Button>
+            {user && (
+              <Button
+                borderRadius={10}
+                onClick={handleExport}
+                loading={isExporting}
+              >
+                <Download size={16} />
+                {t("export")}
+              </Button>
+            )}
           </Flex>
         </Flex>
         {Voyagers.length > 0 ? (

@@ -88,5 +88,6 @@
     "genderDistribution": "性別分布",
     "roleDistribution": "役割分布",
     "failedToLoad": "ダッシュボードデータの読み込みに失敗しました。"
-  }
+  },
+  "export": "エクスポート"
 }

@@ -88,5 +88,6 @@
     "genderDistribution": "توزيع الجنس",
     "roleDistribution": "توزيع الأدوار",
     "failedToLoad": "فشل تحميل بيانات لوحة القيادة."
-  }
+  },
+  "export": "تصدير"
 }

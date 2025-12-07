@@ -88,5 +88,6 @@
     "genderDistribution": "Distribuição de gênero",
     "roleDistribution": "Distribuição de funções",
     "failedToLoad": "Falha ao carregar dados do painel."
-  }
+  },
+  "export": "Exportar"
 }

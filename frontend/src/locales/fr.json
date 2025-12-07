@@ -88,5 +88,6 @@
     "genderDistribution": "Répartition par genre",
     "roleDistribution": "Répartition des rôles",
     "failedToLoad": "Échec du chargement des données du tableau de bord."
-  }
+  },
+  "export": "Exporter"
 }

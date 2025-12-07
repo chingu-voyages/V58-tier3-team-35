@@ -88,5 +88,6 @@
     "genderDistribution": "Geschlechterverteilung",
     "roleDistribution": "Rollenverteilung",
     "failedToLoad": "Dashboard-Daten konnten nicht geladen werden."
-  }
+  },
+  "export": "Exportieren"
 }

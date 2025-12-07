@@ -88,5 +88,6 @@
     "genderDistribution": "Gender Distribution",
     "roleDistribution": "Role Distribution",
     "failedToLoad": "Failed to load dashboard data."
-  }
+  },
+  "export": "Export"
 }

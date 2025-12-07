@@ -88,5 +88,6 @@
     "genderDistribution": "性别分布",
     "roleDistribution": "角色分布",
     "failedToLoad": "加载仪表板数据失败。"
-  }
+  },
+  "export": "导出"
 }

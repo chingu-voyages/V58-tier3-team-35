@@ -88,5 +88,6 @@
     "genderDistribution": "लिंग वितरण",
     "roleDistribution": "भूमिका वितरण",
     "failedToLoad": "डैशबोर्ड डेटा लोड करने में विफल।"
-  }
+  },
+  "export": "निर्यात"
 }

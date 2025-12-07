@@ -88,5 +88,6 @@
     "genderDistribution": "Distribución de género",
     "roleDistribution": "Distribución de roles",
     "failedToLoad": "Error al cargar los datos del tablero."
-  }
+  },
+  "export": "Exportar"
 }
