@@ -33,7 +33,7 @@ export default function List() {
   const [urlParams, setUrlParams] = useSearchParams();
 
   const [filter, setFilter] = useState<SearchFilters>({
-    query: urlParams.get("query") || "",
+    search: urlParams.get("search") || "",
     gender: urlParams.get("gender") || "",
     soloProjectTier: urlParams.get("soloProjectTier") || "",
     goal: urlParams.get("goal") || "",
@@ -165,7 +165,7 @@ export default function List() {
             </Text>
           </Box>
           <Flex
-            w={{ base: "full", md: 450, lg: 500 }}
+            w={{ base: "full", md: 550, lg: 600 }}
             flexDirection={{ base: "column", md: "row" }}
             gap={2}
           >
@@ -177,7 +177,7 @@ export default function List() {
                 setUrlParams((prev) => {
                   const newParams = new URLSearchParams();
 
-                  if (filter.query) newParams.set("query", filter.query);
+                  if (filter.search) newParams.set("search", filter.search);
                   if (filter.gender) newParams.set("gender", filter.gender);
                   if (filter.soloProjectTier)
                     newParams.set("soloProjectTier", filter.soloProjectTier);

@@ -27,7 +27,7 @@ const MotionBox = motion.create(Box);
 const MotionVStack = motion.create(VStack);
 
 export interface SearchFilters {
-  query: string;
+  search: string;
   gender: string;
   soloProjectTier: string;
   goal: string;
@@ -146,7 +146,7 @@ export default function Search({
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [filters, setFilters] = useState<SearchFilters>({
-    query: searchParams.get("query") ?? "",
+    search: searchParams.get("search") ?? "",
     gender: searchParams.get("gender") ?? "",
     soloProjectTier: searchParams.get("soloProjectTier") ?? "",
     goal: searchParams.get("goal") ?? "",
@@ -162,7 +162,7 @@ export default function Search({
   const handleSearch = () => {
     const newParams: any = {};
 
-    if (filters.query) newParams.query = filters.query;
+    if (filters.search) newParams.search = filters.search;
     if (filters.gender) newParams.gender = filters.gender;
     if (filters.soloProjectTier)
       newParams.soloProjectTier = filters.soloProjectTier;
@@ -185,7 +185,7 @@ export default function Search({
 
   const handleClear = () => {
     const empty: SearchFilters = {
-      query: "",
+      search: "",
       gender: "",
       goal: "",
       soloProjectTier: "",
@@ -278,9 +278,9 @@ export default function Search({
               py={3}
               borderRadius="md"
               borderColor={triggerBorder}
-              value={filters.query}
+              value={filters.search}
               onChange={(e) =>
-                setFilters({ ...filters, query: e.target.value })
+                setFilters({ ...filters, search: e.target.value })
               }
             />
             <Text mt={1} fontSize="xs" color={labelColor}>
