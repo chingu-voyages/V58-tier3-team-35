@@ -40,8 +40,7 @@ coding!
   ...
 - Afuwape Babatunde: [GitHub](https://github.com/Afubasic) / [LinkedIn](https://www.linkedin.com/in/afuwape-babatunde-258735382)
 - Ogechi Ogharandukun #4: [GitHub](https://github.com/AdoarableOge) / [LinkedIn](https://www.linkedin.com/in/Ogechi-Ogharandukun)
-- Alyssia Tavares #5: [GitHub](https://github.com/alyssiatavares)) / [LinkedIn](https://linkedin.com/in/alyssia-tavares)
-- Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
-- Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Alyssia Tavares #5: [GitHub](https://github.com/alyssiatavares) / [LinkedIn](https://linkedin.com/in/alyssia-tavares)
+- Nsowah Alexander (Recklessbud) [Github](https://github.com/recklessbud)
 
 - Voyage Guide: Lindsay Allen [GitHub](https://github.com/lkallen) / [LinkedIn](https://www.linkedin.com/in/lindsay-allen-54b46937/)
