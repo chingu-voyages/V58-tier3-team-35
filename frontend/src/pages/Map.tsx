@@ -13,7 +13,7 @@ export default function Map() {
   const [urlParams, setUrlParams] = useSearchParams();
 
   const [filters, setFilters] = useState<SearchFilters>({
-    query: urlParams.get("query") || "",
+    search: urlParams.get("search") || "",
     gender: urlParams.get("gender") || "",
     soloProjectTier: urlParams.get("soloProjectTier") || "",
     goal: urlParams.get("goal") || "",

@@ -27,23 +27,27 @@ const TeamMembers = () => {
         </Span>
       </Heading>
       <Text fontSize={20} color={textColor} textAlign="center">
-        {t(
-          "globalTeam"
-        )}
+        {t("globalTeam")}
       </Text>
       <Grid
-        gap={4}
-        templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
+        gap={6}
+        templateColumns={{
+          base: "1fr",
+          sm: "repeat(2, 1fr)",
+          lg: "repeat(3, 1fr)",
+          xl: "repeat(4, 1fr)",
+        }}
         justifyContent="center"
         alignItems="center"
-        gapY={{ base: 2, md: 10, xl: 20 }}
-        my={10}
+        my={5}
+        px={4}
+        pt={8}
       >
         {team.map((member: TeamMember) => (
           <VStack
             key={member.ghUsername}
             bg={bg}
-            w={{ base: "full", xl: 330 }}
+            w="full"
             borderRadius={8}
             boxShadow="md"
             alignItems="start"
@@ -56,7 +60,8 @@ const TeamMembers = () => {
             <Image
               src={member.image}
               w="full"
-              h="full"
+              h="300px"
+              objectFit="cover"
               borderRadius={8}
               alt={member.name}
             />
@@ -70,7 +75,7 @@ const TeamMembers = () => {
               <Text fontSize={14} color={textColor}>
                 {member.quote}
               </Text>
-              <HStack gap={10} w="full" justifyContent="flex-end">
+              <HStack gap={4} w="full" justifyContent="flex-end">
                 <Link to={member.ghUsername} target="_blank">
                   <Github size={20} />
                 </Link>

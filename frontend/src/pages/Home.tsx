@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Text,
-  Image,
-  VStack,
-  Span,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Text, Image, VStack, Span } from "@chakra-ui/react";
 import Hero from "@/assets/hero.png";
 import Locator from "@/assets/IoLocation.svg";
 import LocatorDark from "@/assets/locator.svg";
@@ -23,8 +15,8 @@ export default function Home() {
 
   // COLORS
   const overlayBg = useColorModeValue(
-    "whiteAlpha.800",   // light mode → soft white veil over video
-    "blackAlpha.700"    // dark mode → darken video for contrast
+    "whiteAlpha.800", // light mode → soft white veil over video
+    "blackAlpha.700" // dark mode → darken video for contrast
   );
 
   const headingAccent = useColorModeValue("green.700", "green.200"); // “Chingus”
@@ -64,13 +56,7 @@ export default function Home() {
           Your browser does not support the video tag.
         </Box>
 
-        {/* Overlay for readability */}
-        <Box
-          position="absolute"
-          inset="0"
-          bg={overlayBg}
-          zIndex="0"
-        />
+        <Box position="absolute" inset="0" bg={overlayBg} zIndex="0" />
 
         {/* Content */}
         <Flex
@@ -111,11 +97,7 @@ export default function Home() {
             </Text>
 
             {/* CTA buttons */}
-            <Flex
-              flexDirection={{ base: "column", md: "row" }}
-              gap={4}
-              mt={2}
-            >
+            <Flex flexDirection={{ base: "column", md: "row" }} gap={4} mt={2}>
               <Button
                 bg={primaryBtnBg}
                 _hover={{ bg: primaryBtnHover }}
