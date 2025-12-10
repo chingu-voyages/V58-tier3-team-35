@@ -1,9 +1,11 @@
 {
-  "discover": "Descubre dónde están los Chingus",
+  "discover": "Descubre dónde están los ",
   "across": "¡en todo el mundo!",
   "introduction": "Visualiza nuestra comunidad mundial de aprendices y constructores, explora dónde se encuentran los miembros y descubre información sobre roles, habilidades y viajes que nos unen.",
   "findChingu": "Encontrar Chingus",
   "list": "Ver listas",
+   "meetTheTeam": "Conoce al equipo",
+  "globalTeam": "Un equipo global de personas que aprenden y construyen juntas en ChinguVerse.",
   "menu": {
     "home": "Inicio",
     "map": "Mapa",
