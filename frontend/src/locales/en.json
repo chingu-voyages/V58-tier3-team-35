@@ -1,6 +1,6 @@
 {
-  "discover": "Discover where Chingus are",
-  "across": "across the world!",
+  "discover": "Discover where",
+  "across": " are across the world!",
   "introduction": "Visualize our worldwide community of learners and builders, explore where members are based, and discover insights about roles, skills, and voyages that unite us.",
   "findChingu": "Find Chingus",
   "list": "View Lists",
@@ -82,6 +82,8 @@
   "sentVerification": "A verification email has been sent to your email:",
   "pleaseClick": "Please click the link in the mail to verify your account.",
   "country": "Country",
+  "meetTheTeam": "Meet the Team",
+  "globalTeam": "A global team of developers, designers and dreamers building tools for the chingu community.",
   "dashboardPage": {
     "distributionOverview": "Distribution Overview",
     "selectMetric": "Select metric",

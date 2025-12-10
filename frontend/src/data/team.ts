@@ -60,4 +60,12 @@ export const team: TeamMember[] = [
     role: "Developer",
     quote: "The Future is Now. Live it",
   },
+  {
+    name: "Alexander",
+    ghUsername: "https://github.com/recklessbud",
+    linkedin: "https://www.linkedin.com/in/nsowah",
+    image: teamImages.Alexander,
+    role: "Developer",
+    quote: "Nothing is Promised.",
+  },
 ];

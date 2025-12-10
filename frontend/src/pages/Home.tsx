@@ -2,156 +2,161 @@ import {
   Box,
   Button,
   Flex,
-  Grid,
-  Heading,
-  HStack,
-  Image,
-  Span,
   Text,
+  Image,
   VStack,
+  Span,
 } from "@chakra-ui/react";
 import Hero from "@/assets/hero.png";
 import Locator from "@/assets/IoLocation.svg";
 import LocatorDark from "@/assets/locator.svg";
 import Arrow from "@/assets/arrow.svg";
-import { useColorMode, useColorModeValue } from "@/components/ui/color-mode";
-import { Link, useNavigate } from "react-router";
+import { useColorModeValue } from "@/components/ui/color-mode";
+import { useNavigate } from "react-router";
 import AiChatBot from "@/components/AiChatBot";
 import { useTranslation } from "react-i18next";
-import { team, type TeamMember } from "@/data/team";
-import { Github, Linkedin } from "lucide-react";
+import TeamMembers from "@/components/TeamMembers";
 
 export default function Home() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const textColor = useColorModeValue("gray.700", "gray.200");
-  const colorChange = useColorModeValue("#B09983", "#FDE3C5");
-  const bg = useColorModeValue("gray.100", "gray.900");
+
+  // COLORS
+  const overlayBg = useColorModeValue(
+    "whiteAlpha.800",   // light mode → soft white veil over video
+    "blackAlpha.700"    // dark mode → darken video for contrast
+  );
+
+  const headingAccent = useColorModeValue("green.700", "green.200"); // “Chingus”
+  const headingSecondary = useColorModeValue("gray.800", "whiteAlpha.900");
+
+  const bodyTextColor = useColorModeValue("gray.700", "gray.100");
+
+  const primaryBtnBg = useColorModeValue("green.600", "green.400");
+  const primaryBtnHover = useColorModeValue("green.700", "green.300");
+  const primaryBtnText = useColorModeValue("white", "gray.900");
+
+  const secondaryBtnBg = useColorModeValue("green.100", "whiteAlpha.200");
+  const secondaryBtnHover = useColorModeValue("green.200", "whiteAlpha.300");
+  const secondaryBtnText = useColorModeValue("green.900", "green.100");
+
+  const locatorIcon = useColorModeValue(LocatorDark, Locator); // darker icon on light bg, lighter on dark
+
   return (
     <>
-      <Flex
-        padding={{ base: 2, md: 10 }}
-        w="full"
-        gap={10}
-        flexDirection={{ base: "column", lg: "row" }}
-      >
-        <Flex
-          flex={1}
-          flexDirection={"column"}
-          gap={5}
-          justifyContent={"space-between"}
+      <Box position="relative" height="100vh" overflow="hidden">
+        {/* Background Video */}
+        <Box
+          as="video"
+          position="absolute"
+          inset="0"
+          w="100%"
+          h="100%"
+          objectFit="cover"
+          zIndex="-1"
+          // @ts-expect-error - video attrs valid
+          autoPlay
+          loop
+          muted
+          playsInline
         >
-          <Box>
-            <Text
-              fontSize={{ base: 30, md: 40, xl: 60 }}
-              mb={4}
-              flexDirection={"row"}
-              fontWeight={"bolder"}
-              color={"#069668"}
-            >
-              {t("discover")}{" "}
-              <Span fontWeight={"normal"} color={textColor}>
-                {t("across")}
-              </Span>
-            </Text>
-            <Text fontSize={{ base: 18, md: 25 }}>{t("introduction")}</Text>
-          </Box>
-          <Flex flexDirection={{ base: "column", md: "row" }} gap={10}>
-            <Button
-              bg={"#059669"}
-              color={"#fff"}
-              borderRadius={8}
-              px={{ base: 5, md: 10 }}
-              py={{ base: 7, md: 10 }}
-              fontSize={18}
-              onClick={() => navigate("/map")}
-            >
-              <Text>{t("findChingu")}</Text>
-              <Image src={Locator} />
-            </Button>
-
-            <Button
-              bg={"#D1FAE5"}
-              color={"#064E3B"}
-              borderRadius={8}
-              px={{ base: 5, md: 10 }}
-              py={{ base: 7, md: 10 }}
-              fontSize={18}
-              onClick={() => navigate("/list")}
-            >
-              <Text>{t("list")}</Text>
-              <Image src={Arrow} />
-            </Button>
-          </Flex>
-        </Flex>
-        <Box flex={1}>
-          <Image src={Hero} w={{ base: 2000, lg: 3000 }} />
+          <source src="/src/assets/videos/background.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
         </Box>
-        <AiChatBot />
-      </Flex>
-      <Box m={10}>
-        <Heading fontSize={40} fontWeight="bold" mb={4} textAlign="center">
-          {t("Meet the Team")}{" "}
-          <Span fontWeight="bolder" color={colorChange}>
-            (Phoenix)
-          </Span>
-        </Heading>
-        <Text fontSize={20} color={textColor} textAlign="center">
-          {t(
-            "A global team of developers, designers and dreamers building tools for the chingu community. "
-          )}
-        </Text>
-        <Grid
-          gap={4}
-          templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
+
+        {/* Overlay for readability */}
+        <Box
+          position="absolute"
+          inset="0"
+          bg={overlayBg}
+          zIndex="0"
+        />
+
+        {/* Content */}
+        <Flex
+          px={{ base: 4, md: 10 }}
+          w="full"
+          h="full"
           justifyContent="center"
-          gapY={{ base: 2, md: 10, xl: 20 }}
-          my={10}
+          alignItems="center"
+          gap={10}
+          flexDirection={{ base: "column", lg: "row" }}
+          zIndex={1}
         >
-          {team.map((member: TeamMember) => (
-            <VStack
-              key={member.ghUsername}
-              bg={bg}
-              w={{ base: "full", xl: 330 }}
-              borderRadius={8}
-              boxShadow="md"
-              alignItems="start"
-            _hover={{
-              transform: "scale(1.05)",
-              transition: "transform 0.3s",
-            }}
-            transition="transform 0.3s"
+          <VStack
+            gap={6}
+            w={{ base: "full", lg: "2/3", xl: "1/2" }}
+            align="center"
+            textAlign="center"
+            zIndex={1}
+          >
+            {/* Heading */}
+            <Text
+              fontSize={{ base: 32, md: 44, xl: 60 }}
+              fontWeight="extrabold"
+              lineHeight="1.1"
             >
-              <Image
-                src={member.image}
-                w="full"
-                h="full"
+              <Span color={headingSecondary}>{t("discover")} </Span>
+              <Span color={headingAccent}>{t("chingus")}</Span>
+              <Span color={headingSecondary}> {t("across")}</Span>
+            </Text>
+
+            {/* Body copy */}
+            <Text
+              fontSize={{ base: 16, md: 20 }}
+              maxW="3xl"
+              color={bodyTextColor}
+            >
+              {t("introduction")}
+            </Text>
+
+            {/* CTA buttons */}
+            <Flex
+              flexDirection={{ base: "column", md: "row" }}
+              gap={4}
+              mt={2}
+            >
+              <Button
+                bg={primaryBtnBg}
+                _hover={{ bg: primaryBtnHover }}
+                color={primaryBtnText}
                 borderRadius={8}
-                alt={member.name}
-              />
-              <VStack p={4} alignItems="flex-start" w="full">
-                <Text fontSize={16} fontWeight="bold">
-                  {member.name}
-                </Text>
-                <Text fontSize={14} color={textColor}>
-                  {member.role}
-                </Text>
-                <Text fontSize={14} color={textColor}>
-                  {member.quote}
-                </Text>
-                <HStack gap={10} w="full" justifyContent="flex-end">
-                  <Link to={member.ghUsername} target="_blank">
-                    <Github size={20} />
-                  </Link>
-                  <Link to={member.linkedin} target="_blank">
-                    <Linkedin size={20} />
-                  </Link>
-                </HStack>
-              </VStack>
-            </VStack>
-          ))}
-        </Grid>
+                px={{ base: 6, md: 10 }}
+                py={{ base: 7, md: 8 }}
+                fontSize={18}
+                display="inline-flex"
+                alignItems="center"
+                gap={2}
+                onClick={() => navigate("/map")}
+              >
+                <Text>{t("findChingu")}</Text>
+                <Image src={locatorIcon} alt="location icon" />
+              </Button>
+
+              <Button
+                bg={secondaryBtnBg}
+                _hover={{ bg: secondaryBtnHover }}
+                color={secondaryBtnText}
+                borderRadius={8}
+                px={{ base: 6, md: 10 }}
+                py={{ base: 7, md: 8 }}
+                fontSize={18}
+                display="inline-flex"
+                alignItems="center"
+                gap={2}
+                onClick={() => navigate("/list")}
+              >
+                <Text>{t("list")}</Text>
+                <Image src={Arrow} alt="arrow icon" />
+              </Button>
+            </Flex>
+          </VStack>
+
+          <AiChatBot />
+        </Flex>
       </Box>
+
+      <TeamMembers />
     </>
   );
 }
