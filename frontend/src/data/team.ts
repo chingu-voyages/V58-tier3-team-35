@@ -24,7 +24,8 @@ export const team: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/chinedu-olekah-835465254/",
     image: teamImages.Chinedu,
     role: "Product Owner",
-    quote: "The future is not something we enter. The future is something we create.” — Leonard I. Sweet",
+    quote:
+      "The future is not something we enter. The future is something we create.” — Leonard I. Sweet",
   },
 
   {
@@ -45,20 +46,20 @@ export const team: TeamMember[] = [
     quote: "Live, Learn, one day at a time.",
   },
   {
-    name: "Lindsay Allen",
-    ghUsername: "https://github.com/lkallen",
-    linkedin: "https://www.linkedin.com/in/lindsay-allen-54b46937/",
-    image: teamImages.Lindsay,
-    role: "Voyage Guide",
-    quote: "",
-  },
-  {
     name: "Onyekachi Nwakaihe (Kachi)",
     ghUsername: "https://github.com/donkachii",
     linkedin: "https://www.linkedin.com/in/onyekachi-nwakaihe/",
     image: teamImages.Kachi,
     role: "Developer",
     quote: "The Future is Now. Live it",
+  },
+  {
+    name: "Lindsay Allen",
+    ghUsername: "https://github.com/lkallen",
+    linkedin: "https://www.linkedin.com/in/lindsay-allen-54b46937/",
+    image: teamImages.Lindsay,
+    role: "Voyage Guide",
+    quote: "",
   },
   {
     name: "Alexander",
