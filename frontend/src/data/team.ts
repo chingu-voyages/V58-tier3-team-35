@@ -62,7 +62,7 @@ export const team: TeamMember[] = [
     quote: "",
   },
   {
-    name: "Alexander",
+    name: "Alexander Nsowah",
     ghUsername: "https://github.com/recklessbud",
     linkedin: "https://www.linkedin.com/in/nsowah",
     image: teamImages.Alexander,
