@@ -1,7 +1,7 @@
 import { team, type TeamMember } from "@/data/team";
 import {
   Box,
-  Grid,
+  Flex,
   Span,
   Heading,
   Text,
@@ -29,25 +29,22 @@ const TeamMembers = () => {
       <Text fontSize={20} color={textColor} textAlign="center">
         {t("globalTeam")}
       </Text>
-      <Grid
-        gap={6}
-        templateColumns={{
-          base: "1fr",
-          sm: "repeat(2, 1fr)",
-          lg: "repeat(3, 1fr)",
-          xl: "repeat(4, 1fr)",
-        }}
+      <Flex
+        wrap="wrap"
+        gap={8}
         justifyContent="center"
         alignItems="center"
         my={5}
         px={4}
         pt={8}
+        maxW="1400px"
+        mx="auto"
       >
         {team.map((member: TeamMember) => (
           <VStack
             key={member.ghUsername}
             bg={bg}
-            w="full"
+            w={{ base: "full", sm: "300px" }}
             borderRadius={8}
             boxShadow="md"
             alignItems="start"
@@ -86,7 +83,7 @@ const TeamMembers = () => {
             </VStack>
           </VStack>
         ))}
-      </Grid>
+      </Flex>
     </Box>
   );
 };

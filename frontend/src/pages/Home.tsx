@@ -8,6 +8,7 @@ import { useNavigate } from "react-router";
 import AiChatBot from "@/components/AiChatBot";
 import { useTranslation } from "react-i18next";
 import TeamMembers from "@/components/TeamMembers";
+import MapVideo from "/src/assets/videos/background.mp4";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -52,13 +53,12 @@ export default function Home() {
           muted
           playsInline
         >
-          <source src="/src/assets/videos/background.mp4" type="video/mp4" />
+          <source src={MapVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </Box>
 
         <Box position="absolute" inset="0" bg={overlayBg} zIndex="0" />
 
-        {/* Content */}
         <Flex
           px={{ base: 4, md: 10 }}
           w="full"
