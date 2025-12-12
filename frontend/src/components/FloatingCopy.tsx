@@ -47,11 +47,9 @@ export default function FloatingCopyButton() {
     try {
       setIsCopying(true);
 
-      // Modern clipboard API
       if (navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(fullUrl);
       } else {
-        // Fallback for older browsers
         const textarea = document.createElement("textarea");
         textarea.value = fullUrl;
         textarea.style.position = "fixed";

@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import api from "../api";
 
 interface SaveFilterPayload {
@@ -7,10 +7,15 @@ interface SaveFilterPayload {
 }
 
 export function useSaveFilter() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: async (payload: SaveFilterPayload) => {
       const res = await api.post("/favorite-filter", payload);
       return res.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["favoriteFilters"] });
     },
   });
 }
