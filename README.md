@@ -37,7 +37,6 @@ coding!
 - Onyekachi Nwakaihe (Kachi): [GitHub](https://github.com/donkachii) / [LinkedIn](https://linkedin.com/in/onyekachi-nwakaihe)
 - Zuzu Ali #2: [GitHub](https://github.com/zuweeali) / [LinkedIn](https://linkedin.com/in/zuwaira-aliyu-mohammed)
 - Chinedu Olekah #3: [GitHub](https://github.com/kenako1) / [LinkedIn](https://linkedin.com/in/chinedu-olekah)
-  ...
 - Afuwape Babatunde: [GitHub](https://github.com/Afubasic) / [LinkedIn](https://www.linkedin.com/in/afuwape-babatunde-258735382)
 - Ogechi Ogharandukun #4: [GitHub](https://github.com/AdoarableOge) / [LinkedIn](https://www.linkedin.com/in/Ogechi-Ogharandukun)
 - Alyssia Tavares #5: [GitHub](https://github.com/alyssiatavares) / [LinkedIn](https://linkedin.com/in/alyssia-tavares)
