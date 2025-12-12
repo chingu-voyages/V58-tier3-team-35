@@ -68,6 +68,11 @@ const Header: React.FC = () => {
       display: user !== null,
     },
     {
+      title: t("menu.filter"),
+      route: "/user/favorite-filters",
+      display: user !== null,
+    },
+    {
       title: t("menu.logout"),
       route: "/user/logout",
       display: user !== null,

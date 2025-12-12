@@ -3,24 +3,41 @@ import {
   Button,
   Flex,
   IconButton,
+  Input,
   Text,
   useDisclosure,
+  VStack,
 } from "@chakra-ui/react";
-import { Copy } from "lucide-react";
+import { Copy, Save } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import Modal from "@/components/Modal";
 import { useColorModeValue } from "./ui/color-mode";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "@/context/AuthContext";
+import { useSaveFilter } from "@/api/hooks/useSaveFilter";
 
 export default function FloatingCopyButton() {
   const { t } = useTranslation();
-  const { open, onOpen, onClose } = useDisclosure();
+  const { user } = useAuth();
+  const {
+    open: copyOpen,
+    onOpen: onCopyOpen,
+    onClose: onCopyClose,
+  } = useDisclosure();
+  const {
+    open: saveOpen,
+    onOpen: onSaveOpen,
+    onClose: onSaveClose,
+  } = useDisclosure();
   const location = useLocation();
 
   const [hasCopied, setHasCopied] = useState(false);
   const [isCopying, setIsCopying] = useState(false);
+  const [filterName, setFilterName] = useState("");
+
+  const { mutate: saveFilter, isPending: isSaving } = useSaveFilter();
 
   const fullUrl = `${window.location.origin}/V58-tier3-team-35${location.pathname}${location.search}`;
 
@@ -63,24 +80,63 @@ export default function FloatingCopyButton() {
     }
   };
 
+  const handleSaveFilter = () => {
+    if (!filterName.trim()) {
+      toast.error("Please enter a name for the filter.");
+      return;
+    }
+
+    saveFilter(
+      { name: filterName, filters: fullUrl },
+      {
+        onSuccess: () => {
+          toast.success("Filter saved successfully!");
+          onSaveClose();
+          setFilterName("");
+        },
+        onError: (error: any) => {
+          toast.error(error.message || "Failed to save filter.");
+        },
+      }
+    );
+  };
+
   return (
     <>
-      <IconButton
-        aria-label="Copy URL"
-        onClick={onOpen}
+      <Flex
         position="fixed"
         bottom="24px"
         left="24px"
         zIndex={2000}
-        colorScheme="light"
-        rounded="full"
-        size="2xl"
-        shadow="2xl"
+        gap={2}
+        flexDirection="column"
       >
-        <Copy />
-      </IconButton>
+        {user && (
+          <IconButton
+            aria-label="Save Filter"
+            onClick={onSaveOpen}
+            colorScheme="blue"
+            rounded="full"
+            size="2xl"
+            shadow="2xl"
+          >
+            <Save />
+          </IconButton>
+        )}
+        <IconButton
+          aria-label="Copy URL"
+          onClick={onCopyOpen}
+          colorScheme="light"
+          rounded="full"
+          size="2xl"
+          shadow="2xl"
+        >
+          <Copy />
+        </IconButton>
+      </Flex>
 
-      <Modal isOpen={open} onClose={onClose}>
+      {/* Copy Modal */}
+      <Modal isOpen={copyOpen} onClose={onCopyClose}>
         <Text fontSize="lg" fontWeight="bold" mb={4}>
           {t("sharePage")}
         </Text>
@@ -116,6 +172,33 @@ export default function FloatingCopyButton() {
             {hasCopied ? t("copied") : t("copy")}
           </Button>
         </Flex>
+      </Modal>
+
+      {/* Save Filter Modal */}
+      <Modal isOpen={saveOpen} onClose={onSaveClose}>
+        <Text fontSize="lg" fontWeight="bold" mb={4}>
+          Save Filter
+        </Text>
+        <VStack gap={4} align="stretch">
+          <Box>
+            <Text mb={2} fontSize="sm" fontWeight="medium">
+              Filter Name
+            </Text>
+            <Input
+              placeholder="e.g., Senior Frontend Devs in US"
+              value={filterName}
+              onChange={(e) => setFilterName(e.target.value)}
+            />
+          </Box>
+          <Button
+            colorScheme="blue"
+            onClick={handleSaveFilter}
+            loading={isSaving}
+            w="full"
+          >
+            Save
+          </Button>
+        </VStack>
       </Modal>
     </>
   );

@@ -12,6 +12,7 @@
     "signup": "Signup",
     "login": "Login",
     "dashboard": "Dashboard",
+    "filter": "My Filters",
     "logout": "Logout"
   },
   "footer": {

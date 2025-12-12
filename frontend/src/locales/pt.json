@@ -12,6 +12,7 @@
     "signup": "Cadastrar",
     "login": "Entrar",
     "dashboard": "Painel de Controle",
+    "filter": "Meus Filtros",
     "logout": "Sair"
   },
   "footer": {

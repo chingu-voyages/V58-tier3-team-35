@@ -11,6 +11,7 @@ import NotFound from "@/pages/NotFound";
 import Signup from "@/pages/Signup";
 import VerifyEmail from "@/pages/VerifyEmail";
 import Logout from "@/pages/Logout";
+import MyFilters from "@/pages/MyFilters";
 
 const routes = [
   {
@@ -56,6 +57,11 @@ const routes = [
             index: true,
             Component: Dashboard,
             handle: { title: "Dashboard | ChinguVerse" },
+          },
+          {
+            path: "favorite-filters",
+            Component: MyFilters,
+            handle: { title: "My Favorite Filters | ChinguVerse" },
           },
           {
             path: "logout",
