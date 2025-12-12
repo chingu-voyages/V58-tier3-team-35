@@ -23,9 +23,10 @@ interface ProfileRecord {
 
 interface ProfileCardProps {
   data: ProfileRecord;
+  onCardClick: () => void;
 }
 
-export default function ProfileCard({ data }: ProfileCardProps) {
+export default function ProfileCard({ data, onCardClick }: ProfileCardProps) {
   const { timestamp, gender, countryName, goal, source, roleType, voyageRole } =
     data;
 
@@ -40,7 +41,9 @@ export default function ProfileCard({ data }: ProfileCardProps) {
         flexDirection={"column"}
         gap={2}
         h="full"
+        cursor={"pointer"}
         justifyContent={"space-between"}
+        onClick={onCardClick}
       >
         <Flex align="center" gap={4}>
           <Box

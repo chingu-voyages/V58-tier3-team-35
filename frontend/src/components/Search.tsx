@@ -6,17 +6,31 @@ import {
   Text,
   VStack,
   useDisclosure,
+  createListCollection,
 } from "@chakra-ui/react";
+import {
+  SelectContent,
+  SelectItem,
+  SelectLabel,
+  SelectRoot,
+  SelectTrigger,
+  SelectValueText,
+} from "@/components/ui/select";
 import { useRef, useState } from "react";
 import Modal from "@/components/Modal";
 import { useColorModeValue } from "./ui/color-mode";
+import { motion } from "framer-motion";
+
+const MotionBox = motion.create(Box);
+const MotionVStack = motion.create(VStack);
 
 export interface SearchFilters {
   query: string;
   gender: string;
+  soloProjectTier: string;
   goal: string;
   source: string;
-  role: string;
+  voyageRole: string;
   roleType: string;
 }
 
@@ -25,6 +39,89 @@ interface SearchProps {
   initialFilters?: Partial<SearchFilters>;
 }
 
+const genderCollection = createListCollection({
+  items: [
+    { label: "All", value: "" },
+    { label: "Male", value: "MALE" },
+    { label: "Female", value: "FEMALE" },
+    { label: "Non-binary", value: "NON-BINARY" },
+    { label: "Prefer Not to Say", value: "PREFER NOT TO SAY" },
+    { label: "Trans", value: "TRANS" },
+  ],
+});
+
+const soloProjectTierCollection = createListCollection({
+  items: [
+    { label: "All", value: "" },
+    {
+      label: "Tier 1 (Landing Pages)",
+      value:
+        "Tier 1 - HTML - Basic Javascript - Basic Algorithms (LANDING PAGES)",
+    },
+    {
+      label: "Tier 2 (Front-End)",
+      value:
+        "Tier 2  - Intermediate Algorithms - Front-end Projects (FRONT-END)",
+    },
+    {
+      label: "Tier 3 (Full-Stack)",
+      value:
+        "Tier 3 - Advanced Projects - Apps having both Front-end and Back-end components (FULL STACK)",
+    },
+  ],
+});
+
+const goalCollection = createListCollection({
+  items: [
+    { label: "All", value: "" },
+    { label: "Accelerate Learning", value: "ACCELERATE LEARNING" },
+    { label: "Gain Experience", value: "GAIN EXPERIENCE" },
+    {
+      label: "Escape Tutorial Purgatory",
+      value: "GET OUT OF TUTORIAL PURGATORY",
+    },
+    { label: "Network with shared goals", value: "NETWORK WITH SHARED goalS" },
+    { label: "Other", value: "OTHER" },
+  ],
+});
+
+const sourceCollection = createListCollection({
+  items: [
+    { label: "All", value: "" },
+    { label: "DEV", value: "DEV" },
+    { label: "DEV.TO", value: "DEV.TO" },
+    { label: "Flutter Explained", value: "FLUTTER EXPLAINED" },
+    { label: "FreeCodeCamp Forum", value: "FREE CODE CAMP FORUM" },
+    { label: "Google Search", value: "GOOGLE SEARCH" },
+    { label: "LinkedIn", value: "LINKEDIN" },
+    { label: "Medium", value: "MEDIUM" },
+    { label: "Other", value: "OTHER" },
+    { label: "Personal Network", value: "PERSONAL NETWORK" },
+    { label: "Scrimba", value: "SCRIMBA" },
+    { label: "Twitter", value: "TWITTER" },
+    { label: "The Job Hackers", value: "THE JOB HACKERS" },
+    { label: "YouTube", value: "YOUTUBE" },
+  ],
+});
+
+const voyageRoleCollection = createListCollection({
+  items: [
+    { label: "All", value: "" },
+    { label: "Data Scientist", value: "Data Scientist" },
+    { label: "Product Owner", value: "Product Owner" },
+    { label: "Scrum Master", value: "Scrum Master" },
+    { label: "UI/UX Designer", value: "UI/UX Designer" },
+  ],
+});
+
+const roleTypeCollection = createListCollection({
+  items: [
+    { label: "All", value: "" },
+    { label: "Python", value: "Python" },
+    { label: "Web", value: "Web" },
+  ],
+});
+
 export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
   const { open, onOpen, onClose } = useDisclosure();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -32,11 +129,16 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
   const [filters, setFilters] = useState<SearchFilters>({
     query: initialFilters.query ?? "",
     gender: initialFilters.gender ?? "",
+    soloProjectTier: initialFilters.soloProjectTier ?? "",
     goal: initialFilters.goal ?? "",
     source: initialFilters.source ?? "",
-    role: initialFilters.role ?? "",
+    voyageRole: initialFilters.voyageRole ?? "",
     roleType: initialFilters.roleType ?? "",
   });
+
+  const triggerBg = useColorModeValue("gray.50", "gray.800");
+  const triggerBorder = useColorModeValue("gray.200", "whiteAlpha.300");
+  const labelColor = useColorModeValue("gray.600", "gray.300");
 
   const handleSearch = () => {
     onSearch(filters);
@@ -48,21 +150,29 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
       query: "",
       gender: "",
       goal: "",
+      soloProjectTier: "",
       source: "",
-      role: "",
+      voyageRole: "",
       roleType: "",
     };
     setFilters(empty);
     onSearch(empty);
+    onClose();
   };
 
-  const triggerBg = useColorModeValue("gray.50", "gray.800");
-  const triggerBorder = useColorModeValue("gray.200", "whiteAlpha.300");
-  const sectionBorder = useColorModeValue("gray.200", "whiteAlpha.200");
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+      },
+    },
+  };
 
   return (
     <>
-      <Box
+      <MotionBox
         position="relative"
         cursor="pointer"
         onClick={onOpen}
@@ -72,7 +182,9 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
         borderWidth="1px"
         w="full"
         borderColor={triggerBorder}
-        _hover={{ boxShadow: "lg" }}
+        whileHover={{ scale: 1.02, boxShadow: "lg" }}
+        whileTap={{ scale: 0.98 }}
+        transition={{ duration: 0.2 }}
       >
         <Box
           position="absolute"
@@ -96,8 +208,9 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
           fontSize="sm"
           placeholder="Search voyagers..."
           _focus={{ boxShadow: "none" }}
+          pointerEvents="none"
         />
-      </Box>
+      </MotionBox>
 
       <Modal isOpen={open} onClose={onClose}>
         <Text fontSize="2xl" fontWeight="bold" mb={1}>
@@ -107,156 +220,136 @@ export default function Search({ onSearch, initialFilters = {} }: SearchProps) {
           Search across all fields or narrow down with filters.
         </Text>
 
-        <VStack gap={6} align="stretch">
-          <Box>
+        <MotionVStack
+          gap={6}
+          align="stretch"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <MotionBox variants={itemVariants}>
             <Text mb={2} fontWeight="medium" fontSize="sm">
               Keyword
             </Text>
             <Input
-              placeholder="Name, country, timezone, notes…"
+              placeholder="Country, timezone, notes…"
               px={4}
               py={3}
               borderRadius="md"
+              borderColor={triggerBorder}
               value={filters.query}
               onChange={(e) =>
                 setFilters({ ...filters, query: e.target.value })
               }
             />
-            <Text mt={1} fontSize="xs" color="gray.500">
+            <Text mt={1} fontSize="xs" color={labelColor}>
               This searches across country, timezone, other text fields, etc.
             </Text>
-          </Box>
+          </MotionBox>
 
-          <Box>
-            <Text mb={2} fontWeight="medium" fontSize="sm">
-              Gender
-            </Text>
-            <Box
-              as="select"
-              w="100%"
-              px={4}
-              py={3}
-              borderWidth="1px"
-              borderRadius="md"
-              value={filters.gender}
-              onChange={(e) =>
-                setFilters({ ...filters, gender: e.target.value })
-              }
-            >
-              <option value="">All</option>
-              <option value="MALE">Male</option>
-              <option value="FEMALE">Female</option>
-              <option value="OTHER">Other</option>
-            </Box>
-          </Box>
+          <LabeledSelect
+            label="Gender"
+            value={filters.gender}
+            onChange={(v) => setFilters({ ...filters, gender: v })}
+            collection={genderCollection}
+          />
 
-          <Box>
-            <Text mb={2} fontWeight="medium" fontSize="sm">
-              Goal
-            </Text>
-            <Box
-              as="select"
-              w="100%"
-              px={4}
-              py={3}
-              borderWidth="1px"
-              borderRadius="md"
-              value={filters.goal}
-              onChange={(e) => setFilters({ ...filters, goal: e.target.value })}
-            >
-              <option value="">All</option>
-              <option value="GAIN EXPERIENCE">Gain Experience</option>
-              <option value="BUILD PORTFOLIO">Build Portfolio</option>
-              <option value="GROW SKILLS">Grow Skills</option>
-              <option value="FIND TEAM">Find Team</option>
-            </Box>
-          </Box>
+          <LabeledSelect
+            label="Solo Project Tier"
+            value={filters.soloProjectTier}
+            onChange={(v) => setFilters({ ...filters, soloProjectTier: v })}
+            collection={soloProjectTierCollection}
+          />
 
-          <Box>
-            <Text mb={2} fontWeight="medium" fontSize="sm">
-              Source
-            </Text>
-            <Box
-              as="select"
-              w="100%"
-              px={4}
-              py={3}
-              borderWidth="1px"
-              borderRadius="md"
-              value={filters.source}
-              onChange={(e) =>
-                setFilters({ ...filters, source: e.target.value })
-              }
-            >
-              <option value="">All</option>
-              <option value="PERSONAL NETWORK">Personal Network</option>
-              <option value="LINKEDIN">LinkedIn</option>
-              <option value="COMMUNITY">Community</option>
-              <option value="WEBSITE">Website</option>
-              <option value="OTHER">Other</option>
-            </Box>
-          </Box>
+          <LabeledSelect
+            label="Goal"
+            value={filters.goal}
+            onChange={(v) => setFilters({ ...filters, goal: v })}
+            collection={goalCollection}
+          />
 
-          <Box>
-            <Text mb={2} fontWeight="medium" fontSize="sm">
-              Voyage Role
-            </Text>
-            <Box
-              as="select"
-              w="100%"
-              px={4}
-              py={3}
-              borderWidth="1px"
-              borderRadius="md"
-              value={filters.role}
-              onChange={(e) => setFilters({ ...filters, role: e.target.value })}
-            >
-              <option value="">All</option>
-              <option value="Scrum Master">Scrum Master</option>
-              <option value="Developer">Developer</option>
-              <option value="Designer">Designer</option>
-              <option value="Project Manager">Project Manager</option>
-            </Box>
-          </Box>
+          <LabeledSelect
+            label="Source"
+            value={filters.source}
+            onChange={(v) => setFilters({ ...filters, source: v })}
+            collection={sourceCollection}
+          />
 
-          <Box>
-            <Text mb={2} fontWeight="medium" fontSize="sm">
-              Role Type
-            </Text>
-            <Box
-              as="select"
-              w="100%"
-              px={4}
-              py={3}
-              borderWidth="1px"
-              borderRadius="md"
-              value={filters.roleType}
-              onChange={(e) =>
-                setFilters({ ...filters, roleType: e.target.value })
-              }
-            >
-              <option value="">All</option>
-              <option value="FULL-TIME">Full-time</option>
-              <option value="PART-TIME">Part-time</option>
-              <option value="INTERN">Intern</option>
-            </Box>
-          </Box>
+          <LabeledSelect
+            label="Voyage Role"
+            value={filters.voyageRole}
+            onChange={(v) => setFilters({ ...filters, voyageRole: v })}
+            collection={voyageRoleCollection}
+          />
 
-          <Flex gap={3} pt={4}>
-            <Button
-              flex={1}
-              colorScheme="blue"
-              size="md"
-              onClick={handleSearch}
-            >
-              Apply
-            </Button>
-            <Button flex={1} variant="outline" size="md" onClick={handleClear}>
-              Clear
-            </Button>
-          </Flex>
-        </VStack>
+          <LabeledSelect
+            label="Role Type"
+            value={filters.roleType}
+            onChange={(v) => setFilters({ ...filters, roleType: v })}
+            collection={roleTypeCollection}
+          />
+
+          <MotionBox variants={itemVariants}>
+            <Flex gap={3} pt={4}>
+              <Button flex={1} colorScheme="blue" onClick={handleSearch}>
+                Apply
+              </Button>
+              <Button flex={1} variant="outline" onClick={handleClear}>
+                Clear
+              </Button>
+            </Flex>
+          </MotionBox>
+        </MotionVStack>
       </Modal>
     </>
   );
 }
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const LabeledSelect = ({
+  label,
+  value,
+  onChange,
+  collection,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  collection: any;
+}) => {
+  const triggerBorder = useColorModeValue("gray.200", "whiteAlpha.300");
+
+  return (
+    <MotionBox variants={itemVariants}>
+      <SelectRoot
+        collection={collection}
+        value={value ? [value] : []}
+        onValueChange={(e: any) => onChange(e.value[0])}
+        size="md"
+      >
+        <SelectLabel mb={2} fontWeight="medium" fontSize="sm">
+          {label}
+        </SelectLabel>
+        <SelectTrigger
+          borderColor={triggerBorder}
+          borderWidth="1px"
+          borderRadius="md"
+          p={2}
+        >
+          <SelectValueText placeholder={`Select ${label.toLowerCase()}`} />
+        </SelectTrigger>
+        <SelectContent zIndex={2000} portalled={false}>
+          {collection.items.map((item: any) => (
+            <SelectItem item={item} key={item.value}>
+              {item.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </SelectRoot>
+    </MotionBox>
+  );
+};
