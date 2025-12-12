@@ -188,6 +188,8 @@ export default function FloatingCopyButton() {
               placeholder="e.g., Senior Frontend Devs in US"
               value={filterName}
               onChange={(e) => setFilterName(e.target.value)}
+              borderColor={useColorModeValue("gray.200", "gray.600")}
+              _focus={{ borderColor: "blue.500" }}
             />
           </Box>
           <Button
