@@ -284,7 +284,9 @@ export default function List() {
             />
           </Box>
         )}
-        {urlParams.size > 0 && <FloatingCopyButton />}
+        {Array.from(urlParams.keys()).some((key) => key !== "page") && (
+          <FloatingCopyButton />
+        )}
       </Flex>
       <Modal
         isOpen={showVoyagerModal}

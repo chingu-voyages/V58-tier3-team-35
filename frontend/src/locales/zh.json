@@ -12,6 +12,7 @@
     "signup": "注册",
     "login": "登录",
     "dashboard": "仪表盘",
+    "filter": "我的筛选",
     "logout": "退出"
   },
   "footer": {
