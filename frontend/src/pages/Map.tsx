@@ -1,22 +1,28 @@
 import { useVoyagerCoordinates } from "@/api/hooks/useVoyagerCoordinates";
+import FloatingCopyButton from "@/components/FloatingCopy";
 import LeafletMap from "@/components/maps/LeafletMap";
 import Search, { type SearchFilters } from "@/components/Search";
 import { Box, Button, Flex } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router";
 import { toast } from "sonner";
 
 export default function Map() {
+  const { t } = useTranslation();
+  const [urlParams, setUrlParams] = useSearchParams();
+
   const [filters, setFilters] = useState<SearchFilters>({
-    query: "",
-    gender: "",
-    soloProjectTier: "",
-    goal: "",
-    source: "",
-    voyageRole: "",
-    roleType: "",
+    search: urlParams.get("search") || "",
+    gender: urlParams.get("gender") || "",
+    soloProjectTier: urlParams.get("soloProjectTier") || "",
+    goal: urlParams.get("goal") || "",
+    source: urlParams.get("source") || "",
+    voyageRole: urlParams.get("voyageRole") || "",
+    roleType: urlParams.get("roleType") || "",
   });
 
-  const { data, isLoading, isError, error, refetch } =
+  const { data, isLoading, isError, error, refetch, isRefetching } =
     useVoyagerCoordinates(filters);
 
   useEffect(() => {
@@ -48,19 +54,26 @@ export default function Map() {
         >
           <Flex w="full" justifyContent={"center"}>
             <Flex
-              bg="white"
+              bg="none"
               borderRadius={10}
               w={{ base: "full", md: "400px" }}
-              boxShadow={"md"}
+              gap={2}
             >
-              <Search onSearch={(filter) => setFilters(filter)} />
+              <Search onSearch={(filter) => setFilters(filter)} />{" "}
+              <Button onClick={() => refetch({ cancelRefetch: false })}>
+                {t("refresh")}
+              </Button>
             </Flex>
           </Flex>
         </Box>
       </Box>
       <Box height="lvh">
-        <LeafletMap data={data?.data || []} loading={isLoading} />
+        <LeafletMap
+          data={data?.data || []}
+          loading={isLoading || isRefetching}
+        />
       </Box>
+      {urlParams.size > 0 && <FloatingCopyButton />}
     </>
   );
 }

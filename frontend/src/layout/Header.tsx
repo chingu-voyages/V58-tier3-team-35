@@ -20,28 +20,57 @@ import { useColorMode, useColorModeValue } from "@/components/ui/color-mode";
 import { NavLink, useNavigate } from "react-router";
 import Logo from "@/assets/logo.svg";
 import LogoDark from "@/assets/logo-white.svg";
+import { LanguageSelector } from "@/components/LanguageSelector";
+import i18n from "@/utils/i18n";
+import { useTranslation } from "react-i18next";
+import { useAuth } from "@/context/AuthContext";
 
 const Header: React.FC = () => {
+  const { t } = useTranslation();
   const { colorMode, toggleColorMode } = useColorMode();
   const { open: isOpen, onOpen, onClose } = useDisclosure();
+  const { user } = useAuth();
 
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
 
   const bg = useColorModeValue("white", "gray.900");
   const textColor = useColorModeValue("gray.700", "gray.200");
 
-  const navLinks: { title: string; route: string }[] = [
+  const navLinks: { title: string; route: string; display: boolean }[] = [
     {
-      title: "Home",
+      title: t("menu.home"),
       route: "/",
+      display: true,
     },
     {
-      title: "Map",
+      title: t("menu.map"),
       route: "/map",
+      display: true,
     },
     {
-      title: "List",
+      title: t("menu.list"),
       route: "/list",
+      display: true,
+    },
+    {
+      title: t("menu.signup"),
+      route: "/auth/signup",
+      display: user === null,
+    },
+    {
+      title: t("menu.login"),
+      route: "/auth",
+      display: user === null,
+    },
+    {
+      title: t("menu.dashboard"),
+      route: "/user",
+      display: user !== null,
+    },
+    {
+      title: t("menu.logout"),
+      route: "/user/logout",
+      display: user !== null,
     },
   ];
 
@@ -83,7 +112,7 @@ const Header: React.FC = () => {
           display={{ base: "block", md: "none" }}
           color={textColor}
         >
-          {currentTime.toLocaleString("en-Us", {
+          {currentTime.toLocaleString(i18n.language, {
             weekday: "long",
             month: "long",
             day: "2-digit",
@@ -110,7 +139,7 @@ const Header: React.FC = () => {
             color={textColor}
             display={{ base: "none", md: "block" }}
           >
-            {currentTime.toLocaleString("en-US", {
+            {currentTime.toLocaleString(i18n.language, {
               weekday: "long",
               month: "long",
               day: "2-digit",
@@ -119,17 +148,21 @@ const Header: React.FC = () => {
           </Text>
 
           <HStack gap={4} display={{ base: "none", md: "flex" }}>
-            {navLinks.map((nav) => (
-              <NavLink
-                key={nav.title}
-                to={nav.route}
-                style={({ isActive }) => ({
-                  color: isActive ? "#3182ce" : "inherit",
-                })}
-              >
-                {nav.title}
-              </NavLink>
-            ))}
+            {navLinks.map(
+              (nav) =>
+                nav.display && (
+                  <NavLink
+                    key={nav.title}
+                    end
+                    to={nav.route}
+                    style={({ isActive }) => ({
+                      color: isActive ? "#3182ce" : "inherit",
+                    })}
+                  >
+                    {nav.title}
+                  </NavLink>
+                )
+            )}
             <IconButton
               aria-label="Toggle color mode"
               onClick={toggleColorMode}
@@ -139,6 +172,7 @@ const Header: React.FC = () => {
             </IconButton>
           </HStack>
 
+          <LanguageSelector />
           <HStack display={{ base: "flex", md: "none" }}>
             <IconButton
               aria-label="Toggle color mode"
@@ -154,25 +188,29 @@ const Header: React.FC = () => {
         </Flex>
       </Flex>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Menu */}
       <Drawer.Root placement="end" open={isOpen} onOpenChange={onClose}>
         <DrawerBackdrop />
         <DrawerContent>
           <DrawerCloseTrigger />
           <DrawerBody mt={10}>
             <VStack gap={4}>
-              {navLinks.map((nav) => (
-                <NavLink
-                  key={nav.title}
-                  to={nav.route}
-                  onClick={onClose}
-                  style={({ isActive }) => ({
-                    color: isActive ? "#3182ce" : "inherit",
-                  })}
-                >
-                  {nav.title}
-                </NavLink>
-              ))}
+              {navLinks.map(
+                (nav) =>
+                  nav.display && (
+                    <NavLink
+                      key={nav.title}
+                      to={nav.route}
+                      end
+                      onClick={onClose}
+                      style={({ isActive }) => ({
+                        color: isActive ? "#3182ce" : "inherit",
+                      })}
+                    >
+                      {nav.title}
+                    </NavLink>
+                  )
+              )}
             </VStack>
           </DrawerBody>
         </DrawerContent>
