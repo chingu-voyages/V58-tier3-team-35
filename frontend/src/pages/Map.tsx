@@ -73,7 +73,9 @@ export default function Map() {
           loading={isLoading || isRefetching}
         />
       </Box>
-      {urlParams.size > 0 && <FloatingCopyButton />}
+      {Array.from(urlParams.keys()).some((key) => key !== "page") && (
+        <FloatingCopyButton />
+      )}
     </>
   );
 }
