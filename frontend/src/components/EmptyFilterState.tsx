@@ -3,7 +3,7 @@ import { useColorModeValue } from "./ui/color-mode";
 
 export default function EmptyFilterState() {
   const textColor = useColorModeValue("gray.500", "gray.400");
-  const svgFill = useColorModeValue("#CBD5E0", "#4A5568");
+  const svgFill = useColorModeValue("#0e0f0f", "#4A5568");
   const svgAccent = useColorModeValue("#A0AEC0", "#718096");
 
   return (
@@ -26,7 +26,7 @@ export default function EmptyFilterState() {
             cx="100"
             cy="100"
             r="90"
-            fill={useColorModeValue("#F7FAFC", "#2D3748")}
+            fill={useColorModeValue("#d3d6d7", "#2D3748")}
           />
           <path
             d="M65 80H135M65 80L85 110V150L115 135V110L135 80M65 80H135"
