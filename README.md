@@ -149,6 +149,15 @@ This project was developed by an amazing team as part of Chingu Voyage 58:
         ```bash
         npm install
 
-   3. Start the frontend development server:
+    3. Create and configure the environment file:
+       - In the backend directory, create a new file named .env.
+       - Copy the contents of .env.example into your new .env file.
+       - Fill in the required values:
+            - VITE_GOOGLE_MAPS_API_KEY=" your-goggle-maps-key"
+            - VITE_API_URL="your-backend-url"
+            - VITE_API_KEY="your-backend-app-key"
+            - VITE_RECAPTCHA_SITE_KEY="your-recaptcha-key"
+   
+   4. Start the frontend development server:
         ```bash
         npm run dev
