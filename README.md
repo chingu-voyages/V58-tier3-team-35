@@ -1,38 +1,97 @@
-# voyage-tasks
+# ChinguVerse
 
-Your project's `readme` is as important to success as your code. For
-this reason you should put as much care into its creation and maintenance
-as you would any other component of the application.
+![chinguVerse landing page preview](./docs/landing-page-preview.png)
 
-If you are unsure of what should go into the `readme` let this article,
-written by an experienced Chingu, be your starting point -
-[Keys to a well written README](https://tinyurl.com/yk3wubft).
 
-And before we go there's "one more thing"! Once you decide what to include
-in your `readme` feel free to replace the text we've provided here.
+### Table of Contents
+- [Project URL](#demo)
+- [Description](#description)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Special Thanks](#special-thanks)
+- [Team Members](#our-team)
+- [Setup Instructions](#setup-Instructions)
 
-> Own it & Make it your Own!
 
-## Team Documents
+## Demo
 
-You may find these helpful as you work together to organize your project.
+[URL](https://chingu-voyages.github.io/V58-tier3-team-35/)
 
-- [Team Project Ideas](./docs/team_project_ideas.md)
-- [Team Decision Log](./docs/team_decision_log.md)
+## Description
 
-Meeting Agenda templates (located in the `/docs` directory in this repo):
+ChinguVerse! 🌍 is a friendly web app brings together Chingu developers from around the world on an interactive map. Discover where your fellow Chingus are located, explore demographic insights, and connect with the global developer community. ChinguVerse makes it easy and fun to visualize our worldwide network.
 
-- Meeting - Voyage Kickoff --> ./docs/meeting-voyage_kickoff.docx
-- Meeting - App Vision & Feature Planning --> ./docs/meeting-vision_and_feature_planning.docx
-- Meeting - Sprint Retrospective, Review, and Planning --> ./docs/meeting-sprint_retrospective_review_and_planning.docx
-- Meeting - Sprint Open Topic Session --> ./docs/meeting-sprint_open_topic_session.docx
+## Features
+
+- **Map Page**
+- Shows the total number of Chingus in a country.
+
+- **List Page**
+- Displays a paginated and sort list of Chingus
+- the list attributes include:
+    - Gender  
+    - Country 
+    - Year joined (from Timestamp)  
+    - Role type  
+    - Source
+    - Voyage Role    
+    - Goal  
+
+- **Search functionality**
+- Search or Filter chingus based on the combination of any of the following:
+    - Keyword (country, timezones etc)
+    - Gender  
+    - Source  
+    - Goal  
+    - Solo Project Tier  
+    - Voyage Role 
+    - Role type
+    - Submit and Clear buttons update or reset results.
+
+- **Dashboard**
+- Displays demographic insights about Chingus using charts and graphs.
+
+- **My Filters**
+- Save frequently used search filters for quick access.
+
+- **AI chatbot (Versie)**
+- Get instant answers to your questions on how to navigate the web app.
+
+**Modern UI / UX**
+- Responsive design optimized for all devices
+- Tailwind CSS for modern, consistent styling
+- Dark mode support
+
+
+## Technologies Used
+- **language**: Typescript
+
+- **Frontend**
+    - React
+    - Tailwind CSS
+    - Leaflet.js
+    - Vite
+    - ReCaptcha
+
+
+- **Backend**
+    - NodeJS
+    - Express.js
+    - MongoDB
+    - GEMINI AI API
+    - GitHub Pages
+    - Render
+
+## Special Thanks
+
+- **Chingu**: For organizing This Voyage and providing this amazing opportunity
+- **All Contributors**: For their dedication and hard work
+- **Open Source Community**: For the amazing tools and libraries
+- **Special Thanks** : To the Scrum master, project head and voyage Guide
 
 ## Our Team
 
-Everyone on your team should add their name along with a link to their GitHub
-& optionally their LinkedIn profiles below. Do this in Sprint #1 to validate
-your repo access and to practice PR'ing with your team _before_ you start
-coding!
+This project was developed by an amazing team as part of Chingu Voyage 58:
 
 - Onyekachi Nwakaihe (Kachi): [GitHub](https://github.com/donkachii) / [LinkedIn](https://linkedin.com/in/onyekachi-nwakaihe)
 - Zuzu Ali #2: [GitHub](https://github.com/zuweeali) / [LinkedIn](https://linkedin.com/in/zuwaira-aliyu-mohammed)
@@ -43,3 +102,49 @@ coding!
 - Nsowah Alexander (Recklessbud) [Github](https://github.com/recklessbud)
 
 - Voyage Guide: Lindsay Allen [GitHub](https://github.com/lkallen) / [LinkedIn](https://www.linkedin.com/in/lindsay-allen-54b46937/)
+
+
+## Setup Instructions
+1. Clone the repository:  
+   ```bash
+   git clone <repo-url> 
+
+2. **Navigate to the project folder**  
+
+  Backend Setup
+
+   1. Navigate to the backend directory:
+        ```bash
+        cd backend
+
+   2. Install backend dependencies:
+        ```bash
+        npm install
+
+   3. Create and configure the environment file:
+       - In the backend directory, create a new file named .env.
+       - Copy the contents of .env.example into your new .env file.
+       - Fill in the required values:
+           - PORT: The port for the backend server (e.g., 2334).
+           - CONNECTION_URI: Your MongoDB connection string.
+           - APP_KEY: A secret key for your application.
+           - RECAPTCHA_SECRET_KEY: Your Google reCAPTCHA secret key.
+           - GOOGLE_GEMINI_API_KEY: Your Google Gemini API key.
+   4. Start the backend development server:
+   1     npm run dev
+      The backend should now be running on the port you specified in your .env file.
+
+  **Frontend Setup**
+
+   1. Navigate to the frontend directory:
+      (If you are in the backend directory, go back to the root first: cd ..)
+        ```bash
+        cd frontend
+
+   2. Install frontend dependencies:
+        ```bash
+        npm install
+
+   3. Start the frontend development server:
+   1     npm run dev
+        http://localhost:5173.
