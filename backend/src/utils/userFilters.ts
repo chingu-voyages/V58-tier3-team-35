@@ -10,15 +10,15 @@ export default function buildUserFilters(query: any) {
   const filters: any = {};
   if (query.search) {
     const keyword = query.search;
-
+    const exact = new RegExp(`^${keyword}$`, "i");
     filters.$or = [
-      { countryCode: { $regex: keyword, $options: "i" } },
-      { timezone: { $regex: keyword, $options: "i" } },
-      { goalOther: { $regex: keyword, $options: "i" } },
-      { sourceOther: { $regex: keyword, $options: "i" } },
-      { countryName: { $regex: keyword, $options: "i" } },
-      { voyageSignups: { $regex: keyword, $options: "i" } },
-      { voyageTier: { $regex: keyword, $options: "i" } },
+      { countryCode: exact },
+      { timezone: exact },
+      { goalOther: exact },
+      { sourceOther: exact },
+      { countryName: exact },
+      { voyageSignups: exact },
+      { voyageTier: exact },
     ];
   }
 

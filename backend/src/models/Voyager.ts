@@ -1,10 +1,4 @@
-import {
-  Schema,
-  model,
-  Document,
-  PaginateModel,
-  HydratedDocument,
-} from "mongoose";
+import { Schema, model, PaginateModel, HydratedDocument } from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
 
 export interface IVoyager {
