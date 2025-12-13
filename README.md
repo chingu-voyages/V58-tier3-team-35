@@ -150,7 +150,7 @@ This project was developed by an amazing team as part of Chingu Voyage 58:
         npm install
 
     3. Create and configure the environment file:
-       - In the backend directory, create a new file named .env.
+       - In the Frontend directory, create a new file named .env.
        - Copy the contents of .env.example into your new .env file.
        - Fill in the required values:
             - VITE_GOOGLE_MAPS_API_KEY=" your-goggle-maps-key"
