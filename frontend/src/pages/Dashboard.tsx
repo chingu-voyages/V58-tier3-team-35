@@ -99,6 +99,9 @@ export default function Dashboard() {
   const cleanData = (data: any[]) =>
     data?.filter((item) => item._id !== "") || [];
 
+  const axisLabelColor = useColorModeValue("#4A5568", "#E2E8F0");
+  const gridColor = useColorModeValue("#E2E8F0", "#4A5568");
+
   return (
     <Container maxW="container.xl" py={8}>
       <VStack gap={8} align="stretch">
@@ -144,9 +147,9 @@ export default function Dashboard() {
                     bottom: 0,
                   }}
                 >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="_id" />
-                  <YAxis />
+                  <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
+                  <XAxis dataKey="_id" tick={{ fill: axisLabelColor }} />
+                  <YAxis tick={{ fill: axisLabelColor }} />
                   <Tooltip />
                   <Area
                     type="monotone"
@@ -177,7 +180,7 @@ export default function Dashboard() {
                         innerRadius={80}
                         outerRadius={100}
                         fill="#8884d8"
-                        paddingAngle={20}
+                        paddingAngle={0}
                         dataKey="count"
                         nameKey="_id"
                         label
@@ -192,7 +195,12 @@ export default function Dashboard() {
                         )}
                       </Pie>
                       <Tooltip />
-                      <Legend />
+                      <Legend
+                        formatter={(value) =>
+                          value.charAt(0).toUpperCase() +
+                          value.slice(1).toLowerCase()
+                        }
+                      />
                     </PieChart>
                   </ResponsiveContainer>
                 </Box>

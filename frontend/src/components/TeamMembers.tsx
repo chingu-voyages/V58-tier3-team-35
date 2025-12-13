@@ -22,7 +22,7 @@ const TeamMembers = () => {
     <Box m={10}>
       <Heading fontSize={40} fontWeight="bold" mb={4} textAlign="center">
         {t("meetTheTeam")}{" "}
-        <Span fontWeight="bolder" color={colorChange}>
+        <Span fontWeight="bold" color={colorChange}>
           (Phoenix)
         </Span>
       </Heading>
@@ -33,7 +33,7 @@ const TeamMembers = () => {
         wrap="wrap"
         gap={8}
         justifyContent="center"
-        alignItems="center"
+        alignItems="stretch"
         my={5}
         px={4}
         pt={8}
@@ -45,6 +45,7 @@ const TeamMembers = () => {
             key={member.ghUsername}
             bg={bg}
             w={{ base: "full", sm: "300px" }}
+            alignSelf="stretch"
             borderRadius={8}
             boxShadow="md"
             alignItems="start"
@@ -62,7 +63,7 @@ const TeamMembers = () => {
               borderRadius={8}
               alt={member.name}
             />
-            <VStack p={4} alignItems="flex-start" w="full">
+            <VStack p={4} alignItems="flex-start" w="full" flex={1}>
               <Text fontSize={16} fontWeight="bold">
                 {member.name}
               </Text>
@@ -72,7 +73,7 @@ const TeamMembers = () => {
               <Text fontSize={14} color={textColor}>
                 {member.quote}
               </Text>
-              <HStack gap={4} w="full" justifyContent="flex-end">
+              <HStack gap={4} w="full" justifyContent="flex-end" mt="auto">
                 <Link to={member.ghUsername} target="_blank">
                   <Github size={20} />
                 </Link>
