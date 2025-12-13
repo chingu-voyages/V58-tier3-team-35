@@ -17,6 +17,10 @@
 
 [URL](https://chingu-voyages.github.io/V58-tier3-team-35/)
 
+**Test Account**
+- Email: chvrfbkfmkrdjmtyyj@enotj.com
+- Password: Restart@12
+
 ## Description
 
 ChinguVerse! 🌍 is a friendly web app brings together Chingu developers from around the world on an interactive map. Discover where your fellow Chingus are located, explore demographic insights, and connect with the global developer community. ChinguVerse makes it easy and fun to visualize our worldwide network.
