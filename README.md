@@ -82,7 +82,7 @@ ChinguVerse! 🌍 is a friendly web app brings together Chingu developers from a
     - GitHub Pages
     - Render
 
-- **Tools**
+- **UI / UX**
     - Figma
 
 ## Special Thanks
@@ -101,7 +101,7 @@ This project was developed by an amazing team as part of Chingu Voyage 58:
 - Chinedu Olekah #3: [GitHub](https://github.com/kenako1) / [LinkedIn](https://linkedin.com/in/chinedu-olekah)
 - Afuwape Babatunde #4: [GitHub](https://github.com/Afubasic) / [LinkedIn](https://www.linkedin.com/in/afuwape-babatunde-258735382)
 - Ogechi Ogharandukun #5: [GitHub](https://github.com/AdoarableOge) / [LinkedIn](https://www.linkedin.com/in/Ogechi-Ogharandukun)
-- Nsowah Alexander #6(Recklessbud) [Github](https://github.com/recklessbud)
+- Nsowah Alexander #6: [Github](https://github.com/recklessbud)
 
 - Voyage Guide: Lindsay Allen #7 [GitHub](https://github.com/lkallen) / [LinkedIn](https://www.linkedin.com/in/lindsay-allen-54b46937/)
 
