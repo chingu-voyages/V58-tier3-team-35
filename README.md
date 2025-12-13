@@ -57,7 +57,7 @@ ChinguVerse! 🌍 is a friendly web app brings together Chingu developers from a
 - **AI chatbot (Versie)**
     - Get instant answers to your questions on how to navigate the web app.
 
-**Modern UI / UX**
+- **Modern UI / UX**
     - Responsive design optimized for all devices
     - Tailwind CSS for modern, consistent styling
     - Dark mode support
@@ -68,7 +68,7 @@ ChinguVerse! 🌍 is a friendly web app brings together Chingu developers from a
 
 - **Frontend**
     - React
-    - Tailwind CSS
+    - Chakra UI
     - Leaflet.js
     - Vite
     - ReCaptcha
@@ -82,6 +82,9 @@ ChinguVerse! 🌍 is a friendly web app brings together Chingu developers from a
     - GitHub Pages
     - Render
 
+- **Tools**
+    - Figma
+
 ## Special Thanks
 
 - **Chingu**: For organizing This Voyage and providing this amazing opportunity
@@ -93,15 +96,14 @@ ChinguVerse! 🌍 is a friendly web app brings together Chingu developers from a
 
 This project was developed by an amazing team as part of Chingu Voyage 58:
 
-- Onyekachi Nwakaihe (Kachi): [GitHub](https://github.com/donkachii) / [LinkedIn](https://linkedin.com/in/onyekachi-nwakaihe)
+- Onyekachi Nwakaihe (Kachi) #1: [GitHub](https://github.com/donkachii) / [LinkedIn](https://linkedin.com/in/onyekachi-nwakaihe)
 - Zuzu Ali #2: [GitHub](https://github.com/zuweeali) / [LinkedIn](https://linkedin.com/in/zuwaira-aliyu-mohammed)
 - Chinedu Olekah #3: [GitHub](https://github.com/kenako1) / [LinkedIn](https://linkedin.com/in/chinedu-olekah)
-- Afuwape Babatunde: [GitHub](https://github.com/Afubasic) / [LinkedIn](https://www.linkedin.com/in/afuwape-babatunde-258735382)
-- Ogechi Ogharandukun #4: [GitHub](https://github.com/AdoarableOge) / [LinkedIn](https://www.linkedin.com/in/Ogechi-Ogharandukun)
-- Alyssia Tavares #5: [GitHub](https://github.com/alyssiatavares) / [LinkedIn](https://linkedin.com/in/alyssia-tavares)
-- Nsowah Alexander (Recklessbud) [Github](https://github.com/recklessbud)
+- Afuwape Babatunde #4: [GitHub](https://github.com/Afubasic) / [LinkedIn](https://www.linkedin.com/in/afuwape-babatunde-258735382)
+- Ogechi Ogharandukun #5: [GitHub](https://github.com/AdoarableOge) / [LinkedIn](https://www.linkedin.com/in/Ogechi-Ogharandukun)
+- Nsowah Alexander #6(Recklessbud) [Github](https://github.com/recklessbud)
 
-- Voyage Guide: Lindsay Allen [GitHub](https://github.com/lkallen) / [LinkedIn](https://www.linkedin.com/in/lindsay-allen-54b46937/)
+- Voyage Guide: Lindsay Allen #7 [GitHub](https://github.com/lkallen) / [LinkedIn](https://www.linkedin.com/in/lindsay-allen-54b46937/)
 
 
 ## Setup Instructions
