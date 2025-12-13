@@ -24,43 +24,43 @@ ChinguVerse! 🌍 is a friendly web app brings together Chingu developers from a
 ## Features
 
 - **Map Page**
-- Shows the total number of Chingus in a country.
+    - Shows the total number of Chingus in a country.
 
 - **List Page**
-- Displays a paginated and sort list of Chingus
-- the list attributes include:
-    - Gender  
-    - Country 
-    - Year joined (from Timestamp)  
-    - Role type  
-    - Source
-    - Voyage Role    
-    - Goal  
+    - Displays a paginated and sort list of Chingus
+    - the list attributes include:
+        - Gender  
+        - Country 
+        - Year joined (from Timestamp)  
+        - Role type  
+        - Source
+        - Voyage Role    
+        - Goal  
 
 - **Search functionality**
-- Search or Filter chingus based on the combination of any of the following:
-    - Keyword (country, timezones etc)
-    - Gender  
-    - Source  
-    - Goal  
-    - Solo Project Tier  
-    - Voyage Role 
-    - Role type
-    - Submit and Clear buttons update or reset results.
+    - Search or Filter chingus based on the combination of any of the following:
+        - Keyword (country, timezones etc)
+        - Gender  
+        - Source  
+        - Goal  
+        - Solo Project Tier  
+        - Voyage Role 
+        - Role type
+        - Submit and Clear buttons update or reset results.
 
 - **Dashboard**
-- Displays demographic insights about Chingus using charts and graphs.
+    - Displays demographic insights about Chingus using charts and graphs.
 
 - **My Filters**
-- Save frequently used search filters for quick access.
+    - Save frequently used search filters for quick access.
 
 - **AI chatbot (Versie)**
-- Get instant answers to your questions on how to navigate the web app.
+    - Get instant answers to your questions on how to navigate the web app.
 
 **Modern UI / UX**
-- Responsive design optimized for all devices
-- Tailwind CSS for modern, consistent styling
-- Dark mode support
+    - Responsive design optimized for all devices
+    - Tailwind CSS for modern, consistent styling
+    - Dark mode support
 
 
 ## Technologies Used
@@ -130,9 +130,11 @@ This project was developed by an amazing team as part of Chingu Voyage 58:
            - APP_KEY: A secret key for your application.
            - RECAPTCHA_SECRET_KEY: Your Google reCAPTCHA secret key.
            - GOOGLE_GEMINI_API_KEY: Your Google Gemini API key.
+   
    4. Start the backend development server:
-   1     npm run dev
-      The backend should now be running on the port you specified in your .env file.
+        ```bash
+        npm run dev
+      
 
   **Frontend Setup**
 
@@ -146,5 +148,5 @@ This project was developed by an amazing team as part of Chingu Voyage 58:
         npm install
 
    3. Start the frontend development server:
-   1     npm run dev
-        http://localhost:5173.
+        ```bash
+        npm run dev
