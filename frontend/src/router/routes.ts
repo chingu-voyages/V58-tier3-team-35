@@ -47,11 +47,6 @@ const routes = [
             Component: Signup,
             handle: { title: "Signup | Chingu Verse" },
           },
-          {
-            path: "favorite-filters",
-            Component: MyFilters,
-            handle: { title: "My Favorite Filters | ChinguVerse" },
-          },
         ],
       },
       {
@@ -63,7 +58,11 @@ const routes = [
             Component: Dashboard,
             handle: { title: "Dashboard | ChinguVerse" },
           },
-          
+          {
+            path: "favorite-filters",
+            Component: MyFilters,
+            handle: { title: "My Favorite Filters | ChinguVerse" },
+          },
           {
             path: "logout",
             Component: Logout,
