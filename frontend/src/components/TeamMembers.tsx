@@ -59,6 +59,8 @@ const TeamMembers = () => {
               src={member.image}
               w="full"
               h="300px"
+              loading="lazy"
+              decoding="async"
               objectFit="cover"
               borderRadius={8}
               alt={member.name}
