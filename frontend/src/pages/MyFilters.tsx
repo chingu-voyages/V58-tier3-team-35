@@ -17,8 +17,9 @@ import {
   type FavoriteFilter,
 } from "@/api/hooks/useFavoriteFilters";
 import { useColorModeValue } from "@/components/ui/color-mode";
-import { Trash2, ExternalLink } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import EmptyFilterState from "@/components/EmptyFilterState";
 
 export default function MyFilters() {
   const { t } = useTranslation();
@@ -69,11 +70,8 @@ export default function MyFilters() {
       <Heading mb={8} fontSize="3xl" fontWeight="bold">
         {t("menu.filter")}
       </Heading>
-
       {filters && filters.length === 0 ? (
-        <Text textAlign="center" color={textColor} fontSize="lg">
-          You haven't saved any filters yet.
-        </Text>
+        <EmptyFilterState />
       ) : (
         <Grid
           templateColumns={{
