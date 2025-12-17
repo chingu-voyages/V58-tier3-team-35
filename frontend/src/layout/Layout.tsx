@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import Footer from "./Footer";
 import { useAuth } from "@/context/AuthContext";
 import ShouldVerify from "@/components/ShouldVerify";
+import AiChatBot from "@/components/AiChatBot";
 
 type RouteHandle = {
   title: string;
@@ -43,6 +44,7 @@ export default function Layout() {
         </MotionBox>
       </AnimatePresence>
       <Footer />
+      <AiChatBot />
     </Box>
   );
 }

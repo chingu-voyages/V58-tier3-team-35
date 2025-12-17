@@ -11,7 +11,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
-import { Icon, SendIcon } from "lucide-react";
+import { SendIcon } from "lucide-react";
 import { RiChatSmileAiFill } from "react-icons/ri";
 import { keyframes } from "@emotion/react";
 import { toast } from "sonner";
@@ -141,10 +141,10 @@ const AiChatBot: React.FC = () => {
             colorPalette="teal"
             variant="solid"
             rounded="full"
-            size="lg"
+            size="2xl"
             onClick={handleOpen}
           >
-            <RiChatSmileAiFill size="lg" />
+            <RiChatSmileAiFill />
           </IconButton>
           {!hasOpenedOnce && (
             <Box
