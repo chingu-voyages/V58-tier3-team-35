@@ -1,10 +1,10 @@
-import Kachi from "@/assets/images/kachi.png";
-import Zuzu from "@/assets/images/zuzu.png";
-import Chinedu from "@/assets/images/chinedu.png";
-import Ogechi from "@/assets/images/ogechi.png";
-import Babatunde from "@/assets/images/babatunde.png";
-import Lindsay from "@/assets/images/lindsay.png";
-import Alexander from "@/assets/images/alexander.png";
+import Kachi from "@/assets/images/kachi-optimized.jpg";
+import Zuzu from "@/assets/images/zuzu-optimized.jpg";
+import Chinedu from "@/assets/images/chinedu-optimized.jpg";
+import Ogechi from "@/assets/images/ogechi-optimized.jpg";
+import Babatunde from "@/assets/images/babatunde-optimized.jpg";
+import Lindsay from "@/assets/images/lindsay-optimized.jpg";
+import Alexander from "@/assets/images/alexander-optimized.jpg";
 
 export const teamImages = {
   Kachi,

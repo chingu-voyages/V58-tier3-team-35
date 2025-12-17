@@ -5,10 +5,10 @@ import LocatorDark from "@/assets/locator.svg";
 import Arrow from "@/assets/arrow.svg";
 import { useColorModeValue } from "@/components/ui/color-mode";
 import { useNavigate } from "react-router";
-import AiChatBot from "@/components/AiChatBot";
 import { useTranslation } from "react-i18next";
 import TeamMembers from "@/components/TeamMembers";
-import MapVideo from "/src/assets/videos/background.mp4";
+import MapVideo from "@/assets/videos/background-optimized.mp4";
+import BackgroundFallback from "@/assets/background-fallback.webp";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -50,6 +50,7 @@ export default function Home() {
           // @ts-expect-error - video attrs valid
           autoPlay
           loop
+          poster={BackgroundFallback}
           muted
           playsInline
         >
@@ -133,8 +134,6 @@ export default function Home() {
               </Button>
             </Flex>
           </VStack>
-
-          <AiChatBot />
         </Flex>
       </Box>
 
